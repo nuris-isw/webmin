@@ -26,10 +26,48 @@
                     Kelola seluruh akun Administrator Yayasan dan Administrator Unit Sekolah.
                 </x-slot>
 
-                <div class="flex justify-end mb-6">
-                    <a href="{{ route('superadmin.users.create') }}" class="inline-flex items-center px-4 py-2.5 bg-brand-red hover:bg-brand-red-light active:bg-brand-red-deep text-white font-semibold text-xs uppercase tracking-widest rounded-md transition duration-150">
-                        + Tambah Akun
-                    </a>
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
+                    <!-- Filter Form -->
+                    <form method="GET" action="{{ route('superadmin.users.index') }}" class="flex flex-wrap items-end gap-3 flex-1">
+                        <div class="w-full sm:w-auto">
+                            <label for="role" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Peran</label>
+                            <select name="role" id="role" class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm focus:border-brand-red focus:ring-brand-red shadow-sm">
+                                <option value="">Semua Peran</option>
+                                <option value="superadmin" {{ request('role') === 'superadmin' ? 'selected' : '' }}>Superadmin</option>
+                                <option value="admin" {{ request('role') === 'admin' ? 'selected' : '' }}>Admin Unit</option>
+                            </select>
+                        </div>
+
+                        <div class="w-full sm:w-auto">
+                            <label for="unit_id" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Unit Sekolah</label>
+                            <select name="unit_id" id="unit_id" class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm focus:border-brand-red focus:ring-brand-red shadow-sm">
+                                <option value="">Semua Unit</option>
+                                @foreach ($units as $unit)
+                                    <option value="{{ $unit->id }}" {{ request('unit_id') == $unit->id ? 'selected' : '' }}>
+                                        {{ $unit->nama_sekolah }} ({{ strtoupper($unit->jenjang) }})
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="flex items-center gap-2 w-full sm:w-auto pt-2 sm:pt-0">
+                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                                Filter
+                            </button>
+                            @if (request()->filled('role') || request()->filled('unit_id'))
+                                <a href="{{ route('superadmin.users.index') }}" class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                                    Reset
+                                </a>
+                            @endif
+                        </div>
+                    </form>
+
+                    <!-- Add User Button -->
+                    <div class="flex-shrink-0">
+                        <a href="{{ route('superadmin.users.create') }}" class="inline-flex items-center px-4 py-2.5 bg-brand-red hover:bg-brand-red-light active:bg-brand-red-deep text-white font-semibold text-xs uppercase tracking-widest rounded-md transition duration-150">
+                            + Tambah Akun
+                        </a>
+                    </div>
                 </div>
 
                 <x-data-table :headers="['Nama', 'Email', 'Peran', 'Unit Sekolah', 'Aksi']">

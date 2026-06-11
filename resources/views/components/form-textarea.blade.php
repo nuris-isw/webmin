@@ -9,7 +9,7 @@
         name="{{ $name }}" 
         rows="{{ $rows }}" 
         @required($required)
-        {{ $attributes->except('class')->merge(['class' => 'border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-brand-red dark:focus:border-brand-red focus:ring-brand-red dark:focus:ring-brand-red rounded-md shadow-sm block w-full']) }}
+        {{ $attributes->except('class')->merge(['class' => 'px-4 py-2.5 text-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-brand-red dark:focus:border-brand-red focus:ring-brand-red dark:focus:ring-brand-red rounded-md shadow-sm block w-full']) }}
     >{{ $value ?? $slot }}</textarea>
     <x-input-error :messages="$errors->get($name)" class="mt-1" />
 </div>

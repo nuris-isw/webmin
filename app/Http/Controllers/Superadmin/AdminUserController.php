@@ -17,11 +17,22 @@ class AdminUserController extends Controller
     /**
      * Display a listing of the admin users.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $users = User::with('unit')->orderBy('role', 'desc')->orderBy('name')->get();
+        $query = User::with('unit');
 
-        return view('superadmin.users.index', compact('users'));
+        if ($request->filled('role')) {
+            $query->where('role', $request->query('role'));
+        }
+
+        if ($request->filled('unit_id')) {
+            $query->where('unit_id', $request->query('unit_id'));
+        }
+
+        $users = $query->orderBy('role', 'desc')->orderBy('name')->get();
+        $units = Unit::orderBy('nama_sekolah')->get();
+
+        return view('superadmin.users.index', compact('users', 'units'));
     }
 
     /**

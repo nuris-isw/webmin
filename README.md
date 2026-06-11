@@ -1,58 +1,206 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# WebMin — Sistem CMS Multi-Tenant Sekolah Terpusat
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> Platform manajemen konten terpusat berbasis web untuk mengelola seluruh unit sekolah (TK, SMP, SMK) dalam satu ekosistem yang terintegrasi.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📋 Deskripsi Proyek
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**WebMin** adalah aplikasi CMS (*Content Management System*) multi-tenant yang dirancang untuk kebutuhan Badan Penyelenggara / Yayasan pendidikan. Sistem ini memungkinkan satu platform tunggal mengoperasikan dan mengelola konten digital dari seluruh unit sekolah yang berada di bawah naungan yayasan — mulai dari profil sekolah, berita, galeri kegiatan, data kesiswaan, hingga informasi penerimaan peserta didik baru (SPMB/PPDB).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🎯 Fitur Utama
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Manajemen Multi-Tenant
+- Isolasi data ketat berbasis `unit_id` per sekolah
+- Superadmin dengan akses lintas seluruh unit (*cross-tenant*)
+- Admin unit dengan hak akses terbatas pada unit yang ditetapkan
+- Dukungan jenjang: **TK**, **SMP**, dan **SMK** dengan fitur kondisional
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Autentikasi & Keamanan
+- Login berbasis session (Laravel Breeze)
+- Integrasi OAuth via Google (Laravel Socialite)
+- Role-Based Access Control (RBAC): `superadmin` & `admin`
+- Middleware proteksi API per jenjang (khususnya SMK)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Modul Konten (Per Unit)
+| Modul | Keterangan |
+|---|---|
+| **Profil Sekolah** | Kontak & Lokasi, Profil & Sejarah, Data Akademik |
+| **Kesiswaan** | Data Prestasi (siswa/guru/tendik/sekolah), Ekstrakurikuler |
+| **Publikasi** | Berita/Artikel, Galeri Kegiatan (multi-display), Info SPMB |
+| **Manajemen Jurusan** | Khusus unit SMK — CRUD data program/konsentrasi keahlian |
 
-## Agentic Development
+### Galeri dengan Display Placement Routing
+Sistem pengelompokan aset foto yang cerdas:
+- `hero_section` → Slider/banner utama halaman depan
+- `gambar_pembuka` → Visual intro halaman tertentu
+- `galeri_dokumentasi` → Album dokumentasi umum
+- `galeri_program` → Foto kegiatan unggulan (TK/SMP) atau halaman jurusan (SMK)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
 
-```bash
-composer require laravel/boost --dev
+## 🏗️ Arsitektur & Tech Stack
 
-php artisan boost:install
+| Komponen | Teknologi |
+|---|---|
+| **Core Framework** | Laravel 12 (PHP 8.3+) |
+| **Auth Scaffolding** | Laravel Breeze |
+| **OAuth Provider** | Laravel Socialite (Google) |
+| **Styling Engine** | Tailwind CSS v4 (`@import "tailwindcss"`) |
+| **Typography** | Plus Jakarta Sans |
+| **Database** | MySQL / SQLite (development) |
+| **Asset Bundler** | Vite |
+| **Template Engine** | Blade |
+
+### Palet Warna Brand
+
+```css
+--color-brand-red:       #E4252C   /* Aksen utama */
+--color-brand-red-light: #EF3F3C   /* Hover state */
+--color-brand-red-dark:  #8F1924   /* Active/pressed */
+--color-brand-red-deep:  #6C0C1C   /* Deep accent */
+--color-dark:            #010101   /* Base dark */
+--color-gray-dark:       #737272   /* Teks sekunder */
+--color-gray-medium:     #BCBCBC   /* Border/divider */
+--color-gray-light:      #DCDBDB   /* Background subtle */
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### Prinsip Desain
+- **Minimalis Profesional** — Hierarki tipografi yang jelas, efisiensi ruang
+- **Mobile-First** — Responsif penuh dengan breakpoint `sm:` → `md:` → `lg:`
+- **Dark Mode Ready** — Integrasi kelas `.dark` via Tailwind CSS
+- **Anti-Truncation** — Konten tidak dipotong demi layout; layout yang adaptif
+- **Anti-Grayscale** — Integritas warna gambar dijaga di semua mode tampilan
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🔐 Model Akses (Hybrid Access Model)
 
-## Code of Conduct
+```
+[Public] → Landing page & informasi publik (tanpa login)
+    │
+    ▼
+[Google OAuth / Login Form]
+    │
+    ▼
+[Laravel Breeze Session Management]
+    │
+    ├─► [Superadmin] → Dashboard global, CRUD semua unit & user
+    │
+    └─► [Admin Unit] → Dashboard terbatas pada unit_id yang ditetapkan
+              │
+              ├─► TK/SMP: Semua fitur kecuali Manajemen Jurusan
+              └─► SMK:    Semua fitur termasuk Manajemen Jurusan
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 📁 Struktur Proyek
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+webmin/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/     # Controller per modul
+│   │   ├── Middleware/      # Auth, role, tenant isolation
+│   │   └── Requests/        # Form Request Validation
+│   ├── Models/              # Eloquent Models (Unit, User, dll.)
+│   ├── Policies/            # Authorization policies
+│   └── Services/            # Business logic layer
+├── database/
+│   ├── migrations/          # Schema database bertahap
+│   └── seeders/             # Data awal & testing
+├── resources/
+│   ├── views/               # Blade templates
+│   │   ├── layouts/         # Layout utama (app, guest)
+│   │   ├── components/      # Komponen Blade reusable
+│   │   ├── superadmin/      # View Superadmin
+│   │   └── admin/           # View Admin unit
+│   └── css/                 # app.css (Tailwind config)
+├── routes/
+│   ├── web.php              # Route publik & auth
+│   └── admin.php            # Route dashboard (protected)
+├── webmin-requirement.md    # Functional Requirements Spec (FRS)
+└── design-v2.md             # Software Design Documentation (SDD)
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🚀 Instalasi & Setup
+
+### Prasyarat
+- PHP >= 8.3
+- Composer
+- Node.js & NPM
+- MySQL atau SQLite
+
+### Langkah Instalasi
+
+```bash
+# 1. Clone repositori
+git clone <repo-url> webmin
+cd webmin
+
+# 2. Install dependensi PHP & Node
+composer install
+npm install
+
+# 3. Konfigurasi environment
+cp .env.example .env
+php artisan key:generate
+
+# 4. Konfigurasi database di .env, lalu jalankan migrasi
+php artisan migrate --seed
+
+# 5. Jalankan server development
+composer run dev
+```
+
+### Konfigurasi Google OAuth
+
+Tambahkan pada berkas `.env`:
+```env
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+GOOGLE_REDIRECT_URI=http://localhost:8000/auth/google/callback
+```
+
+---
+
+## 🧪 Testing
+
+```bash
+# Jalankan seluruh test suite
+composer run test
+
+# Atau dengan PHPUnit langsung
+php artisan test
+```
+
+---
+
+## 📜 Dokumentasi Teknis
+
+| Berkas | Keterangan |
+|---|---|
+| [`webmin-requirement.md`](./webmin-requirement.md) | Functional Requirements Specification (FRS) lengkap |
+| [`design-v2.md`](./design-v2.md) | Software Design Documentation (SDD) & Design System |
+| [`task.md`](./task.md) | Rencana & progres tugas pengembangan per fase |
+
+---
+
+## 👥 Peran & Hak Akses
+
+| Peran | Hak Akses |
+|---|---|
+| **Superadmin** | CRUD semua unit, CRUD semua user, override konten seluruh unit |
+| **Admin (TK/SMP)** | CRUD konten unit sendiri (Profil, Kesiswaan, Publikasi) |
+| **Admin SMK** | Semua hak Admin + CRUD Manajemen Jurusan |
+
+---
+
+## 📄 Lisensi
+
+Proyek ini dikembangkan untuk keperluan internal. Seluruh hak cipta dilindungi.

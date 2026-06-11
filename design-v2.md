@@ -29,9 +29,9 @@ Aplikasi ini dibangun di atas ekosistem modern dengan pembagian peran komponen s
 
 ---
 
-### 3. Design System & Theme Configuration (`global.css`)
+### 3. Design System & Theme Configuration (`app.css`)
 
-Konfigurasi di bawah ini diintegrasikan langsung pada berkas `global.css` menggunakan sintaks `@theme` Tailwind CSS terbaru. Palet warna didominasi oleh warna gelap yang solid, abu-abu terkalibrasi, dan aksen merah korporat yang tegas.
+Konfigurasi di bawah ini diintegrasikan langsung pada berkas `app.css` menggunakan sintaks `@theme` Tailwind CSS terbaru. Palet warna didominasi oleh warna gelap yang solid, abu-abu terkalibrasi, dan aksen merah korporat yang tegas.
 
 ```css
 @import "tailwindcss";

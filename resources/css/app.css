@@ -1,9 +1,106 @@
-@import 'tailwindcss';
-
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+@import "tailwindcss";
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* ------------------------------------------------------------------ */
+    /* Typography                                                            */
+    /* ------------------------------------------------------------------ */
+    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+    /* ------------------------------------------------------------------ */
+    /* Brand Colors                                                          */
+    /* ------------------------------------------------------------------ */
+    --color-brand-red:       #E4252C;
+    --color-brand-red-light: #EF3F3C;
+    --color-brand-red-dark:  #8F1924;
+    --color-brand-red-deep:  #6C0C1C;
+
+    /* ------------------------------------------------------------------ */
+    /* Neutral & Base Colors                                                 */
+    /* ------------------------------------------------------------------ */
+    --color-dark:         #010101;
+    --color-gray-dark:    #737272;
+    --color-gray-medium:  #BCBCBC;
+    --color-gray-light:   #DCDBDB;
+
+    /* ------------------------------------------------------------------ */
+    /* Social Integration Colors                                             */
+    /* ------------------------------------------------------------------ */
+    --color-facebook:  #1877F2;
+    --color-instagram: #E4405F;
+    --color-youtube:   #FF0000;
+    --color-tiktok:    #000000;
+}
+
+/* ------------------------------------------------------------------ */
+    /* Dark Mode — class-based (.dark on <html>)                           */
+/* ------------------------------------------------------------------ */
+@variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ */
+/* Base / Reset                                                         */
+/* ------------------------------------------------------------------ */
+@layer base {
+    html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        color: var(--color-dark);
+        background-color: #ffffff;
+    }
+
+    .dark body {
+        color: #ffffff;
+        background-color: var(--color-dark);
+    }
+
+    /* Heading hierarchy sesuai SDD §5.2 */
+    h1 {
+        font-size: 1.25rem; /* text-xl */
+        font-weight: 700;
+    }
+
+    @media (min-width: 768px) {
+        h1 {
+            font-size: 1.5rem; /* text-2xl */
+        }
+    }
+
+    h2 {
+        font-size: 1.125rem; /* text-lg */
+        font-weight: 600;
+        border-left: 4px solid var(--color-brand-red);
+        padding-left: 8px;
+    }
+
+    /* Konten utama: tidak ada pemotongan teks (anti-truncation) */
+    p, li, td, th {
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+}
+
+/* ------------------------------------------------------------------ */
+/* Utilities                                                            */
+/* ------------------------------------------------------------------ */
+@layer utilities {
+    /* Anti-grayscale: pastikan gambar selalu berwarna penuh */
+    .no-grayscale {
+        filter: none !important;
+    }
+
+    /* Focus ring brand */
+    .focus-brand:focus {
+        outline: 2px solid var(--color-brand-red);
+        outline-offset: 2px;
+    }
+
+    /* Input focus state — border berubah ke brand-red saat focus */
+    .input-brand:focus {
+        border-color: var(--color-brand-red);
+        box-shadow: 0 0 0 1px var(--color-brand-red);
+    }
 }

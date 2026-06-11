@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Extracurricular;
 use App\Models\Unit;
+use App\Services\FileUploadService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +13,13 @@ use Illuminate\View\View;
 
 class ExtracurricularController extends Controller
 {
+    protected FileUploadService $fileUploadService;
+
+    public function __construct(FileUploadService $fileUploadService)
+    {
+        $this->fileUploadService = $fileUploadService;
+    }
+
     /**
      * Display a listing of the extracurriculars.
      */
@@ -45,7 +53,7 @@ class ExtracurricularController extends Controller
         $data = $request->except(['logo_ekskul', '_token']);
 
         if ($request->hasFile('logo_ekskul')) {
-            $data['logo_ekskul'] = $request->file('logo_ekskul')->store("{$unit->id}/extracurriculars", 'public');
+            $data['logo_ekskul'] = $this->fileUploadService->uploadImage($request->file('logo_ekskul'), $unit->id, 'extracurriculars');
         }
 
         $unit->extracurriculars()->create($data);
@@ -85,10 +93,7 @@ class ExtracurricularController extends Controller
         $data = $request->except(['logo_ekskul', '_token', '_method']);
 
         if ($request->hasFile('logo_ekskul')) {
-            if ($extracurricular->logo_ekskul) {
-                Storage::disk('public')->delete($extracurricular->logo_ekskul);
-            }
-            $data['logo_ekskul'] = $request->file('logo_ekskul')->store("{$unit->id}/extracurriculars", 'public');
+            $data['logo_ekskul'] = $this->fileUploadService->uploadImage($request->file('logo_ekskul'), $unit->id, 'extracurriculars', $extracurricular->logo_ekskul);
         }
 
         $extracurricular->update($data);
@@ -106,9 +111,7 @@ class ExtracurricularController extends Controller
             abort(403, 'Aksi tidak diizinkan.');
         }
 
-        if ($extracurricular->logo_ekskul) {
-            Storage::disk('public')->delete($extracurricular->logo_ekskul);
-        }
+        $this->fileUploadService->deleteFile($extracurricular->logo_ekskul);
 
         $extracurricular->delete();
 

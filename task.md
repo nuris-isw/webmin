@@ -297,13 +297,13 @@
 
 > **Tujuan:** Memastikan upload, penyimpanan, dan penayangan file berjalan dengan aman dan efisien.
 
-- [ ] **F7-01** Konfigurasi disk storage (`public`) dan path per unit (`storage/app/public/{unit_id}/`)
-- [ ] **F7-02** Buat `FileUploadService` untuk handle validasi, resize, dan penyimpanan gambar
-- [ ] **F7-03** Implementasi validasi tipe file (image: jpg/png/webp; dokumen: pdf)
-- [ ] **F7-04** Implementasi batas ukuran file (gambar max 2MB, PDF max 10MB)
-- [ ] **F7-05** Implementasi hapus file lama saat file baru di-upload (mencegah orphan files)
-- [ ] **F7-06** Buat helper Blade `@asset()` / route helper untuk URL file yang konsisten
-- [ ] **F7-07** Implementasi multi-upload foto galeri dengan progress bar
+- [x] **F7-01** Konfigurasi disk storage (`public`) dan path per unit (`storage/app/public/{unit_id}/`)
+- [x] **F7-02** Buat `FileUploadService` untuk handle validasi, resize, dan penyimpanan gambar
+- [x] **F7-03** Implementasi validasi tipe file (image: jpg/png/webp; dokumen: pdf)
+- [x] **F7-04** Implementasi batas ukuran file (gambar max 2MB, PDF max 10MB)
+- [x] **F7-05** Implementasi hapus file lama saat file baru di-upload (mencegah orphan files)
+- [x] **F7-06** Buat helper Blade `@asset()` / route helper untuk URL file yang konsisten
+- [x] **F7-07** Implementasi multi-upload foto galeri dengan progress bar
 
 ---
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Achievement;
 use App\Models\Unit;
+use App\Services\FileUploadService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -13,6 +14,13 @@ use Illuminate\View\View;
 
 class AchievementController extends Controller
 {
+    protected FileUploadService $fileUploadService;
+
+    public function __construct(FileUploadService $fileUploadService)
+    {
+        $this->fileUploadService = $fileUploadService;
+    }
+
     /**
      * Display a listing of the achievements.
      */
@@ -53,7 +61,7 @@ class AchievementController extends Controller
         $data = $request->except(['foto_penghargaan', '_token']);
 
         if ($request->hasFile('foto_penghargaan')) {
-            $data['foto_penghargaan'] = $request->file('foto_penghargaan')->store("{$unit->id}/achievements", 'public');
+            $data['foto_penghargaan'] = $this->fileUploadService->uploadImage($request->file('foto_penghargaan'), $unit->id, 'achievements');
         }
 
         $unit->achievements()->create($data);
@@ -95,10 +103,7 @@ class AchievementController extends Controller
         $data = $request->except(['foto_penghargaan', '_token', '_method']);
 
         if ($request->hasFile('foto_penghargaan')) {
-            if ($achievement->foto_penghargaan) {
-                Storage::disk('public')->delete($achievement->foto_penghargaan);
-            }
-            $data['foto_penghargaan'] = $request->file('foto_penghargaan')->store("{$unit->id}/achievements", 'public');
+            $data['foto_penghargaan'] = $this->fileUploadService->uploadImage($request->file('foto_penghargaan'), $unit->id, 'achievements', $achievement->foto_penghargaan);
         }
 
         $achievement->update($data);
@@ -116,9 +121,7 @@ class AchievementController extends Controller
             abort(403, 'Aksi tidak diizinkan.');
         }
 
-        if ($achievement->foto_penghargaan) {
-            Storage::disk('public')->delete($achievement->foto_penghargaan);
-        }
+        $this->fileUploadService->deleteFile($achievement->foto_penghargaan);
 
         $achievement->delete();
 

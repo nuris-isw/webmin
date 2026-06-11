@@ -47,7 +47,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center border-t border-gray-100 dark:border-gray-800 pt-6">
                         <div class="md:col-span-1 flex justify-center">
                             @if ($achievement->foto_penghargaan)
-                                <img src="{{ Storage::url($achievement->foto_penghargaan) }}" alt="Foto Penghargaan" class="h-20 w-20 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+                                <img src="@asset($achievement->foto_penghargaan)" alt="Foto Penghargaan" class="h-20 w-20 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
                             @else
                                 <div class="h-20 w-20 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-xs text-gray-400">
                                     No Image

@@ -36,7 +36,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center border-t border-gray-100 dark:border-gray-800 pt-6">
                         <div class="md:col-span-1 flex justify-center">
                             @if ($extracurricular->logo_ekskul)
-                                <img src="{{ Storage::url($extracurricular->logo_ekskul) }}" alt="Logo Ekskul" class="h-20 w-20 object-contain rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 p-1">
+                                <img src="@asset($extracurricular->logo_ekskul)" alt="Logo Ekskul" class="h-20 w-20 object-contain rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 p-1">
                             @else
                                 <div class="h-20 w-20 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-xs text-gray-400">
                                     No Logo

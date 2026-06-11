@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Major;
 use App\Models\Unit;
+use App\Services\FileUploadService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +13,13 @@ use Illuminate\View\View;
 
 class MajorController extends Controller
 {
+    protected FileUploadService $fileUploadService;
+
+    public function __construct(FileUploadService $fileUploadService)
+    {
+        $this->fileUploadService = $fileUploadService;
+    }
+
     /**
      * Display a listing of the majors.
      */
@@ -47,7 +55,7 @@ class MajorController extends Controller
         $data = $request->except(['foto_kaprog', '_token']);
 
         if ($request->hasFile('foto_kaprog')) {
-            $data['foto_kaprog'] = $request->file('foto_kaprog')->store("{$unit->id}/majors", 'public');
+            $data['foto_kaprog'] = $this->fileUploadService->uploadImage($request->file('foto_kaprog'), $unit->id, 'majors');
         }
 
         $unit->majors()->create($data);
@@ -89,10 +97,7 @@ class MajorController extends Controller
         $data = $request->except(['foto_kaprog', '_token', '_method']);
 
         if ($request->hasFile('foto_kaprog')) {
-            if ($major->foto_kaprog) {
-                Storage::disk('public')->delete($major->foto_kaprog);
-            }
-            $data['foto_kaprog'] = $request->file('foto_kaprog')->store("{$unit->id}/majors", 'public');
+            $data['foto_kaprog'] = $this->fileUploadService->uploadImage($request->file('foto_kaprog'), $unit->id, 'majors', $major->foto_kaprog);
         }
 
         $major->update($data);
@@ -111,9 +116,7 @@ class MajorController extends Controller
         }
 
         // Delete Kaprog photo if exists
-        if ($major->foto_kaprog) {
-            Storage::disk('public')->delete($major->foto_kaprog);
-        }
+        $this->fileUploadService->deleteFile($major->foto_kaprog);
 
         $major->delete();
 

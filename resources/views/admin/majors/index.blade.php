@@ -40,7 +40,7 @@
                         <tr class="odd:bg-gray-50/35 even:bg-white dark:odd:bg-gray-800 dark:even:bg-[#1E1E1E]">
                             <td class="px-6 py-4">
                                 @if ($major->foto_kaprog)
-                                    <img src="{{ Storage::url($major->foto_kaprog) }}" alt="Foto Kaprog" class="h-12 w-10 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+                                    <img src="@asset($major->foto_kaprog)" alt="Foto Kaprog" class="h-12 w-10 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
                                 @else
                                     <div class="h-12 w-10 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-[9px] text-gray-400 text-center leading-none p-1">
                                         No Photo
@@ -85,7 +85,7 @@
                             <div class="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 space-y-3">
                                 <div class="flex items-center gap-3">
                                     @if ($major->foto_kaprog)
-                                        <img src="{{ Storage::url($major->foto_kaprog) }}" alt="Foto Kaprog" class="h-16 w-14 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+                                        <img src="@asset($major->foto_kaprog)" alt="Foto Kaprog" class="h-16 w-14 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
                                     @else
                                         <div class="h-16 w-14 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-xs text-gray-400 text-center leading-none p-1">
                                             No Photo

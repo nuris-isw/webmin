@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\News;
 use App\Models\Unit;
+use App\Services\FileUploadService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +13,13 @@ use Illuminate\View\View;
 
 class NewsController extends Controller
 {
+    protected FileUploadService $fileUploadService;
+
+    public function __construct(FileUploadService $fileUploadService)
+    {
+        $this->fileUploadService = $fileUploadService;
+    }
+
     /**
      * Display a listing of the news.
      */
@@ -49,7 +57,7 @@ class NewsController extends Controller
         ];
 
         if ($request->hasFile('gambar_utama')) {
-            $data['gambar_utama'] = $request->file('gambar_utama')->store("{$unit->id}/news", 'public');
+            $data['gambar_utama'] = $this->fileUploadService->uploadImage($request->file('gambar_utama'), $unit->id, 'news');
         }
 
         $unit->news()->create($data);
@@ -93,10 +101,7 @@ class NewsController extends Controller
         ];
 
         if ($request->hasFile('gambar_utama')) {
-            if ($news->gambar_utama) {
-                Storage::disk('public')->delete($news->gambar_utama);
-            }
-            $data['gambar_utama'] = $request->file('gambar_utama')->store("{$unit->id}/news", 'public');
+            $data['gambar_utama'] = $this->fileUploadService->uploadImage($request->file('gambar_utama'), $unit->id, 'news', $news->gambar_utama);
         }
 
         $news->update($data);
@@ -114,9 +119,7 @@ class NewsController extends Controller
             abort(403, 'Aksi tidak diizinkan.');
         }
 
-        if ($news->gambar_utama) {
-            Storage::disk('public')->delete($news->gambar_utama);
-        }
+        $this->fileUploadService->deleteFile($news->gambar_utama);
 
         $news->delete();
 

@@ -40,7 +40,7 @@
                         <tr class="odd:bg-gray-50/35 even:bg-white dark:odd:bg-gray-800 dark:even:bg-[#1E1E1E]">
                             <td class="px-6 py-4">
                                 @if ($article->gambar_utama)
-                                    <img src="{{ Storage::url($article->gambar_utama) }}" alt="Gambar Utama" class="h-12 w-20 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+                                    <img src="@asset($article->gambar_utama)" alt="Gambar Utama" class="h-12 w-20 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
                                 @else
                                     <div class="h-12 w-20 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-[10px] text-gray-400">
                                         No Image
@@ -91,7 +91,7 @@
                             <div class="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 space-y-3">
                                 <div class="flex items-center gap-3">
                                     @if ($article->gambar_utama)
-                                        <img src="{{ Storage::url($article->gambar_utama) }}" alt="Gambar Utama" class="h-16 w-24 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+                                        <img src="@asset($article->gambar_utama)" alt="Gambar Utama" class="h-16 w-24 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
                                     @else
                                         <div class="h-16 w-24 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-xs text-gray-400">
                                             No Image

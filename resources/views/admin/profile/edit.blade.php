@@ -74,7 +74,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
                                     <div class="md:col-span-1 flex justify-center">
                                         @if ($profile->logo_sekolah)
-                                            <img src="{{ Storage::url($profile->logo_sekolah) }}" alt="Logo Sekolah" class="h-24 w-24 object-contain rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50 p-2">
+                                            <img src="@asset($profile->logo_sekolah)" alt="Logo Sekolah" class="h-24 w-24 object-contain rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50 p-2">
                                         @else
                                             <div class="h-24 w-24 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-xs text-gray-400">
                                                 No Logo
@@ -125,7 +125,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
                                     <div class="md:col-span-1 flex justify-center">
                                         @if ($profile->foto_kepala_sekolah)
-                                            <img src="{{ Storage::url($profile->foto_kepala_sekolah) }}" alt="Foto Kepala Sekolah" class="h-28 w-24 object-cover rounded-lg border border-gray-200 dark:border-gray-800">
+                                            <img src="@asset($profile->foto_kepala_sekolah)" alt="Foto Kepala Sekolah" class="h-28 w-24 object-cover rounded-lg border border-gray-200 dark:border-gray-800">
                                         @else
                                             <div class="h-28 w-24 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-xs text-gray-400 text-center p-2">
                                                 No Photo
@@ -172,7 +172,7 @@
                                     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
                                         <div class="md:col-span-1 flex justify-center">
                                             @if ($profile->pdf_kalender_akademik)
-                                                <a href="{{ Storage::url($profile->pdf_kalender_akademik) }}" target="_blank" class="inline-flex items-center gap-2 px-4 py-3 bg-rose-50 border border-rose-200 hover:bg-rose-100 text-rose-700 rounded-lg text-xs font-semibold dark:bg-rose-950/20 dark:border-rose-900 dark:text-rose-400 transition">
+                                                <a href="@asset($profile->pdf_kalender_akademik)" target="_blank" class="inline-flex items-center gap-2 px-4 py-3 bg-rose-50 border border-rose-200 hover:bg-rose-100 text-rose-700 rounded-lg text-xs font-semibold dark:bg-rose-950/20 dark:border-rose-900 dark:text-rose-400 transition">
                                                     <svg class="w-5 h-5 shrink-0 text-rose-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                                                     </svg>

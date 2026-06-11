@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Blade::directive('asset', function ($expression) {
+            return "<?php echo \App\Helpers\AssetHelper::getUrl($expression); ?>";
+        });
     }
 }
+
+if (!function_exists('school_asset')) {
+    function school_asset(?string $path): string
+    {
+        return \App\Helpers\AssetHelper::getUrl($path);
+    }
+}
+

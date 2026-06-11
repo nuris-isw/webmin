@@ -28,6 +28,9 @@
                         opsiTampilan: '{{ old('opsi_tampilan', $gallery->opsi_tampilan) }}',
                         photos: {{ $gallery->photos->values()->toJson() }},
                         deletedPhotos: [],
+                        isUploading: false,
+                        progress: 0,
+                        errors: {},
                         moveLeft(index) {
                             if (index > 0) {
                                 let temp = this.photos[index];
@@ -49,12 +52,66 @@
                                 this.deletedPhotos.push(id);
                                 this.photos.splice(index, 1);
                             }
+                        },
+                        submitForm(e) {
+                            let form = e.target;
+                            this.isUploading = true;
+                            this.progress = 0;
+                            this.errors = {};
+                            
+                            let formData = new FormData(form);
+                            let xhr = new XMLHttpRequest();
+                            xhr.open(form.method.toUpperCase(), form.action);
+                            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                            
+                            xhr.upload.addEventListener('progress', (event) => {
+                                if (event.lengthComputable) {
+                                    this.progress = Math.round((event.loaded * 100) / event.total);
+                                }
+                            });
+                            
+                            xhr.addEventListener('load', () => {
+                                this.isUploading = false;
+                                if (xhr.status >= 200 && xhr.status < 300) {
+                                    let response = JSON.parse(xhr.responseText);
+                                    if (response.redirect) {
+                                        window.location.href = response.redirect;
+                                    } else {
+                                        window.location.reload();
+                                    }
+                                } else if (xhr.status === 422) {
+                                    let response = JSON.parse(xhr.responseText);
+                                    this.errors = response.errors;
+                                } else {
+                                    alert('Terjadi kesalahan saat menyimpan perubahan.');
+                                }
+                            });
+                            
+                            xhr.addEventListener('error', () => {
+                                this.isUploading = false;
+                                alert('Koneksi terputus saat mengunggah berkas.');
+                            });
+                            
+                            xhr.send(formData);
                         }
                     }"
+                    @submit.prevent="submitForm($event)"
                     class="space-y-6 mt-4"
                 >
                     @csrf
                     @method('PUT')
+
+                    <!-- AJAX Validation Error Box -->
+                    <div x-show="Object.keys(errors).length > 0" class="p-4 bg-rose-50 border border-rose-200 text-rose-700 rounded-lg text-sm dark:bg-rose-950/20 dark:border-rose-900 dark:text-rose-400" style="display: none;">
+                        <h5 class="font-semibold mb-2">Mohon perbaiki kesalahan berikut:</h5>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <template x-for="(errList, field) in errors" :key="field">
+                                <template x-for="err in errList" :key="err">
+                                    <li x-text="err"></li>
+                                </template>
+                            </template>
+                        </ul>
+                    </div>
 
                     <!-- Submit deleted photo IDs -->
                     <template x-for="id in deletedPhotos" :key="id">
@@ -100,7 +157,7 @@
                                     <!-- Submit photo ordering -->
                                     <input type="hidden" name="existing_photos_order[]" :value="photo.id">
                                     
-                                    <img :src="'/storage/' + photo.file_foto" class="h-24 w-full object-cover rounded" alt="Foto">
+                                    <img :src="'{{ school_asset('') }}/' + photo.file_foto" class="h-24 w-full object-cover rounded" alt="Foto">
                                     
                                     <div class="flex items-center justify-between mt-2">
                                         <div class="flex gap-1">
@@ -146,6 +203,27 @@
                         <x-button type="submit">
                             Simpan Perubahan
                         </x-button>
+                    </div>
+
+                    <!-- Upload Progress Overlay (Premium Glassmorphism Modal) -->
+                    <div 
+                        x-show="isUploading" 
+                        class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/60 backdrop-blur-sm transition-opacity" 
+                        style="display: none;"
+                    >
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 max-w-md w-full mx-4 border border-gray-150 dark:border-gray-700">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="font-semibold text-gray-800 dark:text-gray-250" x-text="progress < 100 ? 'Mengunggah Galeri...' : 'Menyimpan Perubahan...'"></h4>
+                                <span class="text-sm font-bold text-rose-600 dark:text-rose-400" x-text="progress + '%'"></span>
+                            </div>
+                            <div class="w-full bg-gray-150 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                                <div 
+                                    class="bg-gradient-to-r from-rose-500 to-rose-700 h-full rounded-full transition-all duration-150 ease-out" 
+                                    :style="'width: ' + progress + '%'"
+                                ></div>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">Mohon jangan menutup halaman ini atau menekan tombol kembali sampai proses selesai.</p>
+                        </div>
                     </div>
                 </form>
             </x-card>

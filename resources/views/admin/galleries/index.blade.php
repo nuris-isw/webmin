@@ -43,7 +43,7 @@
                                     $firstPhoto = $gal->photos->first();
                                 @endphp
                                 @if ($firstPhoto)
-                                    <img src="{{ Storage::url($firstPhoto->file_foto) }}" alt="Thumbnail Galeri" class="h-12 w-20 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+                                    <img src="@asset($firstPhoto->file_foto)" alt="Thumbnail Galeri" class="h-12 w-20 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
                                 @else
                                     <div class="h-12 w-20 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-[10px] text-gray-400">
                                         Kosong
@@ -93,7 +93,7 @@
                                         $firstPhoto = $gal->photos->first();
                                     @endphp
                                     @if ($firstPhoto)
-                                        <img src="{{ Storage::url($firstPhoto->file_foto) }}" alt="Thumbnail" class="h-16 w-24 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+                                        <img src="@asset($firstPhoto->file_foto)" alt="Thumbnail" class="h-16 w-24 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
                                     @else
                                         <div class="h-16 w-24 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-xs text-gray-400">
                                             Kosong

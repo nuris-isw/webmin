@@ -40,7 +40,7 @@
                         <tr class="odd:bg-gray-50/35 even:bg-white dark:odd:bg-gray-800 dark:even:bg-[#1E1E1E]">
                             <td class="px-6 py-4">
                                 @if ($ekskul->logo_ekskul)
-                                    <img src="{{ Storage::url($ekskul->logo_ekskul) }}" alt="Logo Ekskul" class="h-12 w-12 object-contain rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 p-1">
+                                    <img src="@asset($ekskul->logo_ekskul)" alt="Logo Ekskul" class="h-12 w-12 object-contain rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 p-1">
                                 @else
                                     <div class="h-12 w-12 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-[10px] text-gray-400">
                                         No Logo
@@ -82,7 +82,7 @@
                             <div class="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 space-y-3">
                                 <div class="flex items-center gap-3">
                                     @if ($ekskul->logo_ekskul)
-                                        <img src="{{ Storage::url($ekskul->logo_ekskul) }}" alt="Logo Ekskul" class="h-16 w-16 object-contain rounded-lg border border-gray-200 dark:border-gray-700 bg-white p-1">
+                                        <img src="@asset($ekskul->logo_ekskul)" alt="Logo Ekskul" class="h-16 w-16 object-contain rounded-lg border border-gray-200 dark:border-gray-700 bg-white p-1">
                                     @else
                                         <div class="h-16 w-16 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-xs text-gray-400">
                                             No Logo

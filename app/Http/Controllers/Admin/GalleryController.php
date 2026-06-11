@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Gallery;
 use App\Models\Major;
 use App\Models\Unit;
+use App\Services\FileUploadService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -14,6 +15,13 @@ use Illuminate\View\View;
 
 class GalleryController extends Controller
 {
+    protected FileUploadService $fileUploadService;
+
+    public function __construct(FileUploadService $fileUploadService)
+    {
+        $this->fileUploadService = $fileUploadService;
+    }
+
     /**
      * Display a listing of the galleries.
      */
@@ -67,12 +75,19 @@ class GalleryController extends Controller
         if ($request->hasFile('photos')) {
             $counter = 0;
             foreach ($request->file('photos') as $file) {
-                $path = $file->store("{$unit->id}/galleries", 'public');
+                $path = $this->fileUploadService->uploadImage($file, $unit->id, 'galleries');
                 $gallery->photos()->create([
                     'file_foto' => $path,
                     'urutan'    => $counter++,
                 ]);
             }
+        }
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'redirect' => route('admin.galleries.index', $unit)
+            ]);
         }
 
         return redirect()->route('admin.galleries.index', $unit)
@@ -134,7 +149,7 @@ class GalleryController extends Controller
             $deletedIds = $request->input('deleted_photos');
             $photosToDelete = $gallery->photos()->whereIn('id', $deletedIds)->get();
             foreach ($photosToDelete as $photo) {
-                Storage::disk('public')->delete($photo->file_foto);
+                $this->fileUploadService->deleteFile($photo->file_foto);
                 $photo->delete();
             }
         }
@@ -152,12 +167,19 @@ class GalleryController extends Controller
             $maxOrder = $gallery->photos()->max('urutan') ?? -1;
             $counter = $maxOrder + 1;
             foreach ($request->file('photos') as $file) {
-                $path = $file->store("{$unit->id}/galleries", 'public');
+                $path = $this->fileUploadService->uploadImage($file, $unit->id, 'galleries');
                 $gallery->photos()->create([
                     'file_foto' => $path,
                     'urutan'    => $counter++,
                 ]);
             }
+        }
+
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'redirect' => route('admin.galleries.index', $unit)
+            ]);
         }
 
         return redirect()->route('admin.galleries.index', $unit)
@@ -174,7 +196,7 @@ class GalleryController extends Controller
         }
 
         foreach ($gallery->photos as $photo) {
-            Storage::disk('public')->delete($photo->file_foto);
+            $this->fileUploadService->deleteFile($photo->file_foto);
         }
 
         $gallery->delete();

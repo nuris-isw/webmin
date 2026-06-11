@@ -30,7 +30,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center border-t border-gray-100 dark:border-gray-800 pt-6">
                         <div class="md:col-span-1 flex justify-center">
                             @if ($news->gambar_utama)
-                                <img src="{{ Storage::url($news->gambar_utama) }}" alt="Gambar Utama" class="h-20 w-32 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+                                <img src="@asset($news->gambar_utama)" alt="Gambar Utama" class="h-20 w-32 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
                             @else
                                 <div class="h-20 w-32 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-xs text-gray-400">
                                     No Image

@@ -46,7 +46,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center border-t border-gray-100 dark:border-gray-800 pt-6">
                         <div class="md:col-span-1 flex justify-center">
                             @if ($major->foto_kaprog)
-                                <img src="{{ Storage::url($major->foto_kaprog) }}" alt="Foto Kaprog" class="h-20 w-16 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+                                <img src="@asset($major->foto_kaprog)" alt="Foto Kaprog" class="h-20 w-16 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
                             @else
                                 <div class="h-20 w-16 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-xs text-gray-400">
                                     No Photo

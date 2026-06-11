@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('asset', function ($expression) {
             return "<?php echo \App\Helpers\AssetHelper::getUrl($expression); ?>";
         });
+
+        \Illuminate\Pagination\Paginator::useTailwind();
     }
 }
 

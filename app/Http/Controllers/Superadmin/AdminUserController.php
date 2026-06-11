@@ -29,7 +29,7 @@ class AdminUserController extends Controller
             $query->where('unit_id', $request->query('unit_id'));
         }
 
-        $users = $query->orderBy('role', 'desc')->orderBy('name')->get();
+        $users = $query->orderBy('role', 'desc')->orderBy('name')->paginate(10)->withQueryString();
         $units = Unit::orderBy('nama_sekolah')->get();
 
         return view('superadmin.users.index', compact('users', 'units'));

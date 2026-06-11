@@ -121,8 +121,21 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
-                                Belum ada pengguna terdaftar.
+                            <td colspan="5" class="px-6 py-12 text-center">
+                                <div class="flex flex-col items-center justify-center space-y-4">
+                                    <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-full text-gray-400 dark:text-gray-600">
+                                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-bold text-gray-950 dark:text-white">Belum Ada Pengguna</h3>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-sm mx-auto">Pengguna admin digunakan untuk mengelola setiap unit sekolah. Silakan daftarkan pengguna baru.</p>
+                                    </div>
+                                    <a href="{{ route('superadmin.users.create') }}" class="inline-flex items-center px-4 py-2 bg-brand-red hover:bg-brand-red-light text-white font-semibold text-xs uppercase tracking-widest rounded-md transition duration-155">
+                                        + Tambah Admin Baru
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     @endforelse
@@ -169,12 +182,27 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="p-8 text-center text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-                                Belum ada pengguna terdaftar.
+                            <div class="p-8 text-center bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-dashed border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center space-y-3">
+                                <svg class="w-10 h-10 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                <div>
+                                    <h3 class="text-xs font-bold text-gray-900 dark:text-white">Belum Ada Pengguna</h3>
+                                    <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Silakan daftarkan pengguna admin baru.</p>
+                                </div>
+                                <a href="{{ route('superadmin.users.create') }}" class="inline-flex items-center px-3 py-1.5 bg-brand-red hover:bg-brand-red-light text-white font-semibold text-[10px] uppercase tracking-widest rounded-md transition duration-150">
+                                    + Tambah Admin
+                                </a>
                             </div>
                         @endforelse
                     </x-slot>
                 </x-data-table>
+
+                @if ($users->hasPages())
+                    <div class="mt-6 border-t border-gray-100 dark:border-gray-800 pt-6">
+                        {{ $users->links() }}
+                    </div>
+                @endif
 
             </x-card>
 

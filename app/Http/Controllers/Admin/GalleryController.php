@@ -27,7 +27,7 @@ class GalleryController extends Controller
      */
     public function index(Unit $unit): View
     {
-        $galleries = $unit->galleries()->withCount('photos')->orderBy('created_at', 'desc')->get();
+        $galleries = $unit->galleries()->withCount('photos')->orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.galleries.index', compact('unit', 'galleries'));
     }

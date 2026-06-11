@@ -17,7 +17,7 @@ class UnitController extends Controller
      */
     public function index(): View
     {
-        $units = Unit::withCount('users')->orderBy('nama_sekolah')->get();
+        $units = Unit::withCount('users')->orderBy('nama_sekolah')->paginate(10);
 
         return view('superadmin.units.index', compact('units'));
     }

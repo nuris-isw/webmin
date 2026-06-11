@@ -32,7 +32,7 @@ class AchievementController extends Controller
             $query->where('peraih_prestasi', $request->query('peraih_prestasi'));
         }
 
-        $achievements = $query->orderBy('tahun_prestasi', 'desc')->orderBy('created_at', 'desc')->get();
+        $achievements = $query->orderBy('tahun_prestasi', 'desc')->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
 
         return view('admin.achievements.index', compact('unit', 'achievements'));
     }

@@ -71,8 +71,21 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
-                                Belum ada ekstrakurikuler yang ditambahkan.
+                            <td colspan="5" class="px-6 py-12 text-center">
+                                <div class="flex flex-col items-center justify-center space-y-4">
+                                    <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-full text-gray-400 dark:text-gray-600">
+                                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-bold text-gray-950 dark:text-white">Belum Ada Ekstrakurikuler</h3>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-sm mx-auto">Kelola daftar ekstrakurikuler, organisasi kesiswaan, atau klub minat bakat sekolah.</p>
+                                    </div>
+                                    <a href="{{ route('admin.extracurriculars.create', $unit) }}" class="inline-flex items-center px-4 py-2 bg-brand-red hover:bg-brand-red-light text-white font-semibold text-xs uppercase tracking-widest rounded-md transition duration-155">
+                                        + Tambah Ekstrakurikuler
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     @endforelse
@@ -108,12 +121,27 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="p-8 text-center text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-                                Belum ada ekstrakurikuler yang ditambahkan.
+                            <div class="p-8 text-center bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-dashed border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center space-y-3">
+                                <svg class="w-10 h-10 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                                <div>
+                                    <h3 class="text-xs font-bold text-gray-900 dark:text-white">Belum Ada Ekstrakurikuler</h3>
+                                    <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Tambah data ekstrakurikuler baru untuk unit ini.</p>
+                                </div>
+                                <a href="{{ route('admin.extracurriculars.create', $unit) }}" class="inline-flex items-center px-3 py-1.5 bg-brand-red hover:bg-brand-red-light text-white font-semibold text-[10px] uppercase tracking-widest rounded-md transition duration-150">
+                                    + Tambah Ekstrakurikuler
+                                </a>
                             </div>
                         @endforelse
                     </x-slot>
                 </x-data-table>
+
+                @if ($extracurriculars->hasPages())
+                    <div class="mt-6 border-t border-gray-100 dark:border-gray-800 pt-6">
+                        {{ $extracurriculars->links() }}
+                    </div>
+                @endif
             </x-card>
         </div>
     </div>

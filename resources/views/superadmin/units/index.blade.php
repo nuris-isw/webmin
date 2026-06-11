@@ -73,8 +73,21 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
-                                Belum ada unit sekolah yang terdaftar.
+                            <td colspan="5" class="px-6 py-12 text-center">
+                                <div class="flex flex-col items-center justify-center space-y-4">
+                                    <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-full text-gray-400 dark:text-gray-600">
+                                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-bold text-gray-950 dark:text-white">Belum Ada Unit Sekolah</h3>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-sm mx-auto">Silakan daftarkan unit sekolah baru (TK, SMP, atau SMK) untuk mulai mengelola profil dan konten akademik.</p>
+                                    </div>
+                                    <a href="{{ route('superadmin.units.create') }}" class="inline-flex items-center px-4 py-2 bg-brand-red hover:bg-brand-red-light text-white font-semibold text-xs uppercase tracking-widest rounded-md transition duration-155">
+                                        + Tambah Unit Sekolah
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     @endforelse
@@ -99,7 +112,7 @@
                                     <a href="{{ route('superadmin.units.edit', $unit) }}" class="inline-flex items-center px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded text-xs font-medium bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 transition">
                                         Edit
                                     </a>
-                                    <form action="{{ route('superadmin.units.destroy', $unit) }}" method="POST" class="inline" onsubmit="return confirm('PERINGATAN: Menghapus unit ini akan menghapus seluruh data terkait. Apakah Anda yakin?');">
+                                    <form action="{{ route('superadmin.units.destroy', $unit) }}" method="POST" class="inline" onsubmit="return confirm('PERINGATAN: Menghapus unit ini akan menghapus seluruh data profil, prestasi, ekskul, berita, dan jurusan terkait. Apakah Anda yakin ingin melanjutkan?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="inline-flex items-center px-3 py-1.5 rounded text-xs font-semibold bg-rose-50 dark:bg-rose-950/20 text-rose-600 hover:bg-rose-100 dark:hover:bg-rose-900/30 transition">
@@ -109,12 +122,27 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="p-8 text-center text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-                                Belum ada unit sekolah yang terdaftar.
+                            <div class="p-8 text-center bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-dashed border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center space-y-3">
+                                <svg class="w-10 h-10 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                                <div>
+                                    <h3 class="text-xs font-bold text-gray-900 dark:text-white">Belum Ada Unit Sekolah</h3>
+                                    <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Mulai tambahkan unit sekolah pertama Anda.</p>
+                                </div>
+                                <a href="{{ route('superadmin.units.create') }}" class="inline-flex items-center px-3 py-1.5 bg-brand-red hover:bg-brand-red-light text-white font-semibold text-[10px] uppercase tracking-widest rounded-md transition duration-150">
+                                    + Tambah Unit
+                                </a>
                             </div>
                         @endforelse
                     </x-slot>
                 </x-data-table>
+
+                @if ($units->hasPages())
+                    <div class="mt-6 border-t border-gray-100 dark:border-gray-800 pt-6">
+                        {{ $units->links() }}
+                    </div>
+                @endif
 
             </x-card>
 

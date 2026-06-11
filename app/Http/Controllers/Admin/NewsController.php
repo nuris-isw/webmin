@@ -25,7 +25,7 @@ class NewsController extends Controller
      */
     public function index(Unit $unit): View
     {
-        $news = $unit->news()->orderBy('created_at', 'desc')->get();
+        $news = $unit->news()->orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.news.index', compact('unit', 'news'));
     }

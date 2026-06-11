@@ -25,7 +25,7 @@ class ExtracurricularController extends Controller
      */
     public function index(Unit $unit): View
     {
-        $extracurriculars = $unit->extracurriculars()->orderBy('nama_ekskul')->get();
+        $extracurriculars = $unit->extracurriculars()->orderBy('nama_ekskul')->paginate(10);
 
         return view('admin.extracurriculars.index', compact('unit', 'extracurriculars'));
     }

@@ -25,7 +25,7 @@ class MajorController extends Controller
      */
     public function index(Unit $unit): View
     {
-        $majors = $unit->majors()->orderBy('nama_jurusan')->get();
+        $majors = $unit->majors()->orderBy('nama_jurusan')->paginate(10);
 
         return view('admin.majors.index', compact('unit', 'majors'));
     }

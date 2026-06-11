@@ -311,15 +311,15 @@
 
 > **Tujuan:** Memastikan antarmuka memenuhi standar desain SDD dan optimal digunakan oleh admin non-teknis.
 
-- [ ] **F8-01** Audit seluruh halaman: pastikan tidak ada kelas `grayscale` atau `truncate` pada konten utama
-- [ ] **F8-02** Verifikasi dark mode berfungsi pada seluruh halaman (sidebar, kartu, tabel, form)
-- [ ] **F8-03** Verifikasi tampilan mobile (stack card view pada tabel, hamburger menu, action button min 44x44px)
-- [ ] **F8-04** Tambahkan feedback visual: loading state, success toast notification, error message inline
-- [ ] **F8-05** Tambahkan konfirmasi dialog sebelum aksi delete (native `confirm()` atau modal)
-- [ ] **F8-06** Implementasi empty state yang informatif (saat tabel kosong, tampilkan ilustrasi + CTA)
-- [ ] **F8-07** Pastikan semua form memiliki label yang jelas dan pesan error yang mudah dipahami
-- [ ] **F8-08** Review keseluruhan tipografi: `h1` adaptif, `h2` dengan border-left accent merah
-- [ ] **F8-09** Tambahkan pagination pada semua tabel yang berpotensi memiliki banyak data
+- [x] **F8-01** Audit seluruh halaman: pastikan tidak ada kelas `grayscale` atau `truncate` pada konten utama
+- [x] **F8-02** Verifikasi dark mode berfungsi pada seluruh halaman (sidebar, kartu, tabel, form)
+- [x] **F8-03** Verifikasi tampilan mobile (stack card view pada tabel, hamburger menu, action button min 44x44px)
+- [x] **F8-04** Tambahkan feedback visual: loading state, success toast notification, error message inline
+- [x] **F8-05** Tambahkan konfirmasi dialog sebelum aksi delete (native `confirm()` atau modal)
+- [x] **F8-06** Implementasi empty state yang informatif (saat tabel kosong, tampilkan ilustrasi + CTA)
+- [x] **F8-07** Pastikan semua form memiliki label yang jelas dan pesan error yang mudah dipahami
+- [x] **F8-08** Review keseluruhan tipografi: `h1` adaptif, `h2` dengan border-left accent merah
+- [x] **F8-09** Tambahkan pagination pada semua tabel yang berpotensi memiliki banyak data
 
 ---
 

@@ -74,8 +74,21 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
-                                Belum ada data jurusan yang ditambahkan.
+                            <td colspan="6" class="px-6 py-12 text-center">
+                                <div class="flex flex-col items-center justify-center space-y-4">
+                                    <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-full text-gray-400 dark:text-gray-600">
+                                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-bold text-gray-950 dark:text-white">Belum Ada Jurusan</h3>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-sm mx-auto">Kelola kurikulum, nomenklatur program keahlian, dan kepala program (Kaprog) untuk SMK.</p>
+                                    </div>
+                                    <a href="{{ route('admin.majors.create', $unit) }}" class="inline-flex items-center px-4 py-2 bg-brand-red hover:bg-brand-red-light text-white font-semibold text-xs uppercase tracking-widest rounded-md transition duration-155">
+                                        + Tambah Jurusan
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     @endforelse
@@ -112,12 +125,27 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="p-8 text-center text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900/50 rounded-lg">
-                                Belum ada data jurusan yang ditambahkan.
+                            <div class="p-8 text-center bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-dashed border-gray-200 dark:border-gray-800 flex flex-col items-center justify-center space-y-3">
+                                <svg class="w-10 h-10 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                                <div>
+                                    <h3 class="text-xs font-bold text-gray-900 dark:text-white">Belum Ada Jurusan</h3>
+                                    <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Tambah data program keahlian / jurusan baru.</p>
+                                </div>
+                                <a href="{{ route('admin.majors.create', $unit) }}" class="inline-flex items-center px-3 py-1.5 bg-brand-red hover:bg-brand-red-light text-white font-semibold text-[10px] uppercase tracking-widest rounded-md transition duration-150">
+                                    + Tambah Jurusan
+                                </a>
                             </div>
                         @endforelse
                     </x-slot>
                 </x-data-table>
+
+                @if ($majors->hasPages())
+                    <div class="mt-6 border-t border-gray-100 dark:border-gray-800 pt-6">
+                        {{ $majors->links() }}
+                    </div>
+                @endif
             </x-card>
         </div>
     </div>

@@ -167,29 +167,29 @@
 
 ### 4.1 Halaman Dashboard Superadmin
 
-- [ ] **F4-01** Buat `SuperadminController` dengan method `index` (dashboard overview)
-- [ ] **F4-02** Tampilkan 4 kartu metrik ringkasan:
+- [x] **F4-01** Buat `SuperadminController` dengan method `index` (dashboard overview)
+- [x] **F4-02** Tampilkan 4 kartu metrik ringkasan:
   - Total Sekolah (jumlah seluruh unit)
   - Total User Admin (jumlah akun operasional)
   - Total Konten Berita (akumulasi dari seluruh unit)
   - Total Prestasi (akumulasi dari seluruh unit)
-- [ ] **F4-03** Tampilkan tabel daftar unit sekolah (nama, jenjang, status aktif, jumlah admin, aksi)
+- [x] **F4-03** Tampilkan tabel daftar unit sekolah (nama, jenjang, status aktif, jumlah admin, aksi)
 
 ### 4.2 Manajemen Unit Sekolah
 
-- [ ] **F4-04** Buat `UnitController` (CRUD) dengan method: `index`, `create`, `store`, `show`, `edit`, `update`, `destroy`
-- [ ] **F4-05** Buat form pendaftaran unit baru:
+- [x] **F4-04** Buat `UnitController` (CRUD) dengan method: `index`, `create`, `store`, `show`, `edit`, `update`, `destroy`
+- [x] **F4-05** Buat form pendaftaran unit baru:
   - Field: nama sekolah, jenjang (dropdown: TK / SMP / SMK), status aktif
   - Validasi: nama unik, jenjang wajib dipilih
-- [ ] **F4-06** Implementasi halaman detail unit (daftar admin terkait, statistik konten)
-- [ ] **F4-07** Implementasi fitur override konten unit (navigasi ke dashboard unit mana pun)
+- [x] **F4-06** Implementasi halaman detail unit (daftar admin terkait, statistik konten)
+- [x] **F4-07** Implementasi fitur override konten unit (navigasi ke dashboard unit mana pun)
 
 ### 4.3 Manajemen User Admin
 
-- [ ] **F4-08** Buat `UserController` (CRUD) dengan method: `index`, `create`, `store`, `edit`, `update`, `destroy`
-- [ ] **F4-09** Buat form pendaftaran admin baru (nama, email, password, assign ke unit)
-- [ ] **F4-10** Tampilkan tabel daftar user dengan filter per unit dan per role
-- [ ] **F4-11** Implementasi reset password oleh Superadmin
+- [x] **F4-08** Buat `UserController` (CRUD) dengan method: `index`, `create`, `store`, `edit`, `update`, `destroy`
+- [x] **F4-09** Buat form pendaftaran admin baru (nama, email, password, assign ke unit)
+- [x] **F4-10** Tampilkan tabel daftar user dengan filter per unit dan per role
+- [x] **F4-11** Implementasi reset password oleh Superadmin
 
 ---
 
@@ -199,74 +199,74 @@
 
 ### 5.1 Halaman Dashboard Admin
 
-- [ ] **F5-01** Buat `AdminDashboardController` dengan method `index`
-- [ ] **F5-02** Tampilkan ringkasan statistik konten unit (total berita, prestasi, ekskul, foto galeri)
-- [ ] **F5-03** Tampilkan informasi unit yang dikelola (nama, jenjang, status SPMB)
+- [x] **F5-01** Buat `AdminDashboardController` dengan method `index`
+- [x] **F5-02** Tampilkan ringkasan statistik konten unit (total berita, prestasi, ekskul, foto galeri)
+- [x] **F5-03** Tampilkan informasi unit yang dikelola (nama, jenjang, status SPMB)
 
 ### 5.2 Modul Profil Sekolah
 
-- [ ] **F5-04** Buat `SchoolProfileController` dengan method `edit` dan `update`
-- [ ] **F5-05** Implementasi form **Tab A — Kontak & Lokasi**:
+- [x] **F5-04** Buat `SchoolProfileController` dengan method `edit` dan `update`
+- [x] **F5-05** Implementasi form **Tab A — Kontak & Lokasi**:
   - Upload logo sekolah (image preview)
   - Input email, telepon, alamat
   - Input embed URL Google Maps
   - Input link media sosial (Instagram, Facebook, YouTube, TikTok)
-- [ ] **F5-06** Implementasi form **Tab B — Profil & Sejarah**:
+- [x] **F5-06** Implementasi form **Tab B — Profil & Sejarah**:
   - Input nama kepala sekolah
   - Upload foto kepala sekolah
   - Rich text editor untuk sambutan kepala sekolah
   - Rich text editor untuk sejarah singkat sekolah
-- [ ] **F5-07** Implementasi form **Tab C — Akademik**:
+- [x] **F5-07** Implementasi form **Tab C — Akademik**:
   - Rich text editor untuk visi
   - Rich text editor untuk misi
   - Rich text editor untuk deskripsi kurikulum
   - Upload PDF kalender akademik
-- [ ] **F5-08** Implementasi navigasi tab (Tab A / B / C) menggunakan JavaScript ringan atau Alpine.js
-- [ ] **F5-09** Integrasi rich text editor (misal: Quill.js, TipTap, atau Markdown editor) untuk field teks panjang
+- [x] **F5-08** Implementasi navigasi tab (Tab A / B / C) menggunakan JavaScript ringan atau Alpine.js
+- [x] **F5-09** Integrasi rich text editor (misal: Quill.js, TipTap, atau Markdown editor) untuk field teks panjang
 
 ### 5.3 Modul Kesiswaan — Data Prestasi
 
-- [ ] **F5-10** Buat `AchievementController` dengan CRUD lengkap
-- [ ] **F5-11** Tampilkan tabel daftar prestasi dengan filter `peraih_prestasi` (siswa/guru/tendik/sekolah)
-- [ ] **F5-12** Buat form tambah/edit prestasi:
+- [x] **F5-10** Buat `AchievementController` dengan CRUD lengkap
+- [x] **F5-11** Tampilkan tabel daftar prestasi dengan filter `peraih_prestasi` (siswa/guru/tendik/sekolah)
+- [x] **F5-12** Buat form tambah/edit prestasi:
   - Input judul, tahun prestasi, dropdown peraih, deskripsi
   - Upload foto penghargaan dengan preview
 
 ### 5.4 Modul Kesiswaan — Ekstrakurikuler
 
-- [ ] **F5-13** Buat `ExtracurricularController` dengan CRUD lengkap
-- [ ] **F5-14** Tampilkan tabel daftar ekstrakurikuler (logo, nama, pembina, jadwal)
-- [ ] **F5-15** Buat form tambah/edit ekstrakurikuler:
+- [x] **F5-13** Buat `ExtracurricularController` dengan CRUD lengkap
+- [x] **F5-14** Tampilkan tabel daftar ekstrakurikuler (logo, nama, pembina, jadwal)
+- [x] **F5-15** Buat form tambah/edit ekstrakurikuler:
   - Upload logo ekskul dengan preview
   - Input nama, pembina, jadwal kegiatan
 
 ### 5.5 Modul Publikasi — Berita/Artikel
 
-- [ ] **F5-16** Buat `NewsController` dengan CRUD lengkap
-- [ ] **F5-17** Implementasi auto-generate slug dari judul berita (unique per unit)
-- [ ] **F5-18** Tampilkan tabel daftar berita (judul, slug, tanggal publish, aksi)
-- [ ] **F5-19** Buat form tambah/edit berita:
+- [x] **F5-16** Buat `NewsController` dengan CRUD lengkap
+- [x] **F5-17** Implementasi auto-generate slug dari judul berita (unique per unit)
+- [x] **F5-18** Tampilkan tabel daftar berita (judul, slug, tanggal publish, aksi)
+- [x] **F5-19** Buat form tambah/edit berita:
   - Input judul berita
   - Upload gambar utama dengan preview
   - Rich text editor untuk konten berita
-- [ ] **F5-20** Implementasi soft-draft: berita tersimpan sebagai draft sebelum dipublikasikan
+- [x] **F5-20** Implementasi soft-draft: berita tersimpan sebagai draft sebelum dipublikasikan
 
 ### 5.6 Modul Publikasi — Galeri Kegiatan
 
-- [ ] **F5-21** Buat `GalleryController` dengan CRUD lengkap
-- [ ] **F5-22** Tampilkan grid daftar galeri kegiatan dengan thumbnail
-- [ ] **F5-23** Buat form tambah/edit galeri:
+- [x] **F5-21** Buat `GalleryController` dengan CRUD lengkap
+- [x] **F5-22** Tampilkan grid daftar galeri kegiatan dengan thumbnail
+- [x] **F5-23** Buat form tambah/edit galeri:
   - Input nama kegiatan
   - Multi-upload foto (drag & drop)
   - Dropdown opsi tampilan: `hero_section`, `gambar_pembuka`, `galeri_dokumentasi`, `galeri_program`
   - Field `major_id` (dropdown jurusan) — tampil dan **required** hanya jika unit SMK + opsi `galeri_program`
-- [ ] **F5-24** Implementasi validasi server-side: `major_id` wajib jika unit SMK + `galeri_program`, null jika TK/SMP
-- [ ] **F5-25** Implementasi reorder foto dalam galeri (drag & drop atau tombol naik/turun)
+- [x] **F5-24** Implementasi validasi server-side: `major_id` wajib jika unit SMK + `galeri_program`, null jika TK/SMP
+- [x] **F5-25** Implementasi reorder foto dalam galeri (drag & drop atau tombol naik/turun)
 
 ### 5.7 Modul Publikasi — SPMB
 
-- [ ] **F5-26** Buat `SpmbController` dengan method `edit` dan `update`
-- [ ] **F5-27** Buat form pengaturan SPMB:
+- [x] **F5-26** Buat `SpmbController` dengan method `edit` dan `update`
+- [x] **F5-27** Buat form pengaturan SPMB:
   - Toggle buka/tutup status SPMB (visual indicator menonjol)
   - Rich text editor untuk informasi prosedur
   - Input URL eksternal pendaftaran
@@ -277,17 +277,19 @@
 
 > **Tujuan:** Membangun modul yang terlindungi middleware SMK untuk manajemen data program keahlian.
 
-- [ ] **F6-01** Buat `MajorController` dengan CRUD lengkap
-- [ ] **F6-02** Pasang middleware `EnsureSmkUnit` pada seluruh route Manajemen Jurusan
-- [ ] **F6-03** Tampilkan tabel daftar jurusan (nama, nomenklatur, shortname, kaprog, aksi)
-- [ ] **F6-04** Buat form tambah/edit jurusan:
+- [x] **F6-01** Buat `MajorController` dengan CRUD lengkap
+- [x] **F6-02** Pasang middleware `EnsureSmkUnit` pada seluruh route Manajemen Jurusan
+- [x] **F6-03** Tampilkan tabel daftar jurusan (nama, nomenklatur, shortname, kaprog, aksi)
+- [x] **F6-04** Buat form tambah/edit jurusan:
   - Input nama jurusan (contoh: Teknik Komputer dan Jaringan)
   - Input/dropdown nomenklatur istilah (Program Keahlian / Konsentrasi Keahlian / Program Studi)
   - Input shortname (contoh: TKJ, RPL)
   - Input nama kepala program (kaprog)
   - Upload foto kaprog dengan preview
   - Rich text editor untuk deskripsi jurusan (kompetensi, prospek kerja)
-- [ ] **F6-05** Verifikasi: halaman ini tidak dapat diakses oleh admin unit TK/SMP (redirect dengan pesan error)
+- [x] **F6-05** Verifikasi: halaman ini tidak dapat diakses oleh admin unit TK/SMP (redirect dengan pesan error)
+- [x] **F6-06** Penyesuaian padding pada setiap form input agar memiliki padding yang sesuai
+- [x] **F6-07** Arahkan route `/` ke halaman login (`/login`) sebagai halaman pertama yang diakses user
 
 ---
 

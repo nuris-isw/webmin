@@ -329,23 +329,23 @@
 
 ### 9.1 Unit & Feature Tests
 
-- [ ] **F9-01** Tulis Feature Test untuk autentikasi (login, logout, Google OAuth mock)
-- [ ] **F9-02** Tulis Feature Test untuk RBAC: superadmin dapat akses semua, admin hanya unit sendiri
-- [ ] **F9-03** Tulis Feature Test untuk middleware SMK: admin non-SMK tidak bisa akses `/majors`
-- [ ] **F9-04** Tulis Feature Test untuk validasi galeri: `major_id` required jika SMK + `galeri_program`
-- [ ] **F9-05** Tulis Feature Test untuk CRUD setiap modul (News, Achievement, dll.)
-- [ ] **F9-06** Tulis Unit Test untuk `FileUploadService`
+- [x] **F9-01** Tulis Feature Test untuk autentikasi (login, logout, Google OAuth mock)
+- [x] **F9-02** Tulis Feature Test untuk RBAC: superadmin dapat akses semua, admin hanya unit sendiri
+- [x] **F9-03** Tulis Feature Test untuk middleware SMK: admin non-SMK tidak bisa akses `/majors`
+- [x] **F9-04** Tulis Feature Test untuk validasi galeri: `major_id` required jika SMK + `galeri_program`
+- [x] **F9-05** Tulis Feature Test untuk CRUD setiap modul (News, Achievement, dll.)
+- [x] **F9-06** Tulis Unit Test untuk `FileUploadService`
 
 ### 9.2 Manual Testing Checklist
 
-- [ ] **F9-07** Test login dengan email/password dan Google OAuth
-- [ ] **F9-08** Test tenant isolation: admin unit A tidak bisa edit konten unit B
-- [ ] **F9-09** Test upload gambar (jpg, png, webp) dan PDF
-- [ ] **F9-10** Test multi-upload foto galeri
-- [ ] **F9-11** Test dark mode di semua halaman utama
-- [ ] **F9-12** Test tampilan mobile pada smartphone (375px) dan tablet (768px)
-- [ ] **F9-13** Test seluruh alur admin SMK (termasuk Manajemen Jurusan)
-- [ ] **F9-14** Test override Superadmin pada konten unit manapun
+- [x] **F9-07** Test login dengan email/password dan Google OAuth
+- [x] **F9-08** Test tenant isolation: admin unit A tidak bisa edit konten unit B
+- [x] **F9-09** Test upload gambar (jpg, png, webp) dan PDF
+- [x] **F9-10** Test multi-upload foto galeri
+- [x] **F9-11** Test dark mode di semua halaman utama
+- [x] **F9-12** Test tampilan mobile pada smartphone (375px) dan tablet (768px)
+- [x] **F9-13** Test seluruh alur admin SMK (termasuk Manajemen Jurusan)
+- [x] **F9-14** Test override Superadmin pada konten unit manapun
 
 ---
 
@@ -353,12 +353,12 @@
 
 > **Tujuan:** Mempersiapkan aplikasi untuk production dan melengkapi dokumentasi.
 
-- [ ] **F10-01** Konfigurasi `.env.production` (database, app key, storage, OAuth credentials)
-- [ ] **F10-02** Jalankan optimisasi production (`php artisan optimize`, `npm run build`)
-- [ ] **F10-03** Verifikasi `php artisan storage:link` di server production
-- [ ] **F10-04** Buat seeder untuk data awal: 1 akun Superadmin default
-- [ ] **F10-05** Dokumentasikan panduan penggunaan dasar untuk Admin dan Superadmin
-- [ ] **F10-06** Update `README.md` dengan URL production dan catatan deployment
+- [x] **F10-01** Konfigurasi `.env.production` (database, app key, storage, OAuth credentials)
+- [x] **F10-02** Jalankan optimisasi production (`php artisan optimize`, `npm run build`)
+- [x] **F10-03** Verifikasi `php artisan storage:link` di server production
+- [x] **F10-04** Buat seeder untuk data awal: 1 akun Superadmin default
+- [x] **F10-05** Dokumentasikan panduan penggunaan dasar untuk Admin dan Superadmin
+- [x] **F10-06** Update `README.md` dengan URL production dan catatan deployment
 
 ---
 
@@ -368,18 +368,18 @@
 
 ### 11.1 Setup & Konfigurasi API
 
-- [ ] **F11-01** Aktifkan API routing bawaan Laravel: jalankan `php artisan install:api` (tanpa Sanctum auth — cukup untuk route `api.php`)
-- [ ] **F11-02** Buat prefix routing `api/v1/` untuk seluruh endpoint GET di `routes/api.php`
-- [ ] **F11-03** Buat middleware `ForceJsonResponse` — memastikan seluruh response API selalu `Content-Type: application/json`
-- [ ] **F11-04** Buat response helper / trait `ApiResponse` dengan format standar:
+- [x] **F11-01** Aktifkan API routing bawaan Laravel: jalankan `php artisan install:api` (tanpa Sanctum auth — cukup untuk route `api.php`)
+- [x] **F11-02** Buat prefix routing `api/v1/` untuk seluruh endpoint GET di `routes/api.php`
+- [x] **F11-03** Buat middleware `ForceJsonResponse` — memastikan seluruh response API selalu `Content-Type: application/json`
+- [x] **F11-04** Buat response helper / trait `ApiResponse` dengan format standar:
   ```json
   { "success": true, "message": "...", "data": {}, "meta": {} }
   ```
-- [ ] **F11-05** Konfigurasi global `Handler.php` untuk mengembalikan error 404 dan 500 dalam format JSON yang konsisten
+- [x] **F11-05** Konfigurasi global `Handler.php` untuk mengembalikan error 404 and 500 dalam format JSON yang konsisten
 
 ### 11.2 API Resource & Transformer
 
-- [ ] **F11-06** Buat `JsonResource` untuk setiap model agar output API konsisten dan terpisah dari struktur database:
+- [x] **F11-06** Buat `JsonResource` untuk setiap model agar output API konsisten dan terpisah dari struktur database:
   - `UnitResource` — data unit termasuk jenjang & URL logo
   - `SchoolProfileResource` — data profil lengkap per unit
   - `NewsResource` & `NewsCollection` — artikel dengan pagination
@@ -388,39 +388,39 @@
   - `GalleryResource` — galeri dengan nested `GalleryPhotoResource`
   - `SpmbResource` — status dan info SPMB
   - `MajorResource` — data jurusan SMK
-- [ ] **F11-07** Pastikan seluruh URL file (gambar, PDF) di dalam Resource menggunakan URL absolut (`Storage::url()`), bukan path relatif
+- [x] **F11-07** Pastikan seluruh URL file (gambar, PDF) di dalam Resource menggunakan URL absolut (`Storage::url()`), bukan path relatif
 
 ### 11.3 Endpoint API Publik (Read-Only GET)
 
 > Seluruh endpoint bersifat publik tanpa autentikasi. Manajemen konten **hanya** dilakukan melalui dashboard Laravel.
 
-- [ ] **F11-08** Buat `Api\UnitController`:
+- [x] **F11-08** Buat `Api\UnitController`:
   - `GET /api/v1/units` — daftar semua unit aktif
   - `GET /api/v1/units/{slug}` — detail unit beserta profil lengkap
-- [ ] **F11-09** Buat `Api\NewsController`:
+- [x] **F11-09** Buat `Api\NewsController`:
   - `GET /api/v1/units/{slug}/news` — daftar berita unit (paginated, query: `?page=`, `?per_page=`)
   - `GET /api/v1/units/{slug}/news/{newsSlug}` — detail artikel
-- [ ] **F11-10** Buat `Api\AchievementController`:
+- [x] **F11-10** Buat `Api\AchievementController`:
   - `GET /api/v1/units/{slug}/achievements` — daftar prestasi (query: `?peraih=siswa|guru|tendik|sekolah`)
-- [ ] **F11-11** Buat `Api\ExtracurricularController`:
+- [x] **F11-11** Buat `Api\ExtracurricularController`:
   - `GET /api/v1/units/{slug}/extracurriculars` — daftar ekstrakurikuler
-- [ ] **F11-12** Buat `Api\GalleryController`:
+- [x] **F11-12** Buat `Api\GalleryController`:
   - `GET /api/v1/units/{slug}/galleries` — daftar galeri (query: `?opsi_tampilan=hero_section|gambar_pembuka|galeri_dokumentasi|galeri_program`)
   - `GET /api/v1/units/{slug}/galleries/{id}` — detail galeri beserta semua foto
-- [ ] **F11-13** Buat `Api\SpmbController`:
+- [x] **F11-13** Buat `Api\SpmbController`:
   - `GET /api/v1/units/{slug}/spmb` — info & status SPMB aktif
-- [ ] **F11-14** Buat `Api\MajorController` (hanya merespons untuk unit SMK, kembalikan 404 jika bukan SMK):
+- [x] **F11-14** Buat `Api\MajorController` (hanya merespons untuk unit SMK, kembalikan 404 jika bukan SMK):
   - `GET /api/v1/units/{slug}/majors` — daftar jurusan
   - `GET /api/v1/units/{slug}/majors/{id}` — detail jurusan beserta galeri `galeri_program` terkait
 
 ### 11.4 Optimasi & Keamanan API
 
-- [ ] **F11-15** Implementasi **Rate Limiting** per IP pada seluruh endpoint (`throttle:60,1`) untuk mencegah penyalahgunaan
-- [ ] **F11-16** Konfigurasi CORS (`config/cors.php`) — izinkan origin domain frontend yang telah didaftarkan
-- [ ] **F11-17** Implementasi **API Versioning** — seluruh route berada di prefix `/api/v1/` agar migrasi ke versi berikutnya tidak breaking
-- [ ] **F11-18** Tambahkan HTTP Cache headers (`Cache-Control: public, max-age=300`) pada endpoint yang jarang berubah (profil sekolah, daftar unit, daftar jurusan)
-- [ ] **F11-19** Tulis Feature Test API: setiap endpoint GET mengembalikan status `200` dan struktur JSON sesuai `ApiResponse` yang didefinisikan
-- [ ] **F11-20** Tulis Feature Test API: endpoint unit non-SMK yang mengakses `/majors` mengembalikan `404`
+- [x] **F11-15** Implementasi **Rate Limiting** per IP pada seluruh endpoint (`throttle:60,1`) untuk mencegah penyalahgunaan
+- [x] **F11-16** Konfigurasi CORS (`config/cors.php`) — izinkan origin domain frontend yang telah didaftarkan
+- [x] **F11-17** Implementasi **API Versioning** — seluruh route berada di prefix `/api/v1/` agar migrasi ke versi berikutnya tidak breaking
+- [x] **F11-18** Tambahkan HTTP Cache headers (`Cache-Control: public, max-age=300`) pada endpoint yang jarang berubah (profil sekolah, daftar unit, daftar jurusan)
+- [x] **F11-19** Tulis Feature Test API: setiap endpoint GET mengembalikan status `200` dan struktur JSON sesuai `ApiResponse` yang didefinisikan
+- [x] **F11-20** Tulis Feature Test API: endpoint unit non-SMK yang mengakses `/majors` mengembalikan `404`
 
 ---
 
@@ -430,22 +430,19 @@
 
 ### 12.1 Setup Generator Dokumentasi
 
-- [ ] **F12-01** Evaluasi dan pilih tool dokumentasi API:
-  - **Opsi A:** [Scribe](https://scribe.knuckles.wtf/) (`composer require --dev knuckleswtf/scribe`) — generate dari kode PHP secara otomatis
-  - **Opsi B:** [L5-Swagger](https://github.com/DarkaOnLine/L5-Swagger) — OpenAPI 3.0 / Swagger UI
-  - *(Rekomendasi: Scribe untuk proyek Laravel karena integrasi paling mulus)*
-- [ ] **F12-02** Pasang dan konfigurasi tool yang dipilih (`php artisan scribe:generate` / `php artisan l5-swagger:generate`)
-- [ ] **F12-03** Amankan halaman dokumentasi: hanya dapat diakses di environment `local` / `staging`, atau dengan basic auth di production
+- [x] **F12-01** Evaluasi dan pilih tool dokumentasi API: Scribe
+- [x] **F12-02** Pasang dan konfigurasi tool yang dipilih (`php artisan scribe:generate` / `php artisan l5-swagger:generate`)
+- [x] **F12-03** Amankan halaman dokumentasi: hanya dapat diakses di environment `local` / `staging`, atau dengan basic auth di production
 
 ### 12.2 Anotasi & Metadata Endpoint
 
-- [ ] **F12-04** Tambahkan docblock/anotasi pada seluruh API Controller dengan informasi:
+- [x] **F12-04** Tambahkan docblock/anotasi pada seluruh API Controller dengan informasi:
   - Deskripsi endpoint
   - Parameter path (`{slug}`, `{id}`)
   - Query parameter (filter, pagination: `page`, `per_page`)
   - Request body (field, tipe data, apakah required)
   - Response body (contoh JSON sukses dan error)
-- [ ] **F12-05** Definisikan kelompok (group/tag) endpoint sesuai resource:
+- [x] **F12-05** Definisikan kelompok (group/tag) endpoint sesuai resource:
   - `Units` — daftar & detail unit sekolah
   - `News` — daftar & detail berita per unit
   - `Achievements` — data prestasi per unit
@@ -453,8 +450,8 @@
   - `Galleries` — galeri kegiatan & foto per unit
   - `SPMB` — status & info penerimaan siswa per unit
   - `Majors` — data jurusan SMK per unit
-- [ ] **F12-06** Buat contoh response (`example`) yang realistis untuk setiap endpoint (bukan placeholder lorem ipsum)
-- [ ] **F12-07** Dokumentasikan kode status HTTP yang digunakan:
+- [x] **F12-06** Buat contoh response (`example`) yang realistis untuk setiap endpoint (bukan placeholder lorem ipsum)
+- [x] **F12-07** Dokumentasikan kode status HTTP yang digunakan:
   - `200 OK`, `201 Created`, `204 No Content`
   - `400 Bad Request`, `401 Unauthorized`, `403 Forbidden`, `404 Not Found`
   - `422 Unprocessable Entity` (validasi gagal dengan detail field error)
@@ -463,14 +460,14 @@
 
 ### 12.3 Ekspor Koleksi API Client
 
-- [ ] **F12-08** Generate dan ekspor koleksi **Postman** (`postman_collection.json`) dari dokumentasi yang dihasilkan
-- [ ] **F12-09** Generate dan ekspor koleksi **Insomnia** (`insomnia_collection.json`) sebagai alternatif
-- [ ] **F12-10** Simpan kedua file koleksi di direktori `docs/api/` dalam repositori dan perbarui setiap ada perubahan endpoint
-- [ ] **F12-11** Sertakan **environment variables** dalam koleksi: `base_url`, `api_token` (variabel kosong, diisi oleh pengguna)
+- [x] **F12-08** Generate dan ekspor koleksi **Postman** (`postman_collection.json`) dari dokumentasi yang dihasilkan
+- [x] **F12-09** Generate dan ekspor koleksi **Insomnia** (`insomnia_collection.json`) sebagai alternatif (menggunakan OpenAPI spec)
+- [x] **F12-10** Simpan kedua file koleksi di direktori `docs/api/` dalam repositori dan perbarui setiap ada perubahan endpoint
+- [x] **F12-11** Sertakan **environment variables** dalam koleksi: `base_url`, `api_token` (variabel kosong, diisi oleh pengguna)
 
 ### 12.4 Panduan Integrasi Frontend
 
-- [ ] **F12-12** Buat berkas `docs/api/INTEGRATION_GUIDE.md` yang menjelaskan:
+- [x] **F12-12** Buat berkas `docs/api/INTEGRATION_GUIDE.md` yang menjelaskan:
   - Base URL API dan versi aktif
   - Cara mendapatkan token (flow login)
   - Cara menyertakan token pada setiap request (`Authorization: Bearer <token>`)
@@ -478,8 +475,8 @@
   - Contoh penggunaan endpoint paling umum (fetch daftar berita, upload gambar)
   - Penjelasan `Display Placement Routing` galeri (bagaimana frontend harus menangani `opsi_tampilan`)
   - Penjelasan conditional field `major_id` untuk galeri unit SMK
-- [ ] **F12-13** Buat berkas `docs/api/CHANGELOG.md` untuk mencatat perubahan API setiap versi
-- [ ] **F12-14** Verifikasi akhir: akses halaman dokumentasi yang di-generate, pastikan seluruh endpoint terdaftar dan contoh response valid
+- [x] **F12-13** Buat berkas `docs/api/CHANGELOG.md` untuk mencatat perubahan API setiap versi
+- [x] **F12-14** Verifikasi akhir: akses halaman dokumentasi yang di-generate, pastikan seluruh endpoint terdaftar dan contoh response valid
 
 ---
 

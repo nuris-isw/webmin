@@ -1,0 +1,131 @@
+name: Units
+description: |-
+
+  API for managing and querying school units.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/units
+    metadata:
+      custom: []
+      groupName: Units
+      groupDescription: |-
+
+        API for managing and querying school units.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get active units.'
+      description: 'Returns a list of all active school units.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Daftar unit sekolah berhasil diambil.",
+            "data": [
+              {
+                "id": 1,
+                "nama_sekolah": "SMK Mandiri",
+                "slug": "smk-mandiri",
+                "jenjang": "smk",
+                "is_active": true,
+                "logo_sekolah": "http://localhost/storage/1/logo.png"
+              }
+            ]
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/units/{slug}'
+    metadata:
+      custom: []
+      groupName: Units
+      groupDescription: |-
+
+        API for managing and querying school units.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get unit details.'
+      description: 'Returns the full school profile of the specified unit slug.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      slug:
+        custom: []
+        name: slug
+        description: 'The slug of the school unit.'
+        required: true
+        example: smk-mandiri
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      slug: smk-mandiri
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Detail unit sekolah berhasil diambil.",
+            "data": {
+              "id": 1,
+              "nama_sekolah": "SMK Mandiri",
+              "slug": "smk-mandiri",
+              "jenjang": "smk",
+              "is_active": true,
+              "logo_sekolah": "http://localhost/storage/1/logo.png",
+              "profile": {
+                "id": 1,
+                "unit_id": 1,
+                "logo_sekolah": "http://localhost/storage/1/logo.png",
+                "email": "smk@mandiri.sch.id",
+                "telepon": "021-123456",
+                "alamat": "Jl. Mandiri No. 1",
+                "google_map_embed_url": "https://maps...",
+                "media_sosial": {"facebook": "https://..."}
+              }
+            }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

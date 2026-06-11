@@ -1,0 +1,69 @@
+name: Extracurriculars
+description: |-
+
+  API for querying school extracurricular organizations and clubs.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/units/{slug}/extracurriculars'
+    metadata:
+      custom: []
+      groupName: Extracurriculars
+      groupDescription: |-
+
+        API for querying school extracurricular organizations and clubs.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get extracurriculars.'
+      description: 'Returns a list of extracurriculars for the specified school unit.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      slug:
+        custom: []
+        name: slug
+        description: 'The slug of the school unit.'
+        required: true
+        example: smk-mandiri
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      slug: smk-mandiri
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Daftar ekstrakurikuler berhasil diambil.",
+            "data": [
+              {
+                "id": 1,
+                "nama_ekskul": "Pramuka",
+                "pembina_ekskul": "Kak Ahmad",
+                "jadwal_kegiatan": "Sabtu 08:00 - 11:00",
+                "logo_ekskul": "http://localhost/storage/1/ekskul.png"
+              }
+            ]
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

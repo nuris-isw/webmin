@@ -1,0 +1,977 @@
+openapi: 3.0.3
+info:
+  title: 'Laravel API Documentation'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+tags:
+  -
+    name: Achievements
+    description: "\nAPI for querying school achievements."
+  -
+    name: Extracurriculars
+    description: "\nAPI for querying school extracurricular organizations and clubs."
+  -
+    name: Galleries
+    description: "\nAPI for querying school activity galleries and multimedia banner content."
+  -
+    name: Majors
+    description: "\nAPI for querying SMK majors/competencies. Note: Only available for units of type 'smk'."
+  -
+    name: News
+    description: "\nAPI for querying news and articles from school units."
+  -
+    name: SPMB
+    description: "\nAPI for querying school enrollment (SPMB) settings and status."
+  -
+    name: Units
+    description: "\nAPI for managing and querying school units."
+paths:
+  '/api/v1/units/{slug}/achievements':
+    get:
+      summary: 'Get achievements.'
+      operationId: getAchievements
+      description: 'Returns a list of achievements for the specified school unit.'
+      parameters:
+        -
+          in: query
+          name: peraih
+          description: 'Filter achievements by recipient role: `siswa`, `guru`, `tendik`, or `sekolah`.'
+          example: siswa
+          required: false
+          schema:
+            type: string
+            description: 'Filter achievements by recipient role: `siswa`, `guru`, `tendik`, or `sekolah`.'
+            example: siswa
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Daftar prestasi berhasil diambil.'
+                  data:
+                    -
+                      id: 1
+                      judul_prestasi: 'Juara 1 Lomba LKS SMK'
+                      tahun_prestasi: 2026
+                      peraih_prestasi: siswa
+                      deskripsi_prestasi: 'Juara 1 Bidang IT Network Systems Administration.'
+                      foto_penghargaan: 'http://localhost/storage/1/ach.png'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Daftar prestasi berhasil diambil.'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        judul_prestasi: 'Juara 1 Lomba LKS SMK'
+                        tahun_prestasi: 2026
+                        peraih_prestasi: siswa
+                        deskripsi_prestasi: 'Juara 1 Bidang IT Network Systems Administration.'
+                        foto_penghargaan: 'http://localhost/storage/1/ach.png'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        judul_prestasi:
+                          type: string
+                          example: 'Juara 1 Lomba LKS SMK'
+                        tahun_prestasi:
+                          type: integer
+                          example: 2026
+                        peraih_prestasi:
+                          type: string
+                          example: siswa
+                        deskripsi_prestasi:
+                          type: string
+                          example: 'Juara 1 Bidang IT Network Systems Administration.'
+                        foto_penghargaan:
+                          type: string
+                          example: 'http://localhost/storage/1/ach.png'
+      tags:
+        - Achievements
+      security: []
+    parameters:
+      -
+        in: path
+        name: slug
+        description: 'The slug of the school unit.'
+        example: smk-mandiri
+        required: true
+        schema:
+          type: string
+  '/api/v1/units/{slug}/extracurriculars':
+    get:
+      summary: 'Get extracurriculars.'
+      operationId: getExtracurriculars
+      description: 'Returns a list of extracurriculars for the specified school unit.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Daftar ekstrakurikuler berhasil diambil.'
+                  data:
+                    -
+                      id: 1
+                      nama_ekskul: Pramuka
+                      pembina_ekskul: 'Kak Ahmad'
+                      jadwal_kegiatan: 'Sabtu 08:00 - 11:00'
+                      logo_ekskul: 'http://localhost/storage/1/ekskul.png'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Daftar ekstrakurikuler berhasil diambil.'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        nama_ekskul: Pramuka
+                        pembina_ekskul: 'Kak Ahmad'
+                        jadwal_kegiatan: 'Sabtu 08:00 - 11:00'
+                        logo_ekskul: 'http://localhost/storage/1/ekskul.png'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        nama_ekskul:
+                          type: string
+                          example: Pramuka
+                        pembina_ekskul:
+                          type: string
+                          example: 'Kak Ahmad'
+                        jadwal_kegiatan:
+                          type: string
+                          example: 'Sabtu 08:00 - 11:00'
+                        logo_ekskul:
+                          type: string
+                          example: 'http://localhost/storage/1/ekskul.png'
+      tags:
+        - Extracurriculars
+      security: []
+    parameters:
+      -
+        in: path
+        name: slug
+        description: 'The slug of the school unit.'
+        example: smk-mandiri
+        required: true
+        schema:
+          type: string
+  '/api/v1/units/{slug}/galleries':
+    get:
+      summary: 'Get galleries.'
+      operationId: getGalleries
+      description: 'Returns a list of galleries for the specified school unit.'
+      parameters:
+        -
+          in: query
+          name: opsi_tampilan
+          description: 'Filter galleries by display option: `hero_section`, `gambar_pembuka`, `galeri_dokumentasi`, or `galeri_program`.'
+          example: galeri_dokumentasi
+          required: false
+          schema:
+            type: string
+            description: 'Filter galleries by display option: `hero_section`, `gambar_pembuka`, `galeri_dokumentasi`, or `galeri_program`.'
+            example: galeri_dokumentasi
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Daftar galeri berhasil diambil.'
+                  data:
+                    -
+                      id: 1
+                      nama_kegiatan: 'LDKS OSIS 2026'
+                      opsi_tampilan: galeri_dokumentasi
+                      major_id: null
+                      photos:
+                        -
+                          id: 1
+                          file_foto: 'http://localhost/storage/1/ldks.png'
+                          urutan: 1
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Daftar galeri berhasil diambil.'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        nama_kegiatan: 'LDKS OSIS 2026'
+                        opsi_tampilan: galeri_dokumentasi
+                        major_id: null
+                        photos:
+                          -
+                            id: 1
+                            file_foto: 'http://localhost/storage/1/ldks.png'
+                            urutan: 1
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        nama_kegiatan:
+                          type: string
+                          example: 'LDKS OSIS 2026'
+                        opsi_tampilan:
+                          type: string
+                          example: galeri_dokumentasi
+                        major_id:
+                          type: string
+                          example: null
+                          nullable: true
+                        photos:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              file_foto: 'http://localhost/storage/1/ldks.png'
+                              urutan: 1
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              file_foto:
+                                type: string
+                                example: 'http://localhost/storage/1/ldks.png'
+                              urutan:
+                                type: integer
+                                example: 1
+      tags:
+        - Galleries
+      security: []
+    parameters:
+      -
+        in: path
+        name: slug
+        description: 'The slug of the school unit.'
+        example: smk-mandiri
+        required: true
+        schema:
+          type: string
+  '/api/v1/units/{slug}/galleries/{id}':
+    get:
+      summary: 'Get gallery details.'
+      operationId: getGalleryDetails
+      description: 'Returns a specific gallery details along with all associated photos.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Detail galeri berhasil diambil.'
+                  data:
+                    id: 1
+                    nama_kegiatan: 'LDKS OSIS 2026'
+                    opsi_tampilan: galeri_dokumentasi
+                    major_id: null
+                    photos:
+                      -
+                        id: 1
+                        file_foto: 'http://localhost/storage/1/ldks.png'
+                        urutan: 1
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Detail galeri berhasil diambil.'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      nama_kegiatan:
+                        type: string
+                        example: 'LDKS OSIS 2026'
+                      opsi_tampilan:
+                        type: string
+                        example: galeri_dokumentasi
+                      major_id:
+                        type: string
+                        example: null
+                        nullable: true
+                      photos:
+                        type: array
+                        example:
+                          -
+                            id: 1
+                            file_foto: 'http://localhost/storage/1/ldks.png'
+                            urutan: 1
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            file_foto:
+                              type: string
+                              example: 'http://localhost/storage/1/ldks.png'
+                            urutan:
+                              type: integer
+                              example: 1
+      tags:
+        - Galleries
+      security: []
+    parameters:
+      -
+        in: path
+        name: slug
+        description: 'The slug of the school unit.'
+        example: smk-mandiri
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: 'The ID of the gallery.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/units/{slug}/majors':
+    get:
+      summary: 'Get majors list.'
+      operationId: getMajorsList
+      description: 'Returns a list of majors/programs of study for the specified unit. Returns 404 if the unit is not a SMK.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Daftar jurusan berhasil diambil.'
+                  data:
+                    -
+                      id: 1
+                      nama_jurusan: 'Teknik Komputer dan Jaringan'
+                      nomenklatur_istilah: 'Teknik Komputer dan Jaringan'
+                      shortname: TKJ
+                      nama_kaprog: 'Pak Budi'
+                      foto_kaprog: 'http://localhost/storage/1/kaprog.png'
+                      deskripsi_jurusan: 'Deskripsi TKJ...'
+                      galeri_program: []
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Daftar jurusan berhasil diambil.'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        nama_jurusan: 'Teknik Komputer dan Jaringan'
+                        nomenklatur_istilah: 'Teknik Komputer dan Jaringan'
+                        shortname: TKJ
+                        nama_kaprog: 'Pak Budi'
+                        foto_kaprog: 'http://localhost/storage/1/kaprog.png'
+                        deskripsi_jurusan: 'Deskripsi TKJ...'
+                        galeri_program: []
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        nama_jurusan:
+                          type: string
+                          example: 'Teknik Komputer dan Jaringan'
+                        nomenklatur_istilah:
+                          type: string
+                          example: 'Teknik Komputer dan Jaringan'
+                        shortname:
+                          type: string
+                          example: TKJ
+                        nama_kaprog:
+                          type: string
+                          example: 'Pak Budi'
+                        foto_kaprog:
+                          type: string
+                          example: 'http://localhost/storage/1/kaprog.png'
+                        deskripsi_jurusan:
+                          type: string
+                          example: 'Deskripsi TKJ...'
+                        galeri_program:
+                          type: array
+                          example: []
+      tags:
+        - Majors
+      security: []
+    parameters:
+      -
+        in: path
+        name: slug
+        description: 'The slug of the school unit.'
+        example: smk-mandiri
+        required: true
+        schema:
+          type: string
+  '/api/v1/units/{slug}/majors/{id}':
+    get:
+      summary: 'Get major details.'
+      operationId: getMajorDetails
+      description: 'Returns detailed information for a specific major, including associated galleries and Kaprog data. Returns 404 if the unit is not a SMK.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Detail jurusan berhasil diambil.'
+                  data:
+                    id: 1
+                    nama_jurusan: 'Teknik Komputer dan Jaringan'
+                    nomenklatur_istilah: 'Teknik Komputer dan Jaringan'
+                    shortname: TKJ
+                    nama_kaprog: 'Pak Budi'
+                    foto_kaprog: 'http://localhost/storage/1/kaprog.png'
+                    deskripsi_jurusan: 'Deskripsi TKJ...'
+                    galeri_program: []
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Detail jurusan berhasil diambil.'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      nama_jurusan:
+                        type: string
+                        example: 'Teknik Komputer dan Jaringan'
+                      nomenklatur_istilah:
+                        type: string
+                        example: 'Teknik Komputer dan Jaringan'
+                      shortname:
+                        type: string
+                        example: TKJ
+                      nama_kaprog:
+                        type: string
+                        example: 'Pak Budi'
+                      foto_kaprog:
+                        type: string
+                        example: 'http://localhost/storage/1/kaprog.png'
+                      deskripsi_jurusan:
+                        type: string
+                        example: 'Deskripsi TKJ...'
+                      galeri_program:
+                        type: array
+                        example: []
+      tags:
+        - Majors
+      security: []
+    parameters:
+      -
+        in: path
+        name: slug
+        description: 'The slug of the school unit.'
+        example: smk-mandiri
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: id
+        description: 'The ID of the major.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/units/{slug}/news':
+    get:
+      summary: 'Get news listing.'
+      operationId: getNewsListing
+      description: 'Returns a paginated list of published news articles for the specified unit.'
+      parameters:
+        -
+          in: query
+          name: per_page
+          description: 'Number of articles per page. Default: 10.'
+          example: 10
+          required: false
+          schema:
+            type: integer
+            description: 'Number of articles per page. Default: 10.'
+            example: 10
+        -
+          in: query
+          name: page
+          description: 'Page number.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page number.'
+            example: 1
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Daftar berita berhasil diambil.'
+                  data:
+                    -
+                      id: 1
+                      judul_berita: 'Pendaftaran Siswa Baru'
+                      slug: pendaftaran-siswa-baru
+                      konten_berita: Pendaftaran...
+                      gambar_utama: 'http://localhost/storage/1/news.png'
+                      published_at: '2026-06-11T12:00:00Z'
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    per_page: 10
+                    to: 1
+                    total: 1
+                  links:
+                    first: 'http://localhost/api/v1/units/smk-mandiri/news?page=1'
+                    last: 'http://localhost/api/v1/units/smk-mandiri/news?page=1'
+                    prev: null
+                    next: null
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Daftar berita berhasil diambil.'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        judul_berita: 'Pendaftaran Siswa Baru'
+                        slug: pendaftaran-siswa-baru
+                        konten_berita: Pendaftaran...
+                        gambar_utama: 'http://localhost/storage/1/news.png'
+                        published_at: '2026-06-11T12:00:00Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        judul_berita:
+                          type: string
+                          example: 'Pendaftaran Siswa Baru'
+                        slug:
+                          type: string
+                          example: pendaftaran-siswa-baru
+                        konten_berita:
+                          type: string
+                          example: Pendaftaran...
+                        gambar_utama:
+                          type: string
+                          example: 'http://localhost/storage/1/news.png'
+                        published_at:
+                          type: string
+                          example: '2026-06-11T12:00:00Z'
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      per_page:
+                        type: integer
+                        example: 10
+                      to:
+                        type: integer
+                        example: 1
+                      total:
+                        type: integer
+                        example: 1
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://localhost/api/v1/units/smk-mandiri/news?page=1'
+                      last:
+                        type: string
+                        example: 'http://localhost/api/v1/units/smk-mandiri/news?page=1'
+                      prev:
+                        type: string
+                        example: null
+                        nullable: true
+                      next:
+                        type: string
+                        example: null
+                        nullable: true
+      tags:
+        - News
+      security: []
+    parameters:
+      -
+        in: path
+        name: slug
+        description: 'The slug of the school unit.'
+        example: smk-mandiri
+        required: true
+        schema:
+          type: string
+  '/api/v1/units/{slug}/news/{newsSlug}':
+    get:
+      summary: 'Get news detail.'
+      operationId: getNewsDetail
+      description: 'Returns a specific published news article by its slug.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Detail berita berhasil diambil.'
+                  data:
+                    id: 1
+                    judul_berita: 'Pendaftaran Siswa Baru'
+                    slug: pendaftaran-siswa-baru
+                    konten_berita: Pendaftaran...
+                    gambar_utama: 'http://localhost/storage/1/news.png'
+                    published_at: '2026-06-11T12:00:00Z'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Detail berita berhasil diambil.'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      judul_berita:
+                        type: string
+                        example: 'Pendaftaran Siswa Baru'
+                      slug:
+                        type: string
+                        example: pendaftaran-siswa-baru
+                      konten_berita:
+                        type: string
+                        example: Pendaftaran...
+                      gambar_utama:
+                        type: string
+                        example: 'http://localhost/storage/1/news.png'
+                      published_at:
+                        type: string
+                        example: '2026-06-11T12:00:00Z'
+      tags:
+        - News
+      security: []
+    parameters:
+      -
+        in: path
+        name: slug
+        description: 'The slug of the school unit.'
+        example: smk-mandiri
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: newsSlug
+        description: 'The slug of the news article.'
+        example: pendaftaran-siswa-baru
+        required: true
+        schema:
+          type: string
+  '/api/v1/units/{slug}/spmb':
+    get:
+      summary: 'Get SPMB settings.'
+      operationId: getSPMBSettings
+      description: 'Returns the SPMB settings of the specified school unit.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Pengaturan SPMB berhasil diambil.'
+                  data:
+                    id: 1
+                    status_spmb: true
+                    informasi_prosedur: 'Berikut adalah prosedur pendaftaran...'
+                    url_eksternal_pendaftaran: 'https://ppdb.example.com'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Pengaturan SPMB berhasil diambil.'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      status_spmb:
+                        type: boolean
+                        example: true
+                      informasi_prosedur:
+                        type: string
+                        example: 'Berikut adalah prosedur pendaftaran...'
+                      url_eksternal_pendaftaran:
+                        type: string
+                        example: 'https://ppdb.example.com'
+      tags:
+        - SPMB
+      security: []
+    parameters:
+      -
+        in: path
+        name: slug
+        description: 'The slug of the school unit.'
+        example: smk-mandiri
+        required: true
+        schema:
+          type: string
+  /api/v1/units:
+    get:
+      summary: 'Get active units.'
+      operationId: getActiveUnits
+      description: 'Returns a list of all active school units.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Daftar unit sekolah berhasil diambil.'
+                  data:
+                    -
+                      id: 1
+                      nama_sekolah: 'SMK Mandiri'
+                      slug: smk-mandiri
+                      jenjang: smk
+                      is_active: true
+                      logo_sekolah: 'http://localhost/storage/1/logo.png'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Daftar unit sekolah berhasil diambil.'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        nama_sekolah: 'SMK Mandiri'
+                        slug: smk-mandiri
+                        jenjang: smk
+                        is_active: true
+                        logo_sekolah: 'http://localhost/storage/1/logo.png'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        nama_sekolah:
+                          type: string
+                          example: 'SMK Mandiri'
+                        slug:
+                          type: string
+                          example: smk-mandiri
+                        jenjang:
+                          type: string
+                          example: smk
+                        is_active:
+                          type: boolean
+                          example: true
+                        logo_sekolah:
+                          type: string
+                          example: 'http://localhost/storage/1/logo.png'
+      tags:
+        - Units
+      security: []
+  '/api/v1/units/{slug}':
+    get:
+      summary: 'Get unit details.'
+      operationId: getUnitDetails
+      description: 'Returns the full school profile of the specified unit slug.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'Detail unit sekolah berhasil diambil.'
+                  data:
+                    id: 1
+                    nama_sekolah: 'SMK Mandiri'
+                    slug: smk-mandiri
+                    jenjang: smk
+                    is_active: true
+                    logo_sekolah: 'http://localhost/storage/1/logo.png'
+                    profile:
+                      id: 1
+                      unit_id: 1
+                      logo_sekolah: 'http://localhost/storage/1/logo.png'
+                      email: smk@mandiri.sch.id
+                      telepon: 021-123456
+                      alamat: 'Jl. Mandiri No. 1'
+                      google_map_embed_url: 'https://maps...'
+                      media_sosial:
+                        facebook: 'https://...'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Detail unit sekolah berhasil diambil.'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      nama_sekolah:
+                        type: string
+                        example: 'SMK Mandiri'
+                      slug:
+                        type: string
+                        example: smk-mandiri
+                      jenjang:
+                        type: string
+                        example: smk
+                      is_active:
+                        type: boolean
+                        example: true
+                      logo_sekolah:
+                        type: string
+                        example: 'http://localhost/storage/1/logo.png'
+                      profile:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          unit_id:
+                            type: integer
+                            example: 1
+                          logo_sekolah:
+                            type: string
+                            example: 'http://localhost/storage/1/logo.png'
+                          email:
+                            type: string
+                            example: smk@mandiri.sch.id
+                          telepon:
+                            type: string
+                            example: 021-123456
+                          alamat:
+                            type: string
+                            example: 'Jl. Mandiri No. 1'
+                          google_map_embed_url:
+                            type: string
+                            example: 'https://maps...'
+                          media_sosial:
+                            type: object
+                            properties:
+                              facebook:
+                                type: string
+                                example: 'https://...'
+      tags:
+        - Units
+      security: []
+    parameters:
+      -
+        in: path
+        name: slug
+        description: 'The slug of the school unit.'
+        example: smk-mandiri
+        required: true
+        schema:
+          type: string

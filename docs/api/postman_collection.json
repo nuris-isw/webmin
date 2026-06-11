@@ -1,0 +1,574 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost"
+        }
+    ],
+    "info": {
+        "name": "Laravel API Documentation",
+        "_postman_id": "a59ee704-1c72-45b4-b600-2050c7ff08bc",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Achievements",
+            "description": "\nAPI for querying school achievements.",
+            "item": [
+                {
+                    "name": "Get achievements.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/units\/:slug\/achievements",
+                            "query": [
+                                {
+                                    "key": "peraih",
+                                    "value": "siswa",
+                                    "description": "Filter achievements by recipient role: `siswa`, `guru`, `tendik`, or `sekolah`.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/units\/:slug\/achievements?peraih=siswa",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "smk-mandiri",
+                                    "description": "The slug of the school unit."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns a list of achievements for the specified school unit.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"success\": true,\n  \"message\": \"Daftar prestasi berhasil diambil.\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"judul_prestasi\": \"Juara 1 Lomba LKS SMK\",\n      \"tahun_prestasi\": 2026,\n      \"peraih_prestasi\": \"siswa\",\n      \"deskripsi_prestasi\": \"Juara 1 Bidang IT Network Systems Administration.\",\n      \"foto_penghargaan\": \"http:\/\/localhost\/storage\/1\/ach.png\"\n    }\n  ]\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Extracurriculars",
+            "description": "\nAPI for querying school extracurricular organizations and clubs.",
+            "item": [
+                {
+                    "name": "Get extracurriculars.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/units\/:slug\/extracurriculars",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/units\/:slug\/extracurriculars",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "smk-mandiri",
+                                    "description": "The slug of the school unit."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns a list of extracurriculars for the specified school unit.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"success\": true,\n  \"message\": \"Daftar ekstrakurikuler berhasil diambil.\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"nama_ekskul\": \"Pramuka\",\n      \"pembina_ekskul\": \"Kak Ahmad\",\n      \"jadwal_kegiatan\": \"Sabtu 08:00 - 11:00\",\n      \"logo_ekskul\": \"http:\/\/localhost\/storage\/1\/ekskul.png\"\n    }\n  ]\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Galleries",
+            "description": "\nAPI for querying school activity galleries and multimedia banner content.",
+            "item": [
+                {
+                    "name": "Get galleries.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/units\/:slug\/galleries",
+                            "query": [
+                                {
+                                    "key": "opsi_tampilan",
+                                    "value": "galeri_dokumentasi",
+                                    "description": "Filter galleries by display option: `hero_section`, `gambar_pembuka`, `galeri_dokumentasi`, or `galeri_program`.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/units\/:slug\/galleries?opsi_tampilan=galeri_dokumentasi",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "smk-mandiri",
+                                    "description": "The slug of the school unit."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns a list of galleries for the specified school unit.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"success\": true,\n  \"message\": \"Daftar galeri berhasil diambil.\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"nama_kegiatan\": \"LDKS OSIS 2026\",\n      \"opsi_tampilan\": \"galeri_dokumentasi\",\n      \"major_id\": null,\n      \"photos\": [\n        {\n          \"id\": 1,\n          \"file_foto\": \"http:\/\/localhost\/storage\/1\/ldks.png\",\n          \"urutan\": 1\n        }\n      ]\n    }\n  ]\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get gallery details.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/units\/:slug\/galleries\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/units\/:slug\/galleries\/:id",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "smk-mandiri",
+                                    "description": "The slug of the school unit."
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 1,
+                                    "description": "The ID of the gallery."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns a specific gallery details along with all associated photos.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"success\": true,\n  \"message\": \"Detail galeri berhasil diambil.\",\n  \"data\": {\n    \"id\": 1,\n    \"nama_kegiatan\": \"LDKS OSIS 2026\",\n    \"opsi_tampilan\": \"galeri_dokumentasi\",\n    \"major_id\": null,\n    \"photos\": [\n      {\n        \"id\": 1,\n        \"file_foto\": \"http:\/\/localhost\/storage\/1\/ldks.png\",\n        \"urutan\": 1\n      }\n    ]\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Majors",
+            "description": "\nAPI for querying SMK majors\/competencies. Note: Only available for units of type 'smk'.",
+            "item": [
+                {
+                    "name": "Get majors list.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/units\/:slug\/majors",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/units\/:slug\/majors",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "smk-mandiri",
+                                    "description": "The slug of the school unit."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns a list of majors\/programs of study for the specified unit. Returns 404 if the unit is not a SMK.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"success\": true,\n  \"message\": \"Daftar jurusan berhasil diambil.\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"nama_jurusan\": \"Teknik Komputer dan Jaringan\",\n      \"nomenklatur_istilah\": \"Teknik Komputer dan Jaringan\",\n      \"shortname\": \"TKJ\",\n      \"nama_kaprog\": \"Pak Budi\",\n      \"foto_kaprog\": \"http:\/\/localhost\/storage\/1\/kaprog.png\",\n      \"deskripsi_jurusan\": \"Deskripsi TKJ...\",\n      \"galeri_program\": []\n    }\n  ]\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get major details.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/units\/:slug\/majors\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/units\/:slug\/majors\/:id",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "smk-mandiri",
+                                    "description": "The slug of the school unit."
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": 1,
+                                    "description": "The ID of the major."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns detailed information for a specific major, including associated galleries and Kaprog data. Returns 404 if the unit is not a SMK.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"success\": true,\n  \"message\": \"Detail jurusan berhasil diambil.\",\n  \"data\": {\n    \"id\": 1,\n    \"nama_jurusan\": \"Teknik Komputer dan Jaringan\",\n    \"nomenklatur_istilah\": \"Teknik Komputer dan Jaringan\",\n    \"shortname\": \"TKJ\",\n    \"nama_kaprog\": \"Pak Budi\",\n    \"foto_kaprog\": \"http:\/\/localhost\/storage\/1\/kaprog.png\",\n    \"deskripsi_jurusan\": \"Deskripsi TKJ...\",\n    \"galeri_program\": []\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "News",
+            "description": "\nAPI for querying news and articles from school units.",
+            "item": [
+                {
+                    "name": "Get news listing.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/units\/:slug\/news",
+                            "query": [
+                                {
+                                    "key": "per_page",
+                                    "value": "10",
+                                    "description": "Number of articles per page. Default: 10.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Page number.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/units\/:slug\/news?per_page=10&page=1",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "smk-mandiri",
+                                    "description": "The slug of the school unit."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns a paginated list of published news articles for the specified unit.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"success\": true,\n  \"message\": \"Daftar berita berhasil diambil.\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"judul_berita\": \"Pendaftaran Siswa Baru\",\n      \"slug\": \"pendaftaran-siswa-baru\",\n      \"konten_berita\": \"Pendaftaran...\",\n      \"gambar_utama\": \"http:\/\/localhost\/storage\/1\/news.png\",\n      \"published_at\": \"2026-06-11T12:00:00Z\"\n    }\n  ],\n  \"meta\": {\n    \"current_page\": 1,\n    \"from\": 1,\n    \"last_page\": 1,\n    \"per_page\": 10,\n    \"to\": 1,\n    \"total\": 1\n  },\n  \"links\": {\n    \"first\": \"http:\/\/localhost\/api\/v1\/units\/smk-mandiri\/news?page=1\",\n    \"last\": \"http:\/\/localhost\/api\/v1\/units\/smk-mandiri\/news?page=1\",\n    \"prev\": null,\n    \"next\": null\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get news detail.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/units\/:slug\/news\/:newsSlug",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/units\/:slug\/news\/:newsSlug",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "smk-mandiri",
+                                    "description": "The slug of the school unit."
+                                },
+                                {
+                                    "id": "newsSlug",
+                                    "key": "newsSlug",
+                                    "value": "pendaftaran-siswa-baru",
+                                    "description": "The slug of the news article."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns a specific published news article by its slug.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"success\": true,\n  \"message\": \"Detail berita berhasil diambil.\",\n  \"data\": {\n    \"id\": 1,\n    \"judul_berita\": \"Pendaftaran Siswa Baru\",\n    \"slug\": \"pendaftaran-siswa-baru\",\n    \"konten_berita\": \"Pendaftaran...\",\n    \"gambar_utama\": \"http:\/\/localhost\/storage\/1\/news.png\",\n    \"published_at\": \"2026-06-11T12:00:00Z\"\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SPMB",
+            "description": "\nAPI for querying school enrollment (SPMB) settings and status.",
+            "item": [
+                {
+                    "name": "Get SPMB settings.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/units\/:slug\/spmb",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/units\/:slug\/spmb",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "smk-mandiri",
+                                    "description": "The slug of the school unit."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns the SPMB settings of the specified school unit.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"success\": true,\n  \"message\": \"Pengaturan SPMB berhasil diambil.\",\n  \"data\": {\n    \"id\": 1,\n    \"status_spmb\": true,\n    \"informasi_prosedur\": \"Berikut adalah prosedur pendaftaran...\",\n    \"url_eksternal_pendaftaran\": \"https:\/\/ppdb.example.com\"\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Units",
+            "description": "\nAPI for managing and querying school units.",
+            "item": [
+                {
+                    "name": "Get active units.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/units",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/units"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns a list of all active school units.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"success\": true,\n  \"message\": \"Daftar unit sekolah berhasil diambil.\",\n  \"data\": [\n    {\n      \"id\": 1,\n      \"nama_sekolah\": \"SMK Mandiri\",\n      \"slug\": \"smk-mandiri\",\n      \"jenjang\": \"smk\",\n      \"is_active\": true,\n      \"logo_sekolah\": \"http:\/\/localhost\/storage\/1\/logo.png\"\n    }\n  ]\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get unit details.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/units\/:slug",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/units\/:slug",
+                            "variable": [
+                                {
+                                    "id": "slug",
+                                    "key": "slug",
+                                    "value": "smk-mandiri",
+                                    "description": "The slug of the school unit."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns the full school profile of the specified unit slug.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"success\": true,\n  \"message\": \"Detail unit sekolah berhasil diambil.\",\n  \"data\": {\n    \"id\": 1,\n    \"nama_sekolah\": \"SMK Mandiri\",\n    \"slug\": \"smk-mandiri\",\n    \"jenjang\": \"smk\",\n    \"is_active\": true,\n    \"logo_sekolah\": \"http:\/\/localhost\/storage\/1\/logo.png\",\n    \"profile\": {\n      \"id\": 1,\n      \"unit_id\": 1,\n      \"logo_sekolah\": \"http:\/\/localhost\/storage\/1\/logo.png\",\n      \"email\": \"smk@mandiri.sch.id\",\n      \"telepon\": \"021-123456\",\n      \"alamat\": \"Jl. Mandiri No. 1\",\n      \"google_map_embed_url\": \"https:\/\/maps...\",\n      \"media_sosial\": {\"facebook\": \"https:\/\/...\"}\n    }\n  }\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

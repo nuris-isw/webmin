@@ -1,0 +1,167 @@
+name: Galleries
+description: |-
+
+  API for querying school activity galleries and multimedia banner content.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/units/{slug}/galleries'
+    metadata:
+      custom: []
+      groupName: Galleries
+      groupDescription: |-
+
+        API for querying school activity galleries and multimedia banner content.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get galleries.'
+      description: 'Returns a list of galleries for the specified school unit.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      slug:
+        custom: []
+        name: slug
+        description: 'The slug of the school unit.'
+        required: true
+        example: smk-mandiri
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      slug: smk-mandiri
+    queryParameters:
+      opsi_tampilan:
+        custom: []
+        name: opsi_tampilan
+        description: 'Filter galleries by display option: `hero_section`, `gambar_pembuka`, `galeri_dokumentasi`, or `galeri_program`.'
+        required: false
+        example: galeri_dokumentasi
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      opsi_tampilan: galeri_dokumentasi
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Daftar galeri berhasil diambil.",
+            "data": [
+              {
+                "id": 1,
+                "nama_kegiatan": "LDKS OSIS 2026",
+                "opsi_tampilan": "galeri_dokumentasi",
+                "major_id": null,
+                "photos": [
+                  {
+                    "id": 1,
+                    "file_foto": "http://localhost/storage/1/ldks.png",
+                    "urutan": 1
+                  }
+                ]
+              }
+            ]
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/units/{slug}/galleries/{id}'
+    metadata:
+      custom: []
+      groupName: Galleries
+      groupDescription: |-
+
+        API for querying school activity galleries and multimedia banner content.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get gallery details.'
+      description: 'Returns a specific gallery details along with all associated photos.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      slug:
+        custom: []
+        name: slug
+        description: 'The slug of the school unit.'
+        required: true
+        example: smk-mandiri
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the gallery.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      slug: smk-mandiri
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Detail galeri berhasil diambil.",
+            "data": {
+              "id": 1,
+              "nama_kegiatan": "LDKS OSIS 2026",
+              "opsi_tampilan": "galeri_dokumentasi",
+              "major_id": null,
+              "photos": [
+                {
+                  "id": 1,
+                  "file_foto": "http://localhost/storage/1/ldks.png",
+                  "urutan": 1
+                }
+              ]
+            }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

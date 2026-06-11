@@ -1,0 +1,183 @@
+name: News
+description: |-
+
+  API for querying news and articles from school units.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/units/{slug}/news'
+    metadata:
+      custom: []
+      groupName: News
+      groupDescription: |-
+
+        API for querying news and articles from school units.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get news listing.'
+      description: 'Returns a paginated list of published news articles for the specified unit.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      slug:
+        custom: []
+        name: slug
+        description: 'The slug of the school unit.'
+        required: true
+        example: smk-mandiri
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      slug: smk-mandiri
+    queryParameters:
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Number of articles per page. Default: 10.'
+        required: false
+        example: 10
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      per_page: 10
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Daftar berita berhasil diambil.",
+            "data": [
+              {
+                "id": 1,
+                "judul_berita": "Pendaftaran Siswa Baru",
+                "slug": "pendaftaran-siswa-baru",
+                "konten_berita": "Pendaftaran...",
+                "gambar_utama": "http://localhost/storage/1/news.png",
+                "published_at": "2026-06-11T12:00:00Z"
+              }
+            ],
+            "meta": {
+              "current_page": 1,
+              "from": 1,
+              "last_page": 1,
+              "per_page": 10,
+              "to": 1,
+              "total": 1
+            },
+            "links": {
+              "first": "http://localhost/api/v1/units/smk-mandiri/news?page=1",
+              "last": "http://localhost/api/v1/units/smk-mandiri/news?page=1",
+              "prev": null,
+              "next": null
+            }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/units/{slug}/news/{newsSlug}'
+    metadata:
+      custom: []
+      groupName: News
+      groupDescription: |-
+
+        API for querying news and articles from school units.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get news detail.'
+      description: 'Returns a specific published news article by its slug.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      slug:
+        custom: []
+        name: slug
+        description: 'The slug of the school unit.'
+        required: true
+        example: smk-mandiri
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      newsSlug:
+        custom: []
+        name: newsSlug
+        description: 'The slug of the news article.'
+        required: true
+        example: pendaftaran-siswa-baru
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      slug: smk-mandiri
+      newsSlug: pendaftaran-siswa-baru
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Detail berita berhasil diambil.",
+            "data": {
+              "id": 1,
+              "judul_berita": "Pendaftaran Siswa Baru",
+              "slug": "pendaftaran-siswa-baru",
+              "konten_berita": "Pendaftaran...",
+              "gambar_utama": "http://localhost/storage/1/news.png",
+              "published_at": "2026-06-11T12:00:00Z"
+            }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

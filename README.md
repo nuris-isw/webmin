@@ -201,6 +201,38 @@ php artisan test
 
 ---
 
+## 📄 REST API & Integrasi Frontend
+
+Platform menyediakan API publik untuk integrasi dengan aplikasi frontend:
+* **Base URL**: `/api/v1/`
+* **Dokumentasi Interaktif**: Tersedia di `/docs` (Scribe)
+* **Koleksi API Client**:
+  * Postman: [`docs/api/postman_collection.json`](./docs/api/postman_collection.json)
+  * OpenAPI Spec: [`docs/api/openapi.yaml`](./docs/api/openapi.yaml) (Bisa diimpor ke Insomnia)
+* **Panduan Lengkap**: Baca [`docs/api/INTEGRATION_GUIDE.md`](./docs/api/INTEGRATION_GUIDE.md)
+
+---
+
+## 🚀 Checklist Deployment Produksi
+
+1. **Environment Variables (`.env`)**:
+   - Set `APP_ENV=production` dan `APP_DEBUG=false`.
+   - Konfigurasi `APP_URL` ke domain produksi Anda.
+   - Set `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`.
+   - Konfigurasi Google Client OAuth Credentials untuk produksi.
+2. **Optimasi Framework**:
+   - Jalankan `php artisan optimize` (meng-cache konfigurasi, route, dan view).
+   - Jalankan `php artisan view:cache` dan `php artisan event:cache`.
+3. **Frontend & Aset**:
+   - Jalankan `npm run build` untuk mem-bundle aset produksi via Vite.
+4. **Penyimpanan Berkas (Storage)**:
+   - Pastikan direktori `storage` dapat ditulis oleh web server.
+   - Buat symbolic link publik dengan `php artisan storage:link`.
+5. **REST API Documentation**:
+   - Jalankan `php artisan scribe:generate` untuk mem-build dokumentasi API.
+
+---
+
 ## 📄 Lisensi
 
 Proyek ini dikembangkan untuk keperluan internal. Seluruh hak cipta dilindungi.

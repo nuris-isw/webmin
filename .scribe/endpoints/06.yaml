@@ -1,0 +1,149 @@
+name: Majors
+description: |-
+
+  API for querying SMK majors/competencies. Note: Only available for units of type 'smk'.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/units/{slug}/majors'
+    metadata:
+      custom: []
+      groupName: Majors
+      groupDescription: |-
+
+        API for querying SMK majors/competencies. Note: Only available for units of type 'smk'.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get majors list.'
+      description: 'Returns a list of majors/programs of study for the specified unit. Returns 404 if the unit is not a SMK.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      slug:
+        custom: []
+        name: slug
+        description: 'The slug of the school unit.'
+        required: true
+        example: smk-mandiri
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      slug: smk-mandiri
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Daftar jurusan berhasil diambil.",
+            "data": [
+              {
+                "id": 1,
+                "nama_jurusan": "Teknik Komputer dan Jaringan",
+                "nomenklatur_istilah": "Teknik Komputer dan Jaringan",
+                "shortname": "TKJ",
+                "nama_kaprog": "Pak Budi",
+                "foto_kaprog": "http://localhost/storage/1/kaprog.png",
+                "deskripsi_jurusan": "Deskripsi TKJ...",
+                "galeri_program": []
+              }
+            ]
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/units/{slug}/majors/{id}'
+    metadata:
+      custom: []
+      groupName: Majors
+      groupDescription: |-
+
+        API for querying SMK majors/competencies. Note: Only available for units of type 'smk'.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get major details.'
+      description: 'Returns detailed information for a specific major, including associated galleries and Kaprog data. Returns 404 if the unit is not a SMK.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      slug:
+        custom: []
+        name: slug
+        description: 'The slug of the school unit.'
+        required: true
+        example: smk-mandiri
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the major.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      slug: smk-mandiri
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Detail jurusan berhasil diambil.",
+            "data": {
+              "id": 1,
+              "nama_jurusan": "Teknik Komputer dan Jaringan",
+              "nomenklatur_istilah": "Teknik Komputer dan Jaringan",
+              "shortname": "TKJ",
+              "nama_kaprog": "Pak Budi",
+              "foto_kaprog": "http://localhost/storage/1/kaprog.png",
+              "deskripsi_jurusan": "Deskripsi TKJ...",
+              "galeri_program": []
+            }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

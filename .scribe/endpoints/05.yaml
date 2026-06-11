@@ -1,0 +1,66 @@
+name: SPMB
+description: |-
+
+  API for querying school enrollment (SPMB) settings and status.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/units/{slug}/spmb'
+    metadata:
+      custom: []
+      groupName: SPMB
+      groupDescription: |-
+
+        API for querying school enrollment (SPMB) settings and status.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get SPMB settings.'
+      description: 'Returns the SPMB settings of the specified school unit.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      slug:
+        custom: []
+        name: slug
+        description: 'The slug of the school unit.'
+        required: true
+        example: smk-mandiri
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      slug: smk-mandiri
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Pengaturan SPMB berhasil diambil.",
+            "data": {
+              "id": 1,
+              "status_spmb": true,
+              "informasi_prosedur": "Berikut adalah prosedur pendaftaran...",
+              "url_eksternal_pendaftaran": "https://ppdb.example.com"
+            }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

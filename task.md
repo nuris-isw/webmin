@@ -92,32 +92,32 @@
 
 ### 2.1 Autentikasi Dasar (Breeze)
 
-- [ ] **F2-01** Kustomisasi halaman Login Breeze sesuai desain SDD (minimalis, split-layout desktop)
-  - Layout: 1 kolom (mobile) / split screen (desktop `md:`)
-  - Input border berubah ke `--color-brand-red` saat `:focus`
-  - Support dark mode
-- [ ] **F2-02** Sembunyikan halaman Register publik (registrasi hanya oleh Superadmin)
-- [ ] **F2-03** Tambahkan tombol "Masuk dengan Google" pada halaman login (warna netral/kontras tinggi)
+- [x] **F2-01** Kustomisasi halaman Login Breeze sesuai desain SDD (minimalis, split-layout desktop)
+  - [x] Layout: 1 kolom (mobile) / split screen (desktop `md:`)
+  - [x] Input border berubah ke `--color-brand-red` saat `:focus`
+  - [x] Support dark mode
+- [x] **F2-02** Sembunyikan halaman Register publik (registrasi hanya oleh Superadmin)
+- [x] **F2-03** Tambahkan tombol "Masuk dengan Google" pada halaman login (warna netral/kontras tinggi)
 
 ### 2.2 Google OAuth (Socialite)
 
-- [ ] **F2-04** Buat `SocialiteController` dengan method `redirect` dan `callback`
-- [ ] **F2-05** Implementasi logic: cek apakah email Google terdaftar di sistem → jika ya, login; jika tidak, tolak dengan pesan error
-- [ ] **F2-06** Simpan `google_id` pada tabel `users` saat login OAuth berhasil
-- [ ] **F2-07** Daftarkan route OAuth: `GET /auth/google` dan `GET /auth/google/callback`
+- [x] **F2-04** Buat `SocialiteController` dengan method `redirect` dan `callback`
+- [x] **F2-05** Implementasi logic: cek apakah email Google terdaftar di sistem → jika ya, login; jika tidak, tolak dengan pesan error
+- [x] **F2-06** Simpan `google_id` pada tabel `users` saat login OAuth berhasil
+- [x] **F2-07** Daftarkan route OAuth: `GET /auth/google` dan `GET /auth/google/callback`
 
 ### 2.3 Middleware & Authorization
 
-- [ ] **F2-08** Buat middleware `EnsureSuperadmin` — redirect jika bukan superadmin
-- [ ] **F2-09** Buat middleware `EnsureAdminOfUnit` — validasi `unit_id` user dengan resource yang diakses
-- [ ] **F2-10** Buat middleware `EnsureSmkUnit` — proteksi route Manajemen Jurusan, hanya lolos jika `unit.jenjang === 'smk'`
-- [ ] **F2-11** Daftarkan seluruh middleware di `bootstrap/app.php`
-- [ ] **F2-12** Buat Policy untuk setiap Model utama (`UnitPolicy`, `NewsPolicy`, `GalleryPolicy`, dll.)
+- [x] **F2-08** Buat middleware `EnsureSuperadmin` — redirect jika bukan superadmin
+- [x] **F2-09** Buat middleware `EnsureAdminOfUnit` — validasi `unit_id` user dengan resource yang diakses
+- [x] **F2-10** Buat middleware `EnsureSmkUnit` — proteksi route Manajemen Jurusan, hanya lolos jika `unit.jenjang === 'smk'`
+- [x] **F2-11** Daftarkan seluruh middleware di `bootstrap/app.php`
+- [x] **F2-12** Buat Policy untuk setiap Model utama (`UnitPolicy`, `NewsPolicy`, `GalleryPolicy`, dll.)
 
 ### 2.4 Manajemen User oleh Superadmin
 
-- [ ] **F2-13** Buat form registrasi user admin (hanya dapat diakses Superadmin dari dashboard)
-- [ ] **F2-14** Implementasi assign `unit_id` saat membuat/mengedit akun admin
+- [x] **F2-13** Buat form registrasi user admin (hanya dapat diakses Superadmin dari dashboard)
+- [x] **F2-14** Implementasi assign `unit_id` saat membuat/mengedit akun admin
 
 ---
 
@@ -127,37 +127,37 @@
 
 ### 3.1 Layout Utama
 
-- [ ] **F3-01** Buat `layouts/app.blade.php` (layout dashboard terautentikasi)
-  - Sidebar kiri permanen (desktop `w-64`) dengan navigasi menu
-  - Top header: judul halaman, toggle dark mode, info profil user
-  - Konten utama dengan padding responsif (`16px` mobile → `32px` desktop)
-- [ ] **F3-02** Buat `layouts/guest.blade.php` (layout halaman publik/login)
-- [ ] **F3-03** Implementasi sidebar sebagai *off-canvas hamburger menu* pada mobile
+- [x] **F3-01** Buat `layouts/app.blade.php` (layout dashboard terautentikasi)
+  - [x] Sidebar kiri permanen (desktop `w-64`) dengan navigasi menu
+  - [x] Top header: judul halaman, toggle dark mode, info profil user
+  - [x] Konten utama dengan padding responsif (`16px` mobile → `32px` desktop)
+- [x] **F3-02** Buat `layouts/guest.blade.php` (layout halaman publik/login)
+- [x] **F3-03** Implementasi sidebar sebagai *off-canvas hamburger menu* pada mobile
 
 ### 3.2 Komponen Navigasi
 
-- [ ] **F3-04** Buat komponen `<x-nav-link>` dengan indikator aktif (border kiri `4px brand-red` desktop, border bawah mobile)
-- [ ] **F3-05** Buat komponen `<x-nav-sidebar>` dengan menu dinamis (tampilkan "Manajemen Jurusan" hanya jika jenjang SMK)
-- [ ] **F3-06** Buat komponen toggle dark mode (`<x-dark-mode-toggle>`) yang mengubah kelas `.dark` pada `<html>`
+- [x] **F3-04** Buat komponen `<x-nav-link>` dengan indikator aktif (border kiri `4px brand-red` desktop, border bawah mobile)
+- [x] **F3-05** Buat komponen `<x-nav-sidebar>` dengan menu dinamis (tampilkan "Manajemen Jurusan" hanya jika jenjang SMK)
+- [x] **F3-06** Buat komponen toggle dark mode (`<x-dark-mode-toggle>`) yang mengubah kelas `.dark` pada `<html>`
 
 ### 3.3 Komponen UI Reusable
 
-- [ ] **F3-07** Buat komponen `<x-card>` (kartu konten/panel dengan dukungan light/dark mode)
-- [ ] **F3-08** Buat komponen `<x-stat-card>` (kartu metrik ringkasan untuk dashboard)
-- [ ] **F3-09** Buat komponen `<x-data-table>` (tabel dengan zebra striping, dukungan dark mode)
-  - Desktop: tampilan tabel standar
-  - Mobile (`max-w-md`): transformasi menjadi stack card view
-- [ ] **F3-10** Buat komponen `<x-form-input>`, `<x-form-textarea>`, `<x-form-select>`, `<x-form-file>` dengan styling konsisten
-- [ ] **F3-11** Buat komponen `<x-button>` (primary dengan `brand-red`, secondary/neutral)
-- [ ] **F3-12** Buat komponen `<x-alert>` (success, error, warning, info)
-- [ ] **F3-13** Buat komponen `<x-breadcrumb>` untuk navigasi hierarki halaman
-- [ ] **F3-14** Buat komponen `<x-page-heading>` dengan aksen garis vertikal merah (`h2` style dari SDD)
+- [x] **F3-07** Buat komponen `<x-card>` (kartu konten/panel dengan dukungan light/dark mode)
+- [x] **F3-08** Buat komponen `<x-stat-card>` (kartu metrik ringkasan untuk dashboard)
+- [x] **F3-09** Buat komponen `<x-data-table>` (tabel dengan zebra striping, dukungan dark mode)
+  - [x] Desktop: tampilan tabel standar
+  - [x] Mobile (`max-w-md`): transformasi menjadi stack card view
+- [x] **F3-10** Buat komponen `<x-form-input>`, `<x-form-textarea>`, `<x-form-select>`, `<x-form-file>` dengan styling konsisten
+- [x] **F3-11** Buat komponen `<x-button>` (primary dengan `brand-red`, secondary/neutral)
+- [x] **F3-12** Buat komponen `<x-alert>` (success, error, warning, info)
+- [x] **F3-13** Buat komponen `<x-breadcrumb>` untuk navigasi hierarki halaman
+- [x] **F3-14** Buat komponen `<x-page-heading>` dengan aksen garis vertikal merah (`h2` style dari SDD)
 
 ### 3.4 Tipografi & Utilitas Global
 
-- [ ] **F3-15** Import font `Plus Jakarta Sans` dari Google Fonts di `app.css`
-- [ ] **F3-16** Definisikan skala tipografi: `h1` (bold, adaptif), `h2` (border-left accent), body (no-truncation)
-- [ ] **F3-17** Pastikan tidak ada kelas `grayscale` atau `truncate` pada komponen konten utama
+- [x] **F3-15** Import font `Plus Jakarta Sans` dari Google Fonts di `app.css` (dimuat via `<link>` pada layout html)
+- [x] **F3-16** Definisikan skala tipografi: `h1` (bold, adaptif), `h2` (border-left accent), body (no-truncation)
+- [x] **F3-17** Pastikan tidak ada kelas `grayscale` atau `truncate` pada komponen konten utama
 
 ---
 

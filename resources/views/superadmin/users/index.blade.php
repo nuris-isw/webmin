@@ -101,20 +101,16 @@
                                     </span>
                                 @endif
                             </td>
-                            <td class="px-6 py-4 text-right space-x-3">
-                                <a href="{{ route('superadmin.users.edit', $user) }}" class="text-xs font-semibold text-brand-red hover:text-brand-red-light transition">
-                                    Edit
-                                </a>
-                                @if ($user->id !== auth()->id())
-                                    <form action="{{ route('superadmin.users.destroy', $user) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus akun ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-xs font-semibold text-rose-600 hover:text-rose-500 transition">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                @endif
-                            </td>
+                             <td class="px-6 py-4 text-right space-x-1.5 whitespace-nowrap">
+                                 <x-icon-button :href="route('superadmin.users.edit', $user)" icon="edit" color="neutral" tooltip="Edit Admin" />
+                                 @if ($user->id !== auth()->id())
+                                     <form action="{{ route('superadmin.users.destroy', $user) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus akun ini?');">
+                                         @csrf
+                                         @method('DELETE')
+                                         <x-icon-button type="submit" icon="trash" color="danger" tooltip="Hapus Admin" />
+                                     </form>
+                                 @endif
+                             </td>
                         </tr>
                     @empty
                         <tr>
@@ -163,17 +159,13 @@
                                         {{ $user->unit?->nama_sekolah ?? '— (Yayasan)' }}
                                     </span>
                                 </div>
-                                <div class="flex justify-end gap-4 pt-2 border-t border-gray-200 dark:border-gray-700">
-                                    <a href="{{ route('superadmin.users.edit', $user) }}" class="inline-flex items-center px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded text-xs font-medium bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition">
-                                        Edit
-                                    </a>
+                                <div class="flex justify-end gap-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+                                    <x-icon-button :href="route('superadmin.users.edit', $user)" icon="edit" color="neutral" tooltip="Edit Admin" />
                                     @if ($user->id !== auth()->id())
                                         <form action="{{ route('superadmin.users.destroy', $user) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus akun ini?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="inline-flex items-center px-3 py-1.5 rounded text-xs font-semibold bg-rose-50 dark:bg-rose-950/20 text-rose-600 hover:bg-rose-100 dark:hover:bg-rose-900/30 transition">
-                                                Hapus
-                                            </button>
+                                            <x-icon-button type="submit" icon="trash" color="danger" tooltip="Hapus Admin" />
                                         </form>
                                     @endif
                                 </div>

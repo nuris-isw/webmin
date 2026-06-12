@@ -55,19 +55,13 @@
                             <td class="px-6 py-4 text-sm font-medium">
                                 {{ $unit->users_count }} Pengelola
                             </td>
-                            <td class="px-6 py-4 text-right space-x-3">
-                                <a href="{{ route('superadmin.units.show', $unit) }}" class="text-xs font-semibold text-brand-red hover:text-brand-red-light transition">
-                                    Detail
-                                </a>
-                                <a href="{{ route('superadmin.units.edit', $unit) }}" class="text-xs font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">
-                                    Edit
-                                </a>
+                            <td class="px-6 py-4 text-right space-x-1.5 whitespace-nowrap">
+                                <x-icon-button :href="route('superadmin.units.show', $unit)" icon="eye" color="info" tooltip="Detail Unit" />
+                                <x-icon-button :href="route('superadmin.units.edit', $unit)" icon="edit" color="neutral" tooltip="Edit Unit" />
                                 <form action="{{ route('superadmin.units.destroy', $unit) }}" method="POST" class="inline" onsubmit="return confirm('PERINGATAN: Menghapus unit ini akan menghapus seluruh data profil, prestasi, ekskul, berita, dan jurusan terkait. Apakah Anda yakin ingin melanjutkan?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-xs font-semibold text-rose-600 hover:text-rose-500 transition">
-                                        Hapus
-                                    </button>
+                                    <x-icon-button type="submit" icon="trash" color="danger" tooltip="Hapus Unit" />
                                 </form>
                             </td>
                         </tr>
@@ -105,19 +99,13 @@
                                     <span>Status: {{ $unit->is_active ? 'Aktif' : 'Non-aktif' }}</span>
                                     <span class="font-medium text-gray-900 dark:text-white">{{ $unit->users_count }} Pengelola</span>
                                 </div>
-                                <div class="flex justify-end gap-3 pt-2 border-t border-gray-200 dark:border-gray-700">
-                                    <a href="{{ route('superadmin.units.show', $unit) }}" class="inline-flex items-center px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded text-xs font-medium bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 transition">
-                                        Detail
-                                    </a>
-                                    <a href="{{ route('superadmin.units.edit', $unit) }}" class="inline-flex items-center px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded text-xs font-medium bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 transition">
-                                        Edit
-                                    </a>
+                                <div class="flex justify-end gap-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+                                    <x-icon-button :href="route('superadmin.units.show', $unit)" icon="eye" color="info" tooltip="Detail Unit" />
+                                    <x-icon-button :href="route('superadmin.units.edit', $unit)" icon="edit" color="neutral" tooltip="Edit Unit" />
                                     <form action="{{ route('superadmin.units.destroy', $unit) }}" method="POST" class="inline" onsubmit="return confirm('PERINGATAN: Menghapus unit ini akan menghapus seluruh data profil, prestasi, ekskul, berita, dan jurusan terkait. Apakah Anda yakin ingin melanjutkan?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="inline-flex items-center px-3 py-1.5 rounded text-xs font-semibold bg-rose-50 dark:bg-rose-950/20 text-rose-600 hover:bg-rose-100 dark:hover:bg-rose-900/30 transition">
-                                            Hapus
-                                        </button>
+                                        <x-icon-button type="submit" icon="trash" color="danger" tooltip="Hapus Unit" />
                                     </form>
                                 </div>
                             </div>

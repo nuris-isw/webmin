@@ -45,7 +45,7 @@
                     <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
                         <x-application-logo class="h-9 w-auto" />
                         <span class="font-extrabold text-lg tracking-tight text-gray-900 dark:text-white">
-                            WebMin
+                            Web Admin
                         </span>
                     </a>
                 </div>
@@ -111,7 +111,7 @@
                             <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
                                 <x-application-logo class="h-9 w-auto" />
                                 <span class="font-extrabold text-lg tracking-tight text-gray-900 dark:text-white">
-                                    WebMin
+                                    Web Admin
                                 </span>
                             </a>
                         </div>

@@ -28,7 +28,7 @@
                     <form method="GET" action="{{ route('superadmin.users.index') }}" class="flex flex-wrap items-end gap-3 flex-1">
                         <div class="w-full sm:w-auto">
                             <label for="role" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Peran</label>
-                            <select name="role" id="role" class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm focus:border-brand-red focus:ring-brand-red shadow-sm">
+                            <select name="role" id="role" class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm focus:border-brand-red focus:ring-brand-red shadow-sm px-4 py-2.5">
                                 <option value="">Semua Peran</option>
                                 <option value="superadmin" {{ request('role') === 'superadmin' ? 'selected' : '' }}>Superadmin</option>
                                 <option value="admin" {{ request('role') === 'admin' ? 'selected' : '' }}>Admin Unit</option>
@@ -37,7 +37,7 @@
 
                         <div class="w-full sm:w-auto">
                             <label for="unit_id" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Unit Sekolah</label>
-                            <select name="unit_id" id="unit_id" class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm focus:border-brand-red focus:ring-brand-red shadow-sm">
+                            <select name="unit_id" id="unit_id" class="w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm focus:border-brand-red focus:ring-brand-red shadow-sm px-4 py-2.5">
                                 <option value="">Semua Unit</option>
                                 @foreach ($units as $unit)
                                     <option value="{{ $unit->id }}" {{ request('unit_id') == $unit->id ? 'selected' : '' }}>

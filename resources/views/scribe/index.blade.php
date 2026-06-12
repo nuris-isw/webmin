@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://localhost";
+        var tryItOutBaseUrl = "http://localhost:8000";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -34,6 +34,189 @@
 
     <script src="{{ asset("/vendor/scribe/js/theme-default-5.11.0.js") }}"></script>
 
+    <!-- Custom Web Admin UI/UX Styles for API Docs -->
+    <style>
+        /* Typography scale optimization - minimum 14px (text-sm) */
+        body, html, .content, p, li, td, th, pre, code, span, a, button, input {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+        }
+        
+        .tocify-wrapper {
+            background-color: #0c0c0c !important;
+            font-size: 14px !important; /* Set minimum to 14px (text-sm) */
+            border-right: 1px solid #1a1a1a !important;
+        }
+        
+        .tocify-wrapper > .search input {
+            background: #1e1e1e !important;
+            border-color: #2a2a2a !important;
+            font-size: 14px !important;
+            border-radius: 6px !important;
+            padding: 8px 12px 8px 30px !important;
+        }
+        
+        .tocify-wrapper > .search input:focus {
+            border-color: #E4252C !important;
+        }
+
+        .tocify-wrapper .tocify-item > a {
+            font-size: 14px !important;
+            padding-top: 8px !important;
+            padding-bottom: 8px !important;
+            color: #ccc !important;
+        }
+
+        .tocify-wrapper .tocify-item > a:hover {
+            color: #fff !important;
+            background: #1a1a1a !important;
+        }
+
+        .tocify-wrapper .tocify-subheader {
+            background: #121212 !important;
+        }
+
+        .tocify-wrapper .tocify-subheader .tocify-item > a {
+            font-size: 14px !important; /* Set subheaders to 14px as well */
+            padding-left: 25px !important;
+            color: #aaa !important;
+        }
+
+        .tocify-wrapper .tocify-focus {
+            background-color: #E4252C !important; /* Brand Red for active focus */
+            color: #fff !important;
+            box-shadow: none !important;
+        }
+        
+        .tocify-wrapper .tocify-focus > a {
+            color: #fff !important;
+            font-weight: 700 !important;
+        }
+        
+        .tocify-wrapper .toc-footer {
+            border-top: 1px dashed #222 !important;
+        }
+        
+        .tocify-wrapper .toc-footer li {
+            font-size: 14px !important; /* Minimum 14px */
+            color: #888 !important;
+        }
+        
+        #toc > ul > li > a > span {
+            background-color: #E4252C !important; /* Brand Red count bubble */
+        }
+        
+        /* Language selector styling */
+        .lang-selector {
+            background-color: #0c0c0c !important;
+            border-bottom: 5px solid #121212 !important;
+        }
+        
+        .lang-selector button {
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            padding: 8px 16px !important;
+            line-height: normal !important;
+        }
+        
+        .lang-selector button.active {
+            background-color: #E4252C !important; /* Brand Red active lang */
+            color: #fff !important;
+        }
+
+        .page-wrapper .dark-box {
+            background-color: #0c0c0c !important;
+        }
+        
+        .page-wrapper .lang-selector {
+            border-bottom: 5px solid #0c0c0c !important;
+        }
+        
+        /* Content overrides */
+        .content {
+            font-size: 14px !important; /* Set standard text size to 14px */
+            background-color: #fafafa !important;
+        }
+        
+        .content h1, .content h2, .content h3 {
+            color: #010101 !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+        }
+
+        .content h1 {
+            font-size: 24px !important;
+        }
+
+        .content h2 {
+            font-size: 18px !important;
+            border-left: 4px solid #E4252C !important;
+            padding-left: 10px !important;
+            margin-top: 2em !important;
+        }
+        
+        .content a {
+            color: #E4252C !important;
+        }
+        
+        .content a:hover {
+            color: #EF3F3C !important;
+        }
+        
+        /* Table styles inside content */
+        .content table {
+            font-size: 14px !important;
+        }
+        
+        .content table th, .content table td {
+            font-size: 14px !important;
+            padding: 10px 12px !important;
+        }
+        
+        /* Badges / Request methods color overrides */
+        .badge {
+            font-size: 14px !important;
+            padding: 4px 8px !important;
+            border-radius: 6px !important;
+            font-weight: 700 !important;
+            text-transform: uppercase !important;
+        }
+        
+        .badge.badge-green {
+            background-color: rgba(16, 185, 129, 0.1) !important;
+            color: #10b981 !important;
+            border: 1px solid rgba(16, 185, 129, 0.2) !important;
+        }
+        
+        .badge.badge-red, .badge.badge-darkred {
+            background-color: rgba(228, 37, 44, 0.1) !important;
+            color: #E4252C !important;
+            border: 1px solid rgba(228, 37, 44, 0.2) !important;
+        }
+        
+        /* Notice block styling */
+        .content aside.notice {
+            background-color: rgba(228, 37, 44, 0.05) !important;
+            border-left: 5px solid #E4252C !important;
+            font-size: 14px !important;
+            border-radius: 6px !important;
+            padding: 12px 20px !important;
+        }
+        
+        .content aside.warning {
+            background-color: rgba(245, 158, 11, 0.05) !important;
+            border-left: 5px solid #f59e0b !important;
+            font-size: 14px !important;
+            border-radius: 6px !important;
+            padding: 12px 20px !important;
+        }
+        
+        .content aside.success {
+            background-color: rgba(16, 185, 129, 0.05) !important;
+            border-left: 5px solid #10b981 !important;
+            font-size: 14px !important;
+            border-radius: 6px !important;
+            padding: 12px 20px !important;
+        }
+    </style>
 </head>
 
 <body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
@@ -157,7 +340,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 11, 2026</li>
+        <li>Last updated: June 12, 2026</li>
     </ul>
 </div>
 
@@ -166,7 +349,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://localhost</code>
+    <strong>Base URL</strong>: <code>http://localhost:8000</code>
 </aside>
 <pre><code>This documentation aims to provide all the information you need to work with our API.
 
@@ -193,14 +376,14 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/units/smk-mandiri/achievements?peraih=siswa" \
+    --get "http://localhost:8000/api/v1/units/smk-mandiri/achievements?peraih=siswa" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/units/smk-mandiri/achievements"
+    "http://localhost:8000/api/v1/units/smk-mandiri/achievements"
 );
 
 const params = {
@@ -360,14 +543,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/units/smk-mandiri/extracurriculars" \
+    --get "http://localhost:8000/api/v1/units/smk-mandiri/extracurriculars" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/units/smk-mandiri/extracurriculars"
+    "http://localhost:8000/api/v1/units/smk-mandiri/extracurriculars"
 );
 
 const headers = {
@@ -507,14 +690,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/units/smk-mandiri/galleries?opsi_tampilan=galeri_dokumentasi" \
+    --get "http://localhost:8000/api/v1/units/smk-mandiri/galleries?opsi_tampilan=galeri_dokumentasi" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/units/smk-mandiri/galleries"
+    "http://localhost:8000/api/v1/units/smk-mandiri/galleries"
 );
 
 const params = {
@@ -675,14 +858,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/units/smk-mandiri/galleries/1" \
+    --get "http://localhost:8000/api/v1/units/smk-mandiri/galleries/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/units/smk-mandiri/galleries/1"
+    "http://localhost:8000/api/v1/units/smk-mandiri/galleries/1"
 );
 
 const headers = {
@@ -838,14 +1021,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/units/smk-mandiri/majors" \
+    --get "http://localhost:8000/api/v1/units/smk-mandiri/majors" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/units/smk-mandiri/majors"
+    "http://localhost:8000/api/v1/units/smk-mandiri/majors"
 );
 
 const headers = {
@@ -984,14 +1167,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/units/smk-mandiri/majors/1" \
+    --get "http://localhost:8000/api/v1/units/smk-mandiri/majors/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/units/smk-mandiri/majors/1"
+    "http://localhost:8000/api/v1/units/smk-mandiri/majors/1"
 );
 
 const headers = {
@@ -1144,14 +1327,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/units/smk-mandiri/news?per_page=10&amp;page=1" \
+    --get "http://localhost:8000/api/v1/units/smk-mandiri/news?per_page=10&amp;page=1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/units/smk-mandiri/news"
+    "http://localhost:8000/api/v1/units/smk-mandiri/news"
 );
 
 const params = {
@@ -1334,14 +1517,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/units/smk-mandiri/news/pendaftaran-siswa-baru" \
+    --get "http://localhost:8000/api/v1/units/smk-mandiri/news/pendaftaran-siswa-baru" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/units/smk-mandiri/news/pendaftaran-siswa-baru"
+    "http://localhost:8000/api/v1/units/smk-mandiri/news/pendaftaran-siswa-baru"
 );
 
 const headers = {
@@ -1492,14 +1675,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/units/smk-mandiri/spmb" \
+    --get "http://localhost:8000/api/v1/units/smk-mandiri/spmb" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/units/smk-mandiri/spmb"
+    "http://localhost:8000/api/v1/units/smk-mandiri/spmb"
 );
 
 const headers = {
@@ -1636,14 +1819,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/units" \
+    --get "http://localhost:8000/api/v1/units" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/units"
+    "http://localhost:8000/api/v1/units"
 );
 
 const headers = {
@@ -1767,14 +1950,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/units/smk-mandiri" \
+    --get "http://localhost:8000/api/v1/units/smk-mandiri" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/units/smk-mandiri"
+    "http://localhost:8000/api/v1/units/smk-mandiri"
 );
 
 const headers = {

@@ -55,7 +55,7 @@
                 @if (Auth::user()->isSuperadmin())
                     <x-nav-link :href="route('superadmin.units.index')" :active="request()->routeIs('superadmin.units.*')">
                         <svg class="w-5 h-5 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.62 48.62 0 0112 20.9c2.785 0 5.48-.233 8.102-.684a60.457 60.457 0 00-.491-6.347m-15.382 0a48.536 48.536 0 00-3.088-3.97c-1.077-1.077-1.077-2.823 0-3.9a48.4 48.4 0 013.088-3.97m15.382 0a48.536 48.536 0 013.088 3.97c1.077 1.077 1.077 2.823 0 3.9a48.4 48.4 0 01-3.088 3.97m-15.382 0l3.088-3.97m12.294 3.97l-3.088-3.97m-9.206 0a48.536 48.536 0 019.206 0m-9.206 0V6.75m9.206 0V6.75" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
                         </svg>
                         Manajemen Unit
                     </x-nav-link>
@@ -95,16 +95,13 @@
                 <div class="mt-2 space-y-1">
                     <x-nav-link :href="($unitSlug && Route::has('admin.achievements.index')) ? route('admin.achievements.index', ['unit' => $unitSlug]) : '#'" :active="request()->routeIs('admin.achievements.*')">
                         <svg class="w-5 h-5 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.467 5.99 5.99 0 0 0-1.925 3.546 5.974 5.974 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25h1.5m1.5 0H18m-1.5 0H21m-1.5 0v3.75c0 1.242-1.008 2.25-2.25 2.25h-1.5c-1.242 0-2.25-1.008-2.25-2.25V5.25m-6 0v3.75c0 1.242 1.008 2.25 2.25 2.25h1.5c1.242 0 2.25-1.008 2.25-2.25V5.25m-4 12v3m4-3v3m-5.25 0h6.5" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0" />
                         </svg>
                         Prestasi
                     </x-nav-link>
                     <x-nav-link :href="($unitSlug && Route::has('admin.extracurriculars.index')) ? route('admin.extracurriculars.index', ['unit' => $unitSlug]) : '#'" :active="request()->routeIs('admin.extracurriculars.*')">
                         <svg class="w-5 h-5 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-3.32a9.78 9.78 0 0 0 6.33-4.48L15.59 14.37z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 21.75c-.83-.49-1.48-1.16-1.92-1.92M2.25 21.75L9.75 18M3.75 14.25L9.75 18M18 6.75a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 3.75l-4.5 4.5M18 12c.98-1.58 1.4-3.42 1.14-5.26M12 18c1.58.98 3.42 1.4 5.26 1.14M6.75 15l-4.5 4.5" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
                         </svg>
                         Ekstrakurikuler
                     </x-nav-link>

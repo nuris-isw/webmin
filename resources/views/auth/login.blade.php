@@ -5,7 +5,7 @@
             Selamat Datang Kembali
         </h1>
         <p class="text-sm text-gray-dark dark:text-gray-light mt-2">
-            Kelola dasbor multi-tenant unit sekolah Anda di WebMin.
+            Kelola dasbor multi-tenant unit sekolah Anda di Web Admin.
         </p>
     </div>
 

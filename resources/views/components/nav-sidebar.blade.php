@@ -1,18 +1,44 @@
 @php
     $unitParam = request()->route('unit');
-    $unitSlug = null;
+    $sidebarUnit = null;
     if ($unitParam instanceof \App\Models\Unit) {
-        $unitSlug = $unitParam->slug;
+        $sidebarUnit = $unitParam;
     } elseif (is_string($unitParam)) {
-        $unitSlug = $unitParam;
+        $sidebarUnit = \App\Models\Unit::where('slug', $unitParam)->first();
     } elseif (Auth::user()->unit) {
-        $unitSlug = Auth::user()->unit->slug;
+        $sidebarUnit = Auth::user()->unit;
     }
+    $unitSlug = $sidebarUnit ? $sidebarUnit->slug : null;
 @endphp
 
 <div class="flex-1 flex flex-col justify-between overflow-y-auto">
     <nav class="px-4 py-6 space-y-7">
         
+        @if (Auth::user()->isSuperadmin() && $sidebarUnit)
+            <!-- Superadmin Active Control Scope Banner -->
+            <div class="p-3 bg-brand-red/10 border border-brand-red/20 rounded-lg">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded bg-brand-red text-white flex items-center justify-center font-bold text-xs shrink-0">
+                        {{ strtoupper($sidebarUnit->jenjang) }}
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <p class="text-[9px] font-bold text-brand-red uppercase tracking-wider">Sedang Mengelola</p>
+                        <p class="text-xs font-bold text-gray-900 dark:text-white truncate">
+                            {{ $sidebarUnit->nama_sekolah }}
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-2.5 pt-2 border-t border-brand-red/10 flex justify-between items-center text-[10px]">
+                    <a href="{{ route('superadmin.units.show', $sidebarUnit) }}" class="text-brand-red hover:underline font-semibold">
+                        Detail Unit
+                    </a>
+                    <a href="{{ route('superadmin.units.index') }}" class="text-gray-500 dark:text-gray-400 hover:text-brand-red transition">
+                        Tutup Kendali ×
+                    </a>
+                </div>
+            </div>
+        @endif
+
         <!-- Dashboard & Global Admin -->
         <div class="space-y-2">
             <span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest px-4">

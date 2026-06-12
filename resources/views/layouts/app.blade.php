@@ -1,3 +1,12 @@
+@php
+    $unitParam = request()->route('unit');
+    $currentUnit = null;
+    if ($unitParam instanceof \App\Models\Unit) {
+        $currentUnit = $unitParam;
+    } elseif (is_string($unitParam)) {
+        $currentUnit = \App\Models\Unit::where('slug', $unitParam)->first();
+    }
+@endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -119,14 +128,23 @@
                 <!-- Top Header Bar -->
                 <header class="h-16 bg-white dark:bg-[#121212] border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-4 sm:px-6 z-20 shadow-sm shrink-0">
                     
-                    <!-- Left: Hamburger toggle (mobile only) -->
-                    <div class="flex items-center">
+                    <!-- Left: Hamburger toggle (mobile only) & Superadmin Active School Badge -->
+                    <div class="flex items-center gap-3">
                         <button @click="sidebarOpen = true" type="button" class="p-2 -ml-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700/50 hover:text-gray-700 dark:hover:text-white md:hidden">
                             <span class="sr-only">Open sidebar</span>
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                             </svg>
                         </button>
+
+                        @if (Auth::user()->isSuperadmin() && $currentUnit)
+                            <div class="hidden md:flex items-center gap-2 px-3 py-1 bg-brand-red/10 border border-brand-red/25 rounded-full text-brand-red dark:text-brand-red-light text-xs font-semibold">
+                                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                                </svg>
+                                <span>Mengelola: <strong class="font-bold">{{ $currentUnit->nama_sekolah }}</strong> ({{ strtoupper($currentUnit->jenjang) }})</span>
+                            </div>
+                        @endif
                     </div>
 
                     <!-- Right: Dark mode toggle & User Profile Dropdown -->

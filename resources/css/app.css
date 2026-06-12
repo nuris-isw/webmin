@@ -7,6 +7,15 @@
     --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
+    --font-size-xs: 0.875rem;
+    --font-size-xs--line-height: 1.25rem;
+
+    --font-size-sm: 1rem;
+    --font-size-sm--line-height: 1.5rem;
+
+    --font-size-base: 1.125rem;
+    --font-size-base--line-height: 1.75rem;
+
     /* ------------------------------------------------------------------ */
     /* Brand Colors                                                          */
     /* ------------------------------------------------------------------ */

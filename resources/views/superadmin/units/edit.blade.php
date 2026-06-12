@@ -20,6 +20,10 @@
                     @csrf
                     @method('PUT')
 
+                    @if ($errors->any())
+                        <x-alert type="error" message="Terdapat kesalahan pada data yang dimasukkan. Silakan periksa kembali formulir di bawah." />
+                    @endif
+
                     <!-- Nama Sekolah -->
                     <x-form-input name="nama_sekolah" label="Nama Unit Sekolah" :value="old('nama_sekolah', $unit->nama_sekolah)" required autofocus />
 

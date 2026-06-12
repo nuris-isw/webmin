@@ -19,6 +19,10 @@
                 <form method="POST" action="{{ route('superadmin.units.store') }}" class="space-y-6">
                     @csrf
 
+                    @if ($errors->any())
+                        <x-alert type="error" message="Terdapat kesalahan pada data yang dimasukkan. Silakan periksa kembali formulir di bawah." />
+                    @endif
+
                     <!-- Nama Sekolah -->
                     <x-form-input name="nama_sekolah" label="Nama Unit Sekolah" :value="old('nama_sekolah')" placeholder="Contoh: SMK Teknologi Mandiri" required autofocus />
 
@@ -33,7 +37,7 @@
                     <!-- Status Aktif -->
                     <x-form-select name="is_active" label="Status Operasional" required>
                         <option value="1" @selected(old('is_active', '1') === '1')>Aktif (Dapat diakses publik/admin)</option>
-                        <option value="0" @selected(old('is_active') === '0')>Non-aktif (Akses ditutup sementara)</option>
+                        <option value="0" @selected(old('is_active', '1') === '0')>Non-aktif (Akses ditutup sementara)</option>
                     </x-form-select>
 
                     <!-- Action Buttons -->

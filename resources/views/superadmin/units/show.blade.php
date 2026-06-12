@@ -8,6 +8,15 @@
                 $unit->nama_sekolah => '#'
             ]" />
 
+            <!-- Flash Notifications -->
+            @if (session('success'))
+                <x-alert type="success" :message="session('success')" />
+            @endif
+
+            @if (session('error'))
+                <x-alert type="error" :message="session('error')" />
+            @endif
+
             <!-- Unit Identity Header Card -->
             <x-card>
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
@@ -121,6 +130,18 @@
                                 </div>
                             </a>
 
+                            <a href="{{ Route::has('admin.extracurriculars.index') ? route('admin.extracurriculars.index', ['unit' => $unit->slug]) : '#' }}" class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900/40 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-brand-red transition">
+                                <div class="p-2 bg-brand-red/10 text-brand-red rounded">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.362 5.214A8.25 8.25 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
+                                    </svg>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-gray-950 dark:text-white">Ekstrakurikuler</p>
+                                    <p class="text-[10px] text-gray-500">Kelola kegiatan ekstrakurikuler</p>
+                                </div>
+                            </a>
+
                             <a href="{{ Route::has('admin.spmb.edit') ? route('admin.spmb.edit', ['unit' => $unit->slug]) : '#' }}" class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900/40 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-brand-red transition">
                                 <div class="p-2 bg-brand-red/10 text-brand-red rounded">
                                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -132,6 +153,20 @@
                                     <p class="text-[10px] text-gray-500">Atur status pendaftaran PPDB</p>
                                 </div>
                             </a>
+
+                            @if ($unit->isSmk())
+                                <a href="{{ Route::has('admin.majors.index') ? route('admin.majors.index', ['unit' => $unit->slug]) : '#' }}" class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900/40 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-brand-red transition">
+                                    <div class="p-2 bg-brand-red/10 text-brand-red rounded">
+                                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                        </svg>
+                                    </div>
+                                    <div class="text-left">
+                                        <p class="text-sm font-bold text-gray-950 dark:text-white">Jurusan / Kompetensi (SMK)</p>
+                                        <p class="text-[10px] text-gray-500">Kelola program keahlian SMK</p>
+                                    </div>
+                                </a>
+                            @endif
 
                         </div>
                     </x-card>
@@ -164,7 +199,7 @@
                                 <div class="p-6 text-center text-gray-400 text-xs bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-dashed border-gray-200 dark:border-gray-800">
                                     Belum ada administrator yang ditugaskan ke sekolah ini.
                                 </div>
-                            @endif
+                            @endforelse
 
                             <div class="pt-4 border-t border-gray-100 dark:border-gray-700">
                                 <a href="{{ route('superadmin.users.create', ['unit_id' => $unit->id]) }}" class="w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest bg-white dark:bg-gray-800 hover:bg-gray-50 transition">

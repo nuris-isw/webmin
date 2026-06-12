@@ -19,7 +19,7 @@
                 Dasbor Utama
             </span>
             <div class="mt-2 space-y-1">
-                <x-nav-link :href="$unitSlug ? route('admin.dashboard', ['unit' => $unitSlug]) : route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('admin.dashboard')">
+                <x-nav-link :href="Auth::user()->isSuperadmin() ? route('superadmin.dashboard') : ($unitSlug ? route('admin.dashboard', ['unit' => $unitSlug]) : route('dashboard'))" :active="request()->routeIs('dashboard') || request()->routeIs('admin.dashboard') || request()->routeIs('superadmin.dashboard')">
                     <svg class="w-5 h-5 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                     </svg>
@@ -27,6 +27,12 @@
                 </x-nav-link>
                 
                 @if (Auth::user()->isSuperadmin())
+                    <x-nav-link :href="route('superadmin.units.index')" :active="request()->routeIs('superadmin.units.*')">
+                        <svg class="w-5 h-5 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                        </svg>
+                        Manajemen Unit
+                    </x-nav-link>
                     <x-nav-link :href="route('superadmin.users.index')" :active="request()->routeIs('superadmin.users.*')">
                         <svg class="w-5 h-5 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.109A11.386 11.386 0 0110.089 21m-5.34-2.236a9.19 9.19 0 01-1.397-1.107 4.125 4.125 0 007.533-2.493M10.089 21a11.332 11.332 0 01-5.34-2.236m5.34 2.236v-.003a9.202 9.202 0 003.61-3.003m3.75 3.003A11.33 11.33 0 0015 19.128M15 3.987a3 3 0 11-3 3M12 3.987a3 3 0 113 3m-3-3a3.75 3.75 0 100 7.5c.447 0 .875-.079 1.272-.224l-.17-.34M3.75 16.5a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zm16.5 0a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0z" />

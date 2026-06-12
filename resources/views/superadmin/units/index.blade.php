@@ -9,6 +9,10 @@
                 <x-alert type="success" :message="session('success')" />
             @endif
 
+            @if (session('error'))
+                <x-alert type="error" :message="session('error')" />
+            @endif
+
             <!-- Table Card Container -->
             <x-card>
                 <x-slot name="title">

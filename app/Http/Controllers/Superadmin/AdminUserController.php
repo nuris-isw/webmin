@@ -55,7 +55,7 @@ class AdminUserController extends Controller
             'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role'     => ['required', Rule::in(['superadmin', 'admin'])],
             'unit_id'  => ['nullable', 'required_if:role,admin', 'exists:units,id'],
-            'password' => ['required', Password::defaults()],
+            'password' => ['required', Password::defaults(), 'confirmed'],
         ], [
             'unit_id.required_if' => 'Unit sekolah wajib dipilih jika peran adalah Admin.',
         ]);

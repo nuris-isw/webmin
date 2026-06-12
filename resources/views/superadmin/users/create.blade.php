@@ -19,6 +19,10 @@
                 <form method="POST" action="{{ route('superadmin.users.store') }}" x-data="{ role: '{{ old('role', 'admin') }}' }" class="space-y-6">
                     @csrf
 
+                    @if ($errors->any())
+                        <x-alert type="error" message="Terdapat kesalahan pada data yang dimasukkan. Silakan periksa kembali formulir di bawah." />
+                    @endif
+
                     <!-- Name -->
                     <x-form-input name="name" label="Nama Lengkap" :value="old('name')" required autofocus />
 
@@ -27,8 +31,8 @@
 
                     <!-- Role Selection -->
                     <x-form-select name="role" label="Hak Akses / Peran" x-model="role">
-                        <option value="admin">Admin Unit (Operasional Sekolah)</option>
-                        <option value="superadmin">Superadmin (Badan Penyelenggara/Yayasan)</option>
+                        <option value="admin" @selected(old('role', 'admin') === 'admin')>Admin Unit (Operasional Sekolah)</option>
+                        <option value="superadmin" @selected(old('role', 'admin') === 'superadmin')>Superadmin (Badan Penyelenggara/Yayasan)</option>
                     </x-form-select>
 
                     <!-- Unit Selection (Conditional based on role) -->
@@ -36,7 +40,7 @@
                         <x-form-select name="unit_id" label="Unit Sekolah">
                             <option value="">-- Pilih Unit Sekolah --</option>
                             @foreach ($units as $unit)
-                                <option value="{{ $unit->id }}" @selected(old('unit_id') == $unit->id)>
+                                <option value="{{ $unit->id }}" @selected(old('unit_id', request('unit_id')) == $unit->id)>
                                     {{ $unit->nama_sekolah }} ({{ strtoupper($unit->jenjang) }})
                                 </option>
                             @endforeach
@@ -48,6 +52,9 @@
 
                     <!-- Password -->
                     <x-form-input name="password" label="Password" type="password" required />
+
+                    <!-- Password Confirmation -->
+                    <x-form-input name="password_confirmation" label="Konfirmasi Password" type="password" required />
 
                     <!-- Action Buttons -->
                     <div class="flex items-center justify-end gap-4 pt-4 border-t border-gray-100 dark:border-gray-700">

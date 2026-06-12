@@ -20,6 +20,10 @@
                     @csrf
                     @method('PUT')
 
+                    @if ($errors->any())
+                        <x-alert type="error" message="Terdapat kesalahan pada data yang dimasukkan. Silakan periksa kembali formulir di bawah." />
+                    @endif
+
                     <!-- Name -->
                     <x-form-input name="name" label="Nama Lengkap" :value="old('name', $user->name)" required autofocus />
 
@@ -28,8 +32,8 @@
 
                     <!-- Role Selection -->
                     <x-form-select name="role" label="Hak Akses / Peran" x-model="role">
-                        <option value="admin">Admin Unit (Operasional Sekolah)</option>
-                        <option value="superadmin">Superadmin (Badan Penyelenggara/Yayasan)</option>
+                        <option value="admin" @selected(old('role', $user->role) === 'admin')>Admin Unit (Operasional Sekolah)</option>
+                        <option value="superadmin" @selected(old('role', $user->role) === 'superadmin')>Superadmin (Badan Penyelenggara/Yayasan)</option>
                     </x-form-select>
 
                     <!-- Unit Selection (Conditional based on role) -->

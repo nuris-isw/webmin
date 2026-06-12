@@ -16,7 +16,7 @@ $colorClasses = match ($color) {
 
 <div class="relative group inline-block">
     @if ($type === 'link')
-        <a href="{{ $href }}" {{ $attributes->merge(['class' => 'inline-flex items-center justify-center w-8 h-8 rounded-lg transition duration-150 ' . $colorClasses]) }}>
+        <a href="{{ $href }}" title="{{ $tooltip }}" {{ $attributes->merge(['class' => 'inline-flex items-center justify-center w-8 h-8 rounded-lg transition duration-150 ' . $colorClasses]) }}>
             @switch($icon)
                 @case('eye')
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -37,7 +37,7 @@ $colorClasses = match ($color) {
             @endswitch
         </a>
     @else
-        <button type="submit" {{ $attributes->merge(['class' => 'inline-flex items-center justify-center w-8 h-8 rounded-lg transition duration-150 ' . $colorClasses]) }}>
+        <button type="submit" title="{{ $tooltip }}" {{ $attributes->merge(['class' => 'inline-flex items-center justify-center w-8 h-8 rounded-lg transition duration-150 ' . $colorClasses]) }}>
             @switch($icon)
                 @case('eye')
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

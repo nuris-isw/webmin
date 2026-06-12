@@ -55,13 +55,13 @@
                 @if (Auth::user()->isSuperadmin())
                     <x-nav-link :href="route('superadmin.units.index')" :active="request()->routeIs('superadmin.units.*')">
                         <svg class="w-5 h-5 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.62 48.62 0 0112 20.9c2.785 0 5.48-.233 8.102-.684a60.457 60.457 0 00-.491-6.347m-15.382 0a48.536 48.536 0 00-3.088-3.97c-1.077-1.077-1.077-2.823 0-3.9a48.4 48.4 0 013.088-3.97m15.382 0a48.536 48.536 0 013.088 3.97c1.077 1.077 1.077 2.823 0 3.9a48.4 48.4 0 01-3.088 3.97m-15.382 0l3.088-3.97m12.294 3.97l-3.088-3.97m-9.206 0a48.536 48.536 0 019.206 0m-9.206 0V6.75m9.206 0V6.75" />
                         </svg>
                         Manajemen Unit
                     </x-nav-link>
                     <x-nav-link :href="route('superadmin.users.index')" :active="request()->routeIs('superadmin.users.*')">
                         <svg class="w-5 h-5 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.109A11.386 11.386 0 0110.089 21m-5.34-2.236a9.19 9.19 0 01-1.397-1.107 4.125 4.125 0 007.533-2.493M10.089 21a11.332 11.332 0 01-5.34-2.236m5.34 2.236v-.003a9.202 9.202 0 003.61-3.003m3.75 3.003A11.33 11.33 0 0015 19.128M15 3.987a3 3 0 11-3 3M12 3.987a3 3 0 113 3m-3-3a3.75 3.75 0 100 7.5c.447 0 .875-.079 1.272-.224l-.17-.34M3.75 16.5a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zm16.5 0a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
                         </svg>
                         Manajemen Admin
                     </x-nav-link>
@@ -95,13 +95,16 @@
                 <div class="mt-2 space-y-1">
                     <x-nav-link :href="($unitSlug && Route::has('admin.achievements.index')) ? route('admin.achievements.index', ['unit' => $unitSlug]) : '#'" :active="request()->routeIs('admin.achievements.*')">
                         <svg class="w-5 h-5 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.504-1.125-1.125-1.125h-2.25a1.125 1.125 0 00-1.125 1.125V18.75m9 0t-9 0M9 3.75h6M9 3.75a3 3 0 00-3 3v2.25a3 3 0 003 3h6a3 3 0 003-3V6.75a3 3 0 00-3-3M9 3.75h6" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.467 5.99 5.99 0 0 0-1.925 3.546 5.974 5.974 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5.25h1.5m1.5 0H18m-1.5 0H21m-1.5 0v3.75c0 1.242-1.008 2.25-2.25 2.25h-1.5c-1.242 0-2.25-1.008-2.25-2.25V5.25m-6 0v3.75c0 1.242 1.008 2.25 2.25 2.25h1.5c1.242 0 2.25-1.008 2.25-2.25V5.25m-4 12v3m4-3v3m-5.25 0h6.5" />
                         </svg>
                         Prestasi
                     </x-nav-link>
                     <x-nav-link :href="($unitSlug && Route::has('admin.extracurriculars.index')) ? route('admin.extracurriculars.index', ['unit' => $unitSlug]) : '#'" :active="request()->routeIs('admin.extracurriculars.*')">
                         <svg class="w-5 h-5 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.25 8.25 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-3.32a9.78 9.78 0 0 0 6.33-4.48L15.59 14.37z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 21.75c-.83-.49-1.48-1.16-1.92-1.92M2.25 21.75L9.75 18M3.75 14.25L9.75 18M18 6.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 3.75l-4.5 4.5M18 12c.98-1.58 1.4-3.42 1.14-5.26M12 18c1.58.98 3.42 1.4 5.26 1.14M6.75 15l-4.5 4.5" />
                         </svg>
                         Ekstrakurikuler
                     </x-nav-link>
@@ -147,7 +150,7 @@
                 <div class="mt-2 space-y-1">
                     <x-nav-link :href="($unitSlug && Route::has('admin.majors.index')) ? route('admin.majors.index', ['unit' => $unitSlug]) : '#'" :active="request()->routeIs('admin.majors.*')">
                         <svg class="w-5 h-5 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.62 48.62 0 0112 20.9c2.785 0 5.48-.233 8.102-.684a60.457 60.457 0 00-.491-6.347m-15.382 0a48.536 48.536 0 00-3.088-3.97c-1.077-1.077-1.077-2.823 0-3.9a48.4 48.4 0 013.088-3.97m15.382 0a48.536 48.536 0 013.088 3.97c1.077 1.077 1.077 2.823 0 3.9a48.4 48.4 0 01-3.088 3.97m-15.382 0l3.088-3.97m12.294 3.97l-3.088-3.97m-9.206 0a48.536 48.536 0 019.206 0m-9.206 0V6.75m9.206 0V6.75" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                         </svg>
                         Manajemen Jurusan
                     </x-nav-link>

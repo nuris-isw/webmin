@@ -47,16 +47,16 @@
                 <!-- Footer -->
                 <footer class="w-full max-w-md mx-auto mt-8 pt-6 border-t border-gray-100 dark:border-gray-800/80 text-center">
                     <p class="text-xs text-gray-500 dark:text-gray-400">
-                        &copy; {{ date('Y') }} Web Admin. Hak Cipta Dilindungi.
+                        &copy; {{ date('Y') }}. Web Admin Platform.
                     </p>
-                    <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
-                        Multi-tenant platform untuk pengelolaan unit sekolah.
+                    <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                        Dikembangkan oleh Bagian Sistem Informasi <a href="https://perpenas.or.id" target="_blank" class="text-gray-600 dark:text-gray-300 hover:underline">BPH Perpenas Banyuwangi</a>.
                     </p>
                 </footer>
             </div>
 
             <!-- Right Side: Stunning Visual Brand Panel -->
-            <div class="hidden md:flex md:w-[55%] lg:w-[60%] relative overflow-hidden bg-gradient-to-br from-brand-red-light via-brand-red to-brand-red-deep items-center justify-center p-12 lg:p-16">
+            <div class="hidden md:flex md:w-[55%] lg:w-[60%] relative overflow-hidden bg-lin-to-br from-brand-red-light via-brand-red to-brand-red-deep items-center justify-center p-12 lg:p-16">
                 <!-- Decorative Subtle Grid Overlay -->
                 <div class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:24px_24px]"></div>
                 

@@ -227,4 +227,66 @@ class ContentManagementTest extends TestCase
         $this->assertCount(2, $gallery->photos); // photo1 + new_photo
         $this->assertEquals($photo1->id, $gallery->photos[0]->id); // Since photo2 was deleted, photo1 is first now
     }
+
+    /**
+     * Test non-SMK unit programs (majors) management.
+     */
+    public function test_non_smk_unit_programs_management(): void
+    {
+        Storage::fake('public');
+
+        // Create a TK unit and its admin
+        $unitTk = Unit::factory()->create(['jenjang' => 'tk', 'nama_sekolah' => 'TK Pembina']);
+        $adminTk = User::factory()->adminOf($unitTk->id)->create();
+
+        // 1. Visit index page
+        $response = $this->actingAs($adminTk)->get(route('admin.majors.index', $unitTk));
+        $response->assertStatus(200);
+        $response->assertSee('Belum Ada Program Pendidikan'); // Matches dynamic template (will see "Belum Ada Program Pendidikan")
+
+        // 2. Create program (major)
+        $response = $this->actingAs($adminTk)->post(route('admin.majors.store', $unitTk), [
+            'nama_jurusan'        => 'Preschool bilingual',
+            'nomenklatur_istilah' => 'Program Pendidikan',
+            'shortname'           => 'PRE',
+            'nama_kaprog'         => 'Siti Mulyani',
+            'foto_kaprog'         => UploadedFile::fake()->image('teacher.jpg'),
+            'deskripsi_jurusan'   => '<p>Program preschool bilingual</p>',
+        ]);
+
+        $response->assertRedirect(route('admin.majors.index', $unitTk));
+        $this->assertDatabaseHas('majors', [
+            'nama_jurusan' => 'Preschool bilingual',
+            'shortname'    => 'PRE',
+            'unit_id'      => $unitTk->id,
+        ]);
+
+        $program = Major::where('nama_jurusan', 'Preschool bilingual')->first();
+
+        // 3. Edit program
+        $response = $this->actingAs($adminTk)->get(route('admin.majors.edit', [$unitTk, $program]));
+        $response->assertStatus(200);
+        $response->assertSee('Edit Data Program Pendidikan');
+
+        // 4. Update program
+        $response = $this->actingAs($adminTk)->put(route('admin.majors.update', [$unitTk, $program]), [
+            'nama_jurusan'        => 'Preschool bilingual Updated',
+            'nomenklatur_istilah' => 'Program Pendidikan',
+            'shortname'           => 'PRE-B',
+            'nama_kaprog'         => 'Siti Mulyani',
+            'deskripsi_jurusan'   => '<p>Program preschool bilingual updated description</p>',
+        ]);
+
+        $response->assertRedirect(route('admin.majors.index', $unitTk));
+        $this->assertDatabaseHas('majors', [
+            'id'           => $program->id,
+            'nama_jurusan' => 'Preschool bilingual Updated',
+            'shortname'    => 'PRE-B',
+        ]);
+
+        // 5. Delete program
+        $response = $this->actingAs($adminTk)->delete(route('admin.majors.destroy', [$unitTk, $program]));
+        $response->assertRedirect(route('admin.majors.index', $unitTk));
+        $this->assertDatabaseMissing('majors', ['id' => $program->id]);
+    }
 }

@@ -37,10 +37,7 @@ class GalleryController extends Controller
      */
     public function create(Unit $unit): View
     {
-        $majors = [];
-        if ($unit->isSmk()) {
-            $majors = $unit->majors()->orderBy('nama_jurusan')->get();
-        }
+        $majors = $unit->majors()->orderBy('nama_jurusan')->get();
 
         return view('admin.galleries.create', compact('unit', 'majors'));
     }
@@ -58,7 +55,7 @@ class GalleryController extends Controller
             'photos.*'      => ['image', 'max:2048'],
         ];
 
-        if ($unit->isSmk() && $request->input('opsi_tampilan') === 'galeri_program') {
+        if ($request->input('opsi_tampilan') === 'galeri_program') {
             $rules['major_id'] = ['required', 'exists:majors,id'];
         }
 
@@ -67,7 +64,7 @@ class GalleryController extends Controller
         $data = [
             'nama_kegiatan' => $validated['nama_kegiatan'],
             'opsi_tampilan' => $validated['opsi_tampilan'],
-            'major_id'      => ($unit->isSmk() && $validated['opsi_tampilan'] === 'galeri_program') ? $validated['major_id'] : null,
+            'major_id'      => ($validated['opsi_tampilan'] === 'galeri_program') ? $validated['major_id'] : null,
         ];
 
         $gallery = $unit->galleries()->create($data);
@@ -103,10 +100,7 @@ class GalleryController extends Controller
             abort(403, 'Aksi tidak diizinkan.');
         }
 
-        $majors = [];
-        if ($unit->isSmk()) {
-            $majors = $unit->majors()->orderBy('nama_jurusan')->get();
-        }
+        $majors = $unit->majors()->orderBy('nama_jurusan')->get();
 
         $gallery->load('photos');
 
@@ -130,7 +124,7 @@ class GalleryController extends Controller
             'photos.*'      => ['image', 'max:2048'],
         ];
 
-        if ($unit->isSmk() && $request->input('opsi_tampilan') === 'galeri_program') {
+        if ($request->input('opsi_tampilan') === 'galeri_program') {
             $rules['major_id'] = ['required', 'exists:majors,id'];
         }
 
@@ -139,7 +133,7 @@ class GalleryController extends Controller
         $data = [
             'nama_kegiatan' => $validated['nama_kegiatan'],
             'opsi_tampilan' => $validated['opsi_tampilan'],
-            'major_id'      => ($unit->isSmk() && $validated['opsi_tampilan'] === 'galeri_program') ? $validated['major_id'] : null,
+            'major_id'      => ($validated['opsi_tampilan'] === 'galeri_program') ? $validated['major_id'] : null,
         ];
 
         $gallery->update($data);

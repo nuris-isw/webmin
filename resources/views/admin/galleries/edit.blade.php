@@ -18,7 +18,7 @@
                     action="{{ route('admin.galleries.update', [$unit, $gallery]) }}" 
                     enctype="multipart/form-data" 
                     x-data="{ 
-                        isSmk: {{ $unit->isSmk() ? 'true' : 'false' }}, 
+                        hasPrograms: {{ ($unit->isSmk() || count($majors) > 0) ? 'true' : 'false' }}, 
                         opsiTampilan: '{{ old('opsi_tampilan', $gallery->opsi_tampilan) }}',
                         photos: {{ $gallery->photos->values()->toJson() }},
                         deletedPhotos: [],
@@ -120,23 +120,25 @@
                         <option value="hero_section" @selected(old('opsi_tampilan', $gallery->opsi_tampilan) === 'hero_section')>Hero Section (Slide Utama Depan)</option>
                         <option value="gambar_pembuka" @selected(old('opsi_tampilan', $gallery->opsi_tampilan) === 'gambar_pembuka')>Gambar Pembuka (Halaman Depan)</option>
                         <option value="galeri_dokumentasi" @selected(old('opsi_tampilan', $gallery->opsi_tampilan) === 'galeri_dokumentasi')>Galeri Dokumentasi Umum</option>
-                        @if ($unit->isSmk())
-                            <option value="galeri_program" @selected(old('opsi_tampilan', $gallery->opsi_tampilan) === 'galeri_program')>Galeri Program Keahlian (Khusus SMK)</option>
+                        @if ($unit->isSmk() || count($majors) > 0)
+                            <option value="galeri_program" @selected(old('opsi_tampilan', $gallery->opsi_tampilan) === 'galeri_program')>
+                                {{ $unit->isSmk() ? 'Galeri Program Keahlian (Khusus SMK)' : 'Galeri Khusus Program/Layanan' }}
+                            </option>
                         @endif
                     </x-form-select>
 
-                    <!-- Major Selection ( SMK + galeri_program only ) -->
-                    @if ($unit->isSmk())
-                        <div x-show="isSmk && opsiTampilan === 'galeri_program'" x-transition class="space-y-2">
-                            <x-form-select name="major_id" label="Program Keahlian Terkait">
-                                <option value="">-- Pilih Program Keahlian --</option>
+                    <!-- Major Selection -->
+                    @if ($unit->isSmk() || count($majors) > 0)
+                        <div x-show="hasPrograms && opsiTampilan === 'galeri_program'" x-transition class="space-y-2">
+                            <x-form-select name="major_id" label="{{ $unit->isSmk() ? 'Program Keahlian Terkait' : 'Program Pendidikan Terkait' }}">
+                                <option value="">-- Pilih {{ $unit->isSmk() ? 'Program Keahlian' : 'Program Pendidikan' }} --</option>
                                 @foreach ($majors as $major)
                                     <option value="{{ $major->id }}" @selected(old('major_id', $gallery->major_id) == $major->id)>
                                         {{ $major->nama_jurusan }} ({{ $major->shortname }})
                                     </option>
                                 @endforeach
                             </x-form-select>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Foto album ini hanya akan dimuat pada halaman detail program keahlian yang dipilih.</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Foto album ini hanya akan dimuat pada halaman detail {{ strtolower($unit->getMajorLabel()) }} yang dipilih.</p>
                         </div>
                     @endif
 

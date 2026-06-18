@@ -75,10 +75,10 @@
                             <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{{ $stats['extracurriculars'] }}</p>
                         </div>
 
-                        <!-- Jurusan (Only for SMK) -->
-                        <div class="p-5 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 {{ $unit->isSmk() ? '' : 'opacity-40' }}">
-                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Total Jurusan (SMK)</p>
-                            <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{{ $unit->isSmk() ? $stats['majors'] : '—' }}</p>
+                        <!-- Program / Jurusan -->
+                        <div class="p-5 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Total {{ $unit->getMajorLabel() }}</p>
+                            <p class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{{ $stats['majors'] }}</p>
                         </div>
 
                     </div>
@@ -154,19 +154,17 @@
                                 </div>
                             </a>
 
-                            @if ($unit->isSmk())
-                                <a href="{{ Route::has('admin.majors.index') ? route('admin.majors.index', ['unit' => $unit->slug]) : '#' }}" class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900/40 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-brand-red transition">
-                                    <div class="p-2 bg-brand-red/10 text-brand-red rounded">
-                                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                        </svg>
-                                    </div>
-                                    <div class="text-left">
-                                        <p class="text-sm font-bold text-gray-950 dark:text-white">Jurusan / Kompetensi (SMK)</p>
-                                        <p class="text-[10px] text-gray-500">Kelola program keahlian SMK</p>
-                                    </div>
-                                </a>
-                            @endif
+                            <a href="{{ Route::has('admin.majors.index') ? route('admin.majors.index', ['unit' => $unit->slug]) : '#' }}" class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-900/40 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-brand-red transition">
+                                <div class="p-2 bg-brand-red/10 text-brand-red rounded">
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                    </svg>
+                                </div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-gray-950 dark:text-white">{{ $unit->getMajorLabel() }}</p>
+                                    <p class="text-[10px] text-gray-500">Kelola {{ strtolower($unit->getMajorLabel()) }} sekolah</p>
+                                </div>
+                            </a>
 
                         </div>
                     </x-card>

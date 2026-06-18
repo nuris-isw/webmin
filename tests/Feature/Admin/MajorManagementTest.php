@@ -81,27 +81,28 @@ class MajorManagementTest extends TestCase
     }
 
     /**
-     * Test non-SMK unit admin (e.g. SMP) is blocked from accessing majors routes.
+     * Test non-SMK unit admin (e.g. SMP) can access majors/programs routes.
      */
-    public function test_non_smk_admin_cannot_access_majors(): void
+    public function test_non_smk_admin_can_access_programs(): void
     {
         $unitSmp = Unit::factory()->create(['jenjang' => 'smp']);
         $adminSmp = User::factory()->adminOf($unitSmp->id)->create();
 
-        // Try to access index
+        // Access index
         $response = $this->actingAs($adminSmp)->get(route('admin.majors.index', $unitSmp));
-        
-        $response->assertRedirect(route('dashboard'));
-        $response->assertSessionHas('error', 'Akses dibatasi. Fitur ini hanya tersedia untuk unit SMK.');
+        $response->assertStatus(200);
 
-        // Try to store
+        // Store program
         $response = $this->actingAs($adminSmp)->post(route('admin.majors.store', $unitSmp), [
-            'nama_jurusan'        => 'Pemasaran',
-            'nomenklatur_istilah' => 'Program Keahlian',
-            'shortname'           => 'PM',
+            'nama_jurusan'        => 'Kelas Bilingual',
+            'nomenklatur_istilah' => 'Program Unggulan',
+            'shortname'           => 'BIL',
         ]);
-        
-        $response->assertRedirect(route('dashboard'));
-        $response->assertSessionHas('error', 'Akses dibatasi. Fitur ini hanya tersedia untuk unit SMK.');
+        $response->assertRedirect(route('admin.majors.index', $unitSmp));
+        $this->assertDatabaseHas('majors', [
+            'nama_jurusan' => 'Kelas Bilingual',
+            'shortname'    => 'BIL',
+            'unit_id'      => $unitSmp->id,
+        ]);
     }
 }

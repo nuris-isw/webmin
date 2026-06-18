@@ -43,13 +43,9 @@ Route::middleware(['auth', 'admin.unit'])->prefix('admin/{unit:slug}')->name('ad
     // Modul Publikasi (F5-16, F5-21, F5-26)
     Route::resource('news', NewsController::class)->except(['show']);
     Route::resource('galleries', GalleryController::class)->except(['show']);
+    Route::resource('majors', MajorController::class)->except(['show']);
     Route::get('spmb', [SpmbController::class, 'edit'])->name('spmb.edit');
     Route::put('spmb', [SpmbController::class, 'update'])->name('spmb.update');
-
-    // Modul Khusus SMK (F6-01)
-    Route::middleware(['unit.smk'])->group(function () {
-        Route::resource('majors', MajorController::class)->except(['show']);
-    });
 });
 
 // Kelompok Route Khusus Superadmin

@@ -47,9 +47,7 @@ class MajorController extends Controller
             ->where('is_active', true)
             ->firstOrFail();
 
-        if (!$unit->isSmk()) {
-            abort(404, 'Fitur ini hanya tersedia untuk unit SMK.');
-        }
+
 
         $majors = $unit->majors()
             ->with(['galleries.photos' => function ($query) {
@@ -90,9 +88,7 @@ class MajorController extends Controller
             ->where('is_active', true)
             ->firstOrFail();
 
-        if (!$unit->isSmk()) {
-            abort(404, 'Fitur ini hanya tersedia untuk unit SMK.');
-        }
+
 
         $major = $unit->majors()
             ->where('id', $id)

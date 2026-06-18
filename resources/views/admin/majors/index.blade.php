@@ -5,7 +5,7 @@
             <!-- Breadcrumbs -->
             <x-breadcrumb :items="[
                 'Dashboard' => route('admin.dashboard', $unit),
-                'Daftar Jurusan' => '#'
+                'Daftar ' . $unit->getMajorLabel() => '#'
             ]" />
 
             <!-- Flash Alerts -->
@@ -19,22 +19,22 @@
 
             <!-- Main Listing Card -->
             <x-card>
-                <x-slot name="title">Daftar Jurusan / Program Keahlian</x-slot>
-                <x-slot name="subtitle">Kelola kurikulum jurusan, nomenklatur istilah, dan kaprog kompetensi keahlian SMK.</x-slot>
+                <x-slot name="title">Daftar {{ $unit->getMajorLabel() }}</x-slot>
+                <x-slot name="subtitle">Kelola kurikulum, nomenklatur istilah, dan pimpinan program sekolah.</x-slot>
 
                 <div class="flex justify-end mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
                     <!-- Add Button -->
                     <a href="{{ route('admin.majors.create', $unit) }}" class="inline-flex items-center px-4 py-2.5 bg-brand-red hover:bg-brand-red-light active:bg-brand-red-deep text-white font-semibold text-xs uppercase tracking-widest rounded-md transition duration-150">
-                        + Tambah Jurusan
+                        + Tambah {{ $unit->getMajorLabel() }}
                     </a>
                 </div>
 
-                <x-data-table :headers="['Foto Kaprog', 'Nama Jurusan', 'Nomenklatur', 'Singkatan', 'Kepala Program (Kaprog)', 'Aksi']">
+                <x-data-table :headers="['Foto Pimpinan', 'Nama ' . $unit->getMajorLabel(), 'Nomenklatur', 'Singkatan', $unit->getLeaderLabel(), 'Aksi']">
                     @forelse ($majors as $major)
                         <tr class="odd:bg-gray-50/35 even:bg-white dark:odd:bg-gray-800 dark:even:bg-[#1E1E1E]">
                             <td class="px-6 py-4">
                                 @if ($major->foto_kaprog)
-                                    <img src="@asset($major->foto_kaprog)" alt="Foto Kaprog" class="h-12 w-10 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+                                    <img src="@asset($major->foto_kaprog)" alt="Foto Pimpinan" class="h-12 w-10 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
                                 @else
                                     <div class="h-12 w-10 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-[9px] text-gray-400 text-center leading-none p-1">
                                         No Photo
@@ -54,11 +54,11 @@
                                 {{ $major->nama_kaprog ?? '—' }}
                             </td>
                             <td class="px-6 py-4 text-right space-x-1.5 whitespace-nowrap">
-                                <x-icon-button :href="route('admin.majors.edit', [$unit, $major])" icon="edit" color="neutral" tooltip="Edit Jurusan" />
-                                <form action="{{ route('admin.majors.destroy', [$unit, $major]) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data jurusan ini beserta data galeri program terkait?');">
+                                <x-icon-button :href="route('admin.majors.edit', [$unit, $major])" icon="edit" color="neutral" tooltip="Edit {{ $unit->getMajorLabel() }}" />
+                                <form action="{{ route('admin.majors.destroy', [$unit, $major]) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data {{ strtolower($unit->getMajorLabel()) }} ini beserta data galeri program terkait?');">
                                     @csrf
                                     @method('DELETE')
-                                    <x-icon-button type="submit" icon="trash" color="danger" tooltip="Hapus Jurusan" />
+                                    <x-icon-button type="submit" icon="trash" color="danger" tooltip="Hapus {{ $unit->getMajorLabel() }}" />
                                 </form>
                             </td>
                         </tr>
@@ -72,11 +72,11 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="text-sm font-bold text-gray-950 dark:text-white">Belum Ada Jurusan</h3>
-                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-sm mx-auto">Kelola kurikulum, nomenklatur program keahlian, dan kepala program (Kaprog) untuk SMK.</p>
+                                        <h3 class="text-sm font-bold text-gray-950 dark:text-white">Belum Ada {{ $unit->getMajorLabel() }}</h3>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-sm mx-auto">Kelola kurikulum, nomenklatur istilah, dan {{ strtolower($unit->getLeaderLabel()) }} untuk sekolah.</p>
                                     </div>
                                     <a href="{{ route('admin.majors.create', $unit) }}" class="inline-flex items-center px-4 py-2 bg-brand-red hover:bg-brand-red-light text-white font-semibold text-xs uppercase tracking-widest rounded-md transition duration-155">
-                                        + Tambah Jurusan
+                                        + Tambah {{ $unit->getMajorLabel() }}
                                     </a>
                                 </div>
                             </td>
@@ -88,7 +88,7 @@
                             <div class="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 space-y-3">
                                 <div class="flex items-center gap-3">
                                     @if ($major->foto_kaprog)
-                                        <img src="@asset($major->foto_kaprog)" alt="Foto Kaprog" class="h-16 w-14 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
+                                        <img src="@asset($major->foto_kaprog)" alt="Foto Pimpinan" class="h-16 w-14 object-cover rounded-lg border border-gray-200 dark:border-gray-700">
                                     @else
                                         <div class="h-16 w-14 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-xs text-gray-400 text-center leading-none p-1">
                                             No Photo
@@ -98,15 +98,15 @@
                                         <h3 class="font-bold text-gray-900 dark:text-white truncate">{{ $major->nama_jurusan }}</h3>
                                         <p class="text-xs text-gray-500 dark:text-gray-400">Singkatan: {{ $major->shortname }}</p>
                                         <p class="text-xs text-gray-500 dark:text-gray-400">Nomenklatur: {{ $major->nomenklatur_istilah }}</p>
-                                        <p class="text-xs text-gray-500 dark:text-gray-400 font-semibold mt-1">Kaprog: {{ $major->nama_kaprog ?? '—' }}</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400 font-semibold mt-1">{{ $unit->getLeaderLabel() }}: {{ $major->nama_kaprog ?? '—' }}</p>
                                     </div>
                                 </div>
                                 <div class="flex justify-end gap-2 pt-2 border-t border-gray-200 dark:border-gray-700">
-                                    <x-icon-button :href="route('admin.majors.edit', [$unit, $major])" icon="edit" color="neutral" tooltip="Edit Jurusan" />
-                                    <form action="{{ route('admin.majors.destroy', [$unit, $major]) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data jurusan ini beserta data galeri program terkait?');">
+                                    <x-icon-button :href="route('admin.majors.edit', [$unit, $major])" icon="edit" color="neutral" tooltip="Edit {{ $unit->getMajorLabel() }}" />
+                                    <form action="{{ route('admin.majors.destroy', [$unit, $major]) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data {{ strtolower($unit->getMajorLabel()) }} ini beserta data galeri program terkait?');">
                                         @csrf
                                         @method('DELETE')
-                                        <x-icon-button type="submit" icon="trash" color="danger" tooltip="Hapus Jurusan" />
+                                        <x-icon-button type="submit" icon="trash" color="danger" tooltip="Hapus {{ $unit->getMajorLabel() }}" />
                                     </form>
                                 </div>
                             </div>
@@ -116,11 +116,11 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                                 </svg>
                                 <div>
-                                    <h3 class="text-xs font-bold text-gray-900 dark:text-white">Belum Ada Jurusan</h3>
-                                    <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Tambah data program keahlian / jurusan baru.</p>
+                                    <h3 class="text-xs font-bold text-gray-900 dark:text-white">Belum Ada {{ $unit->getMajorLabel() }}</h3>
+                                    <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">Tambah data {{ strtolower($unit->getMajorLabel()) }} baru.</p>
                                 </div>
                                 <a href="{{ route('admin.majors.create', $unit) }}" class="inline-flex items-center px-3 py-1.5 bg-brand-red hover:bg-brand-red-light text-white font-semibold text-[10px] uppercase tracking-widest rounded-md transition duration-150">
-                                    + Tambah Jurusan
+                                    + Tambah {{ $unit->getMajorLabel() }}
                                 </a>
                             </div>
                         @endforelse

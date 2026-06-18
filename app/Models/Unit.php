@@ -48,6 +48,42 @@ class Unit extends Model
         return $this->jenjang === 'smk';
     }
 
+    /** Apakah unit ini berjenjang SMP? */
+    public function isSmp(): bool
+    {
+        return $this->jenjang === 'smp';
+    }
+
+    /** Apakah unit ini berjenjang TK? */
+    public function isTk(): bool
+    {
+        return $this->jenjang === 'tk';
+    }
+
+    /** Dapatkan label nama program/jurusan dinamis berdasarkan jenjang */
+    public function getMajorLabel(): string
+    {
+        if ($this->isSmk()) {
+            return 'Jurusan';
+        }
+        if ($this->isSmp()) {
+            return 'Program Unggulan';
+        }
+        return 'Program Pendidikan'; // tk
+    }
+
+    /** Dapatkan label kepala/pimpinan program dinamis berdasarkan jenjang */
+    public function getLeaderLabel(): string
+    {
+        if ($this->isSmk()) {
+            return 'Kepala Program (Kaprog)';
+        }
+        if ($this->isSmp()) {
+            return 'Koordinator Program';
+        }
+        return 'Koordinator Layanan / Guru PJ'; // tk
+    }
+
     // ---------------------------------------------------------------
     // Relasi
     // ---------------------------------------------------------------

@@ -332,9 +332,9 @@ class ApiTest extends TestCase
     }
 
     /**
-     * Test GET /api/v1/units/{slug}/majors restricts non-SMK units.
+     * Test GET /api/v1/units/{slug}/majors works for all units.
      */
-    public function test_api_majors_endpoints_restrict_non_smk(): void
+    public function test_api_majors_endpoints_allow_all_units(): void
     {
         // SMK major lookup works
         $major = Major::create([
@@ -355,12 +355,23 @@ class ApiTest extends TestCase
         $response->assertStatus(200)
             ->assertJsonFragment(['nama_jurusan' => 'Rekayasa Perangkat Lunak']);
 
-        // SMP major lookup results in 404
-        $response = $this->getJson("/api/v1/units/{$this->unitSmp->slug}/majors");
-        $response->assertStatus(404);
+        // SMP major lookup works too
+        $majorSmp = Major::create([
+            'unit_id' => $this->unitSmp->id,
+            'nama_jurusan' => 'Tahfidz Program',
+            'nomenklatur_istilah' => 'Program Unggulan',
+            'shortname' => 'TFZ',
+            'nama_kaprog' => 'Ustadz Ahmad',
+            'deskripsi_jurusan' => 'Tahfidz Deskripsi',
+        ]);
 
-        $response = $this->getJson("/api/v1/units/{$this->unitSmp->slug}/majors/{$major->id}");
-        $response->assertStatus(404);
+        $response = $this->getJson("/api/v1/units/{$this->unitSmp->slug}/majors");
+        $response->assertStatus(200)
+            ->assertJsonFragment(['nama_jurusan' => 'Tahfidz Program']);
+
+        $response = $this->getJson("/api/v1/units/{$this->unitSmp->slug}/majors/{$majorSmp->id}");
+        $response->assertStatus(200)
+            ->assertJsonFragment(['nama_jurusan' => 'Tahfidz Program']);
     }
 
     /**

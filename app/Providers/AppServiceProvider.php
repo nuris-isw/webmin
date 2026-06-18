@@ -1,37 +1,43 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers {
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Blade;
+    use Illuminate\Support\ServiceProvider;
+    use Illuminate\Support\Facades\Blade;
 
-class AppServiceProvider extends ServiceProvider
-{
-    /**
-     * Register any application services.
-     */
-    public function register(): void
+    class AppServiceProvider extends ServiceProvider
     {
-        //
-    }
+        /**
+         * Register any application services.
+         */
+        public function register(): void
+        {
+            //
+        }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        Blade::directive('asset', function ($expression) {
-            return "<?php echo \App\Helpers\AssetHelper::getUrl($expression); ?>";
-        });
+        /**
+         * Bootstrap any application services.
+         */
+        public function boot(): void
+        {
+            Blade::directive('asset', function ($expression) {
+                return "<?php echo \App\Helpers\AssetHelper::getUrl($expression); ?>";
+            });
 
-        \Illuminate\Pagination\Paginator::useTailwind();
+            \Illuminate\Pagination\Paginator::useTailwind();
+        }
     }
 }
 
-if (!function_exists('school_asset')) {
-    function school_asset(?string $path): string
-    {
-        return \App\Helpers\AssetHelper::getUrl($path);
+namespace {
+    if (!function_exists('school_asset')) {
+        function school_asset(?string $path = null): string
+        {
+            if (empty($path)) {
+                return \Illuminate\Support\Facades\Storage::disk('public')->url('');
+            }
+            return \App\Helpers\AssetHelper::getUrl($path);
+        }
     }
 }
 

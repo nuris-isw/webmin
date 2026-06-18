@@ -24,9 +24,9 @@
 
     <!-- Divider -->
     <div class="relative flex py-4 items-center">
-        <div class="flex-grow border-t border-gray-200 dark:border-gray-700"></div>
-        <span class="flex-shrink mx-4 text-xs font-semibold text-gray-dark uppercase tracking-wider">Atau masuk dengan email</span>
-        <div class="flex-grow border-t border-gray-200 dark:border-gray-700"></div>
+        <div class="grow border-t border-gray-200 dark:border-gray-700"></div>
+        <span class="shrink mx-4 text-xs font-semibold text-gray-dark uppercase tracking-wider">Atau masuk dengan email</span>
+        <div class="grow border-t border-gray-200 dark:border-gray-700"></div>
     </div>
 
     <form method="POST" action="{{ route('login') }}" class="space-y-5">

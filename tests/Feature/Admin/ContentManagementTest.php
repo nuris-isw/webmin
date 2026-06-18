@@ -199,6 +199,10 @@ class ContentManagementTest extends TestCase
         $gallery = Gallery::where('nama_kegiatan', 'Pameran Karya RPL')->first();
         $this->assertCount(2, $gallery->photos);
 
+        // Test visiting the edit page (prevent regression on school_asset or undefined layout variables)
+        $response = $this->actingAs($adminSmk)->get(route('admin.galleries.edit', [$unitSmk, $gallery]));
+        $response->assertStatus(200);
+
         // 2. Test reordering and photo deletion on edit
         $photo1 = $gallery->photos[0];
         $photo2 = $gallery->photos[1];

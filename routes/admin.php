@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\SpmbController;
 use App\Http\Controllers\Admin\MajorController;
+use App\Http\Controllers\Admin\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,7 @@ Route::middleware(['auth', 'admin.unit'])->prefix('admin/{unit:slug}')->name('ad
     Route::resource('news', NewsController::class)->except(['show']);
     Route::resource('galleries', GalleryController::class)->except(['show']);
     Route::resource('majors', MajorController::class)->except(['show']);
+    Route::resource('employees', EmployeeController::class)->except(['show']);
     Route::get('spmb', [SpmbController::class, 'edit'])->name('spmb.edit');
     Route::put('spmb', [SpmbController::class, 'update'])->name('spmb.update');
 });

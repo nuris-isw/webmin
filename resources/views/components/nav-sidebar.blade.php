@@ -155,5 +155,22 @@
             </div>
         @endif
 
+        <!-- Data SDM / Guru & Pegawai -->
+        @if ($unitSlug)
+            <div class="space-y-2">
+                <span class="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest px-4">
+                    Sumber Daya Manusia
+                </span>
+                <div class="mt-2 space-y-1">
+                    <x-nav-link :href="($unitSlug && Route::has('admin.employees.index')) ? route('admin.employees.index', ['unit' => $unitSlug]) : '#'" :active="request()->routeIs('admin.employees.*')">
+                        <svg class="w-5 h-5 mr-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        Guru & Pegawai
+                    </x-nav-link>
+                </div>
+            </div>
+        @endif
+
     </nav>
 </div>

@@ -127,4 +127,9 @@ class Unit extends Model
     {
         return $this->hasMany(Major::class);
     }
+
+    public function employees(): HasMany
+    {
+        return $this->hasMany(Employee::class);
+    }
 }

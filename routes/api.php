@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\GalleryController;
 use App\Http\Controllers\Api\MajorController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\SpmbController;
+use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\UnitController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +36,9 @@ Route::prefix('v1')->middleware('throttle:60,1')->group(function () {
         // Majors API
         Route::get('/majors', [MajorController::class, 'index']);
         Route::get('/majors/{id}', [MajorController::class, 'show']);
+
+        // Employees API
+        Route::get('/employees', [EmployeeController::class, 'index']);
+        Route::get('/employees/{id}', [EmployeeController::class, 'show']);
     });
 });

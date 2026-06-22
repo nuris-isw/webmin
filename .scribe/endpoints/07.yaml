@@ -1,0 +1,149 @@
+name: Employees
+description: |-
+
+  API for retrieving employee (teacher and staff) data for a school unit.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/units/{slug}/employees'
+    metadata:
+      custom: []
+      groupName: Employees
+      groupDescription: |-
+
+        API for retrieving employee (teacher and staff) data for a school unit.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get employees list.'
+      description: |-
+        Returns a list of teachers and staff for the specified school unit,
+        ordered by `order_number` ascending (lower number = higher rank).
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      slug:
+        custom: []
+        name: slug
+        description: 'The slug of the school unit.'
+        required: true
+        example: smk-mandiri
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      slug: smk-mandiri
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Daftar pegawai berhasil diambil.",
+            "data": [
+              {
+                "id": 1,
+                "nama": "Drs. Ahmad Fauzi, M.Pd.",
+                "jabatan": "Kepala Sekolah",
+                "order_number": 1,
+                "photo": "http://localhost/storage/1/employees/photo.jpg",
+                "created_at": "2026-06-22T00:00:00+00:00",
+                "updated_at": "2026-06-22T00:00:00+00:00"
+              }
+            ]
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/units/{slug}/employees/{id}'
+    metadata:
+      custom: []
+      groupName: Employees
+      groupDescription: |-
+
+        API for retrieving employee (teacher and staff) data for a school unit.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get employee details.'
+      description: 'Returns detailed information for a specific employee/staff member.'
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      slug:
+        custom: []
+        name: slug
+        description: 'The slug of the school unit.'
+        required: true
+        example: smk-mandiri
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the employee.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      slug: smk-mandiri
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "success": true,
+            "message": "Detail pegawai berhasil diambil.",
+            "data": {
+              "id": 1,
+              "nama": "Drs. Ahmad Fauzi, M.Pd.",
+              "jabatan": "Kepala Sekolah",
+              "order_number": 1,
+              "photo": "http://localhost/storage/1/employees/photo.jpg",
+              "created_at": "2026-06-22T00:00:00+00:00",
+              "updated_at": "2026-06-22T00:00:00+00:00"
+            }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

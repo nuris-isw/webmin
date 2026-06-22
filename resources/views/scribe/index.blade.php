@@ -259,6 +259,19 @@
                             </li>
                                                                         </ul>
                             </ul>
+                    <ul id="tocify-header-employees" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="employees">
+                    <a href="#employees">Employees</a>
+                </li>
+                                    <ul id="tocify-subheader-employees" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="employees-GETapi-v1-units--slug--employees">
+                                <a href="#employees-GETapi-v1-units--slug--employees">Get employees list.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="employees-GETapi-v1-units--slug--employees--id-">
+                                <a href="#employees-GETapi-v1-units--slug--employees--id-">Get employee details.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
                     <ul id="tocify-header-extracurriculars" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="extracurriculars">
                     <a href="#extracurriculars">Extracurriculars</a>
@@ -340,7 +353,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 18, 2026</li>
+        <li>Last updated: June 22, 2026</li>
     </ul>
 </div>
 
@@ -525,6 +538,311 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Filter achievements by recipient role: <code>siswa</code>, <code>guru</code>, <code>tendik</code>, or <code>sekolah</code>. Example: <code>siswa</code></p>
             </div>
                 </form>
+
+                <h1 id="employees">Employees</h1>
+
+    <p>API for retrieving employee (teacher and staff) data for a school unit.</p>
+
+                                <h2 id="employees-GETapi-v1-units--slug--employees">Get employees list.</h2>
+
+<p>
+</p>
+
+<p>Returns a list of teachers and staff for the specified school unit,
+ordered by <code>order_number</code> ascending (lower number = higher rank).</p>
+
+<span id="example-requests-GETapi-v1-units--slug--employees">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/units/smk-mandiri/employees" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/units/smk-mandiri/employees"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-units--slug--employees">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Daftar pegawai berhasil diambil.&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;nama&quot;: &quot;Drs. Ahmad Fauzi, M.Pd.&quot;,
+            &quot;jabatan&quot;: &quot;Kepala Sekolah&quot;,
+            &quot;order_number&quot;: 1,
+            &quot;photo&quot;: &quot;http://localhost/storage/1/employees/photo.jpg&quot;,
+            &quot;created_at&quot;: &quot;2026-06-22T00:00:00+00:00&quot;,
+            &quot;updated_at&quot;: &quot;2026-06-22T00:00:00+00:00&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-units--slug--employees" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-units--slug--employees"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-units--slug--employees"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-units--slug--employees" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-units--slug--employees">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-units--slug--employees" data-method="GET"
+      data-path="api/v1/units/{slug}/employees"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-units--slug--employees', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-units--slug--employees"
+                    onclick="tryItOut('GETapi-v1-units--slug--employees');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-units--slug--employees"
+                    onclick="cancelTryOut('GETapi-v1-units--slug--employees');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-units--slug--employees"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/units/{slug}/employees</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-units--slug--employees"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-units--slug--employees"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>slug</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="slug"                data-endpoint="GETapi-v1-units--slug--employees"
+               value="smk-mandiri"
+               data-component="url">
+    <br>
+<p>The slug of the school unit. Example: <code>smk-mandiri</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="employees-GETapi-v1-units--slug--employees--id-">Get employee details.</h2>
+
+<p>
+</p>
+
+<p>Returns detailed information for a specific employee/staff member.</p>
+
+<span id="example-requests-GETapi-v1-units--slug--employees--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/v1/units/smk-mandiri/employees/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/units/smk-mandiri/employees/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-units--slug--employees--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Detail pegawai berhasil diambil.&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;nama&quot;: &quot;Drs. Ahmad Fauzi, M.Pd.&quot;,
+        &quot;jabatan&quot;: &quot;Kepala Sekolah&quot;,
+        &quot;order_number&quot;: 1,
+        &quot;photo&quot;: &quot;http://localhost/storage/1/employees/photo.jpg&quot;,
+        &quot;created_at&quot;: &quot;2026-06-22T00:00:00+00:00&quot;,
+        &quot;updated_at&quot;: &quot;2026-06-22T00:00:00+00:00&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-units--slug--employees--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-units--slug--employees--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-units--slug--employees--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-units--slug--employees--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-units--slug--employees--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-units--slug--employees--id-" data-method="GET"
+      data-path="api/v1/units/{slug}/employees/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-units--slug--employees--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-units--slug--employees--id-"
+                    onclick="tryItOut('GETapi-v1-units--slug--employees--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-units--slug--employees--id-"
+                    onclick="cancelTryOut('GETapi-v1-units--slug--employees--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-units--slug--employees--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/units/{slug}/employees/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-units--slug--employees--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-units--slug--employees--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>slug</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="slug"                data-endpoint="GETapi-v1-units--slug--employees--id-"
+               value="smk-mandiri"
+               data-component="url">
+    <br>
+<p>The slug of the school unit. Example: <code>smk-mandiri</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-v1-units--slug--employees--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the employee. Example: <code>1</code></p>
+            </div>
+                    </form>
 
                 <h1 id="extracurriculars">Extracurriculars</h1>
 
